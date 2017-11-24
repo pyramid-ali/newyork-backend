@@ -46,18 +46,22 @@ Route::domain('{company}.ny.dev')->group(function () {
 
 });
 
+Route::domain('ny.dev')->group(function () {
 
-Route::get('home', function() {
-    return redirect('/moderator/users');
+    Route::get('home', function() {
+        return redirect('/moderator/users');
+    });
+
+    Route::get('login', 'Moderator\LoginController@showLoginForm');
+    Route::post('login', 'Moderator\LoginController@login')->name('login');
+    Route::post('logout', 'Moderator\LoginController@logout')->name('logout');
+
+    Route::group(['middleware' => ['moderator', 'auth']], function() {
+
+        Route::resource('moderator/users', 'Moderator\UserController');
+        Route::resource('moderator/companies', 'Moderator\CompanyController');
+
+    });
+
 });
 
-Route::get('login', 'Moderator\LoginController@showLoginForm');
-Route::post('login', 'Moderator\LoginController@login')->name('login');
-Route::post('logout', 'Moderator\LoginController@logout')->name('logout');
-
-Route::group(['middleware' => ['moderator', 'auth']], function() {
-
-    Route::resource('moderator/users', 'Moderator\UserController');
-    Route::resource('moderator/companies', 'Moderator\CompanyController');
-
-});
