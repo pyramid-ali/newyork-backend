@@ -10,7 +10,9 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('foundation-sites');
+
+    $(document).foundation();
 } catch (e) {}
 
 /**

@@ -1,0 +1,212 @@
+<?php
+
+namespace App\Http\Controllers\Company;
+
+use App\Address;
+use App\Company;
+use App\Employee;
+use App\Office;
+use App\ServiceCode;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class EmployeeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Company $company
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Company $company)
+    {
+        $employees = $company->employees()->paginate();
+        return view('company.employees.index', compact('employees', 'company'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param Company $company
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Company $company)
+    {
+        return view('company.employees.create', compact('company'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param Company $company
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Company $company)
+    {
+
+        $request->validate([
+            'last_name' => 'required|string',
+            'first_name' => 'required|string',
+            'employee_type' => 'required|string',
+            'employee_id' => 'required|numeric|unique:employees,id',
+            'file_number' => 'required|numeric',
+            'batch_id' => 'required|numeric',
+            'temp_department' => 'required|numeric',
+            'reimbursement_rate' => 'nullable|numeric',
+            'fulltime_threshold' => 'nullable|numeric',
+            'status' => 'required|in:active,inactive',
+            'office' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'street' => 'required|string'
+        ]);
+
+        $properties = $request->only([
+            'last_name',
+            'first_name',
+            'employee_type',
+            'employee_id',
+            'file_number',
+            'batch_id',
+            'temp_department',
+            'reimbursement_rate',
+            'fulltime_threshold',
+            'status',
+            'office'
+        ]);
+
+        $properties = array_filter($properties);
+
+        $employee = new Employee($properties);
+        $company->employees()->save($employee);
+
+        $addressFields = $request->only([
+            'city',
+            'state',
+            'zip_code',
+            'street'
+        ]);
+
+        $address = new Address($addressFields);
+
+        $employee->address()->save($address);
+
+        return redirect('/employees');
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Company $company
+     * @param Employee $employee
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Company $company, Employee $employee)
+    {
+        return view('company.employees.show', compact('company', 'employee'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Company $company
+     * @param Employee $employee
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Company $company, Employee $employee)
+    {
+        return view('company.employees.edit', compact('employee', 'company'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param Company $company
+     * @param Employee $employee
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Company $company, Employee $employee)
+    {
+
+        $request->validate([
+            'last_name' => 'required|string',
+            'first_name' => 'required|string',
+            'employee_type' => 'required|string',
+            'employee_id' => 'required|numeric|unique:employees,id',
+            'file_number' => 'required|numeric',
+            'batch_id' => 'required|numeric',
+            'temp_department' => 'required|numeric',
+            'reimbursement_rate' => 'nullable|numeric',
+            'fulltime_threshold' => 'nullable|numeric',
+            'status' => 'required|in:active,inactive',
+            'office' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'street' => 'required|string'
+        ]);
+
+        $properties = $request->only([
+            'last_name',
+            'first_name',
+            'employee_type',
+            'employee_id',
+            'file_number',
+            'batch_id',
+            'temp_department',
+            'reimbursement_rate',
+            'fulltime_threshold',
+            'status',
+            'office'
+        ]);
+
+        $properties = array_filter($properties);
+
+        $employee->update($properties);
+
+        $addressFields = $request->only([
+            'city',
+            'state',
+            'zip_code',
+            'street'
+        ]);
+
+        $employee->address->update($addressFields);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Company $company
+     * @param Employee $employee
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Company $company, Employee $employee)
+    {
+        $employee->forceDelete();
+        return redirect()->back();
+    }
+
+    public function serviceCodes(Company $company, Employee $employee)
+    {
+        $serviceCodes = ServiceCode::all();
+        return view('company.employees.service_codes', compact('serviceCodes', 'company', 'employee'));
+    }
+
+    public function assignServiceCodes(Request $request, Company $company, Employee $employee)
+    {
+        $request->validate([
+            'services' => 'array'
+        ]);
+
+        $employee->serviceCodes()->sync($request->services);
+
+        return redirect()->back();
+    }
+}
