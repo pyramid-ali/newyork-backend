@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::domain('{company}.ny.dev')->group(function () {
+Route::domain('{company}.calcuride.net')->group(function () {
 
     Route::get('login', 'Company\LoginController@showLoginForm')->name('company.login');
     Route::post('login', 'Company\LoginController@login')->name('company.login');
@@ -46,7 +46,7 @@ Route::domain('{company}.ny.dev')->group(function () {
 
 });
 
-Route::domain('ny.dev')->group(function () {
+Route::domain('calcuride.net')->group(function () {
 
     Route::get('home', function() {
         return redirect('/moderator/users');
