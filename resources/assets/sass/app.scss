@@ -50,6 +50,45 @@
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+}
+
+#sidebar {
+  background: black;
+}
+
+.menu-wrapper {
+
+  ul {
+    li {
+      i {
+        width: 50px;
+        color: white;
+        text-align: center;
+      }
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .accordion-menu {
+    & > li {
+      background: black;
+    }
+
+    .menu {
+      margin: 0;
+      & > li {
+        background: lighten(black, 20);
+      }
+    }
+  }
+}
+
 .login-container {
   background: $primary-color;
   height: 100vh;
@@ -77,6 +116,18 @@
   }
 }
 
+.sidebar-header {
+  background: $primary-color;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+.view-wrapper {
+  margin-top: 20px;
+}
+
 
 .alert {
   ul {
@@ -90,11 +141,60 @@
   }
 }
 
-ul.dashboard-top {
-  background: red;
-    li {
-      background: none;
-      padding: 5px;
-      margin: 0 15px;
+.dropzone {
+  .dz-preview.dz-image-preview {
+    background: none;
+  }
+  .dz-preview {
+    .dz-error-message {
+      width: 250px;
+      left: -65px;
+      top: 150px;
+      &::after {
+        left: 124px;
+      }
     }
+  }
 }
+
+div.filepicker {
+  min-height: 250px;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.employee-error-list {
+  list-style: none;
+  background: none;
+  li {
+    background: none !important;
+    padding: 5px;
+    color: $secondary-color !important;
+    border-bottom: 1px solid white;
+  }
+}
+
+.download-box {
+  border-radius: 5px;
+  border:1px solid $primary-color;
+  margin: 10px 0;
+  padding: 15px;
+}
+
+table {
+  thead, tbody {
+    td {
+      text-align: center;
+    }
+  }
+
+}
+
+.fa-trash {
+  color: $alert-color !important;
+}
+
+@import '~react-dropzone-component/styles/filepicker.css';
+@import '~dropzone/dist/min/dropzone.min.css';

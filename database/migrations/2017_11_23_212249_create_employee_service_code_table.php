@@ -18,6 +18,7 @@ class CreateEmployeeServiceCodeTable extends Migration
 
             $table->unsignedInteger('service_code_id');
             $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('rate')->nullable();
             $table->timestamps();
 
             $table->foreign('service_code_id')->references('id')->on('service_codes')->onDelete('cascade');

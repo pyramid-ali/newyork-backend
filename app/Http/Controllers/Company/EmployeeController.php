@@ -7,6 +7,7 @@ use App\Company;
 use App\Employee;
 use App\Office;
 use App\ServiceCode;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,7 +33,8 @@ class EmployeeController extends Controller
      */
     public function create(Company $company)
     {
-        return view('company.employees.create', compact('company'));
+        $offices = $company->offices;
+        return view('company.employees.create', compact('company', 'offices'));
     }
 
     /**
@@ -51,16 +53,17 @@ class EmployeeController extends Controller
             'employee_type' => 'required|string',
             'employee_id' => 'required|numeric|unique:employees,id',
             'file_number' => 'required|numeric',
-            'batch_id' => 'required|numeric',
             'temp_department' => 'required|numeric',
             'reimbursement_rate' => 'nullable|numeric',
             'fulltime_threshold' => 'nullable|numeric',
             'status' => 'required|in:active,inactive',
-            'office' => 'required|string',
+            'office_id' => 'required|exists:offices,id',
             'city' => 'required|string',
             'state' => 'required|string',
             'zip_code' => 'required|string',
-            'street' => 'required|string'
+            'street' => 'required|string',
+            'cel' => 'nullable|numeric',
+            'metro_card' => 'nullable|numeric',
         ]);
 
         $properties = $request->only([
@@ -69,12 +72,13 @@ class EmployeeController extends Controller
             'employee_type',
             'employee_id',
             'file_number',
-            'batch_id',
             'temp_department',
             'reimbursement_rate',
             'fulltime_threshold',
             'status',
-            'office'
+            'office_id',
+            'cel',
+            'metro_card'
         ]);
 
         $properties = array_filter($properties);
@@ -138,16 +142,17 @@ class EmployeeController extends Controller
             'employee_type' => 'required|string',
             'employee_id' => 'required|numeric|unique:employees,id',
             'file_number' => 'required|numeric',
-            'batch_id' => 'required|numeric',
             'temp_department' => 'required|numeric',
             'reimbursement_rate' => 'nullable|numeric',
             'fulltime_threshold' => 'nullable|numeric',
             'status' => 'required|in:active,inactive',
-            'office' => 'required|string',
+            'office_id' => 'required|exists:offices,id',
             'city' => 'required|string',
             'state' => 'required|string',
             'zip_code' => 'required|string',
-            'street' => 'required|string'
+            'street' => 'required|string',
+            'cel' => 'nullable|numeric',
+            'metro_card' => 'nullable|numeric',
         ]);
 
         $properties = $request->only([
@@ -156,12 +161,13 @@ class EmployeeController extends Controller
             'employee_type',
             'employee_id',
             'file_number',
-            'batch_id',
             'temp_department',
             'reimbursement_rate',
             'fulltime_threshold',
             'status',
-            'office'
+            'office_id',
+            'cel',
+            'metro_card'
         ]);
 
         $properties = array_filter($properties);
@@ -209,4 +215,46 @@ class EmployeeController extends Controller
 
         return redirect()->back();
     }
+
+    public function setRate(Request $request, Company $company, Employee $employee)
+    {
+        $request->validate([
+            'rate' => 'nullable|numeric',
+            'service_code' => 'required|exists:service_codes,id'
+        ]);
+
+        $serviceCode = $employee->serviceCodes()->find($request->service_code);
+        $serviceCode->pivot->rate = $request->rate;
+        $serviceCode->pivot->save();
+
+        return redirect()->back();
+    }
+
+    public function search(Request $request, Company $company)
+    {
+
+        $firstName = $request['first_name'];
+        $lastName = $request['last_name'];
+        $employeeId = $request['employee_id'];
+
+        $employees = Employee::query();
+
+        if ($firstName) {
+            $employees = $employees->where('first_name', $firstName);
+        }
+
+        if ($lastName) {
+            $employees = $employees->where('last_name', $lastName);
+        }
+
+        if ($employeeId) {
+            $employees = $employees->where('employee_id', $employeeId);
+        }
+
+        $employees = $employees->paginate();
+
+        return view('company.employees.index', compact('employees', 'company'));
+    }
+
+
 }

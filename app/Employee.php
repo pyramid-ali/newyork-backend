@@ -13,12 +13,13 @@ class Employee extends Model
         'employee_type',
         'employee_id',
         'file_number',
-        'batch_id',
         'temp_department',
         'reimbursement_rate',
         'fulltime_threshold',
         'status',
-        'office'
+        'office_id',
+        'cel',
+        'metro_card'
     ];
 
     public function address()
@@ -48,4 +49,26 @@ class Employee extends Model
             return $serviceCode->id === $serviceCodeFind->id;
         })->count() > 0;
     }
+
+    public function serviceCodeRate(ServiceCode $serviceCodeFind)
+    {
+        return $this->serviceCodes()->withPivot('rate')->get()->filter(function($serviceCode) use ($serviceCodeFind) {
+            return $serviceCode->id === $serviceCodeFind->id;
+        })->first()->pivot->rate;
+    }
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
+
+    public function getFulltimeThresholdAttribute()
+    {
+        if ($this->fulltile_threshold) {
+            return $this->fulltile_threshold;
+        }
+
+        return $this->company->fulltime_threshold;
+    }
+
 }

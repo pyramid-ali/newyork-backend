@@ -41,10 +41,6 @@
                             <td>{{ $employee->file_number }}</td>
                         </tr>
                         <tr>
-                            <td>Batch ID</td>
-                            <td>{{ $employee->batch_id }}</td>
-                        </tr>
-                        <tr>
                             <td>Temp Department</td>
                             <td>{{ $employee->temp_department }}</td>
                         </tr>
@@ -60,11 +56,48 @@
                             <td>Status</td>
                             <td>{{ $employee->status }}</td>
                         </tr>
-                        <tr>
-                            <td>Office</td>
-                            <td>{{ $employee->office }}</td>
-                        </tr>
 
+
+                    </tbody>
+                </table>
+
+                <hr>
+                <h4>Office</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Property</td>
+                        <td>Value</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><a href="{{ '/offices/'.$employee->office->id }}">{{ $employee->office->name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Batch ID</td>
+                            <td>{{ $employee->office->batch_id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+                <h4>Service Codes</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Rate</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($employee->serviceCodes as $serviceCode)
+                            <tr>
+                                <td>{{ $serviceCode->name }}</td>
+                                <td>{{ ($employee->serviceCodeRate($serviceCode) ? $employee->serviceCodeRate($serviceCode) : 'Default') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -18,7 +18,6 @@
                             <td>Name</td>
                             <td>Rate</td>
                             <td>Unit</td>
-                            <td>Company created</td>
                             <td>Edit</td>
                             <td>Delete</td>
                         </tr>
@@ -29,7 +28,6 @@
                             <td>{{ $serviceCode->name }}</td>
                             <td>{{ $serviceCode->rate }}</td>
                             <td>{{ $serviceCode->unit }}</td>
-                            <td><a href="{{ route('service_codes.show', ['service_code' => $serviceCode->id, 'company' => $company->name]) }}"><i class="fa fa-eye"></i></a></td>
                             <td><a href="{{ route('service_codes.edit', ['service_code' => $serviceCode->id, 'company' => $company->name]) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">
                                 <a href="{{ route('service_codes.destroy', ['service_code' => $serviceCode->id, 'company' => $company->name]) }}"

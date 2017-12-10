@@ -30,4 +30,9 @@ class Company extends Model
     {
         return $this->hasMany(ServiceCode::class);
     }
+
+    public function offices()
+    {
+        return $this->hasMany(Office::class);
+    }
 }

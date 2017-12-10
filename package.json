@@ -19,6 +19,7 @@
         "lodash": "^4.17.4",
         "pretty-checkbox": "^3.0.3",
         "react": "^15.4.2",
-        "react-dom": "^15.4.2"
+        "react-dom": "^15.4.2",
+        "react-dropzone-component": "^3.0.0"
     }
 }

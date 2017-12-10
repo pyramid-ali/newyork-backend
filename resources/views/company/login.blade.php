@@ -39,7 +39,7 @@
                         <input id="remember-me" type="checkbox" name="remember"><label for="checkbox3">Remember me</label>
 
                         <button class="button primary float-right">Login</button>
-                        <a class="button alert float-right forgot-password">Forgot Password</a>
+                        <a href="{{ action('ForgotPasswordController@showLinkRequestForm') }}" class="button alert float-right forgot-password">Forgot Password</a>
                     </form>
 
                 </section>

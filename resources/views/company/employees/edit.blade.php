@@ -43,12 +43,6 @@
                                     <input class="input-group-field" id="file-number" type="text" name="file_number" placeholder="File Number - Required" value="{{ $employee->file_number }}">
                                 </div>
                             </label>
-                            <label for="batch-id"> Batch Id
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-pencil-square"></i></span>
-                                    <input class="input-group-field" id="batch-id" type="text" name="batch_id" placeholder="Batch Id - required" value="{{ $employee->batch_id }}">
-                                </div>
-                            </label>
                             <label for="temp_department"> Temp Department
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-building"></i></span>
@@ -65,6 +59,32 @@
                                     <input class="input-group-field" id="reimbursement_rate" type="text" name="reimbursement_rate" placeholder="Reimbursement Rate - Default is 0.53$, for 0.53$ type 53" value="{{ $employee->reimbursement_rate }}">
                                 </div>
                             </label>
+
+
+                            <label for="cel"> CEL
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-mobile"></i></span>
+                                    <input class="input-group-field"
+                                           id="cel"
+                                           type="text"
+                                           name="cel"
+                                           placeholder="CEL - Optional"
+                                           value="{{ $employee->cel }}">
+                                </div>
+                            </label>
+
+                            <label for="metro_card"> Metro Card
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-credit-card"></i></span>
+                                    <input class="input-group-field"
+                                           id="metro_card"
+                                           type="text"
+                                           name="metro_card"
+                                           placeholder="Metro Card - Optional"
+                                           value="{{ $employee->metro_card }}">
+                                </div>
+                            </label>
+
                             <label for="fulltime_threshold"> Full Time Threshold
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-clock-o"></i></span>
@@ -72,10 +92,13 @@
                                 </div>
                             </label>
                             <label for="office"> Office
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-building-o"></i></span>
-                                    <input class="input-group-field" id="office" type="text" name="office" placeholder="Office - Required" value="{{ $employee->office }}">
-                                </div>
+                                <label for="office"> Office
+                                    <select name="office_id" id="office">
+                                        @foreach($offices as $office)
+                                            <option value="{{ $office->id }}" {{ $employee->office->id === $office->id ? 'selected' : '' }}>{{ $office->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
                             </label>
 
                             <label for="status"> Status
