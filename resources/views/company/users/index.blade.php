@@ -23,12 +23,12 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><a href="{{ route('managers.edit', ['id' => $user->id, 'company' => $company->id]) }}"><i class="fa fa-pencil"></i></a></td>
+                            <td><a href="{{ route('managers.edit', ['id' => $user->id, 'company' => $company->name]) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">
-                                <a href="{{ route('managers.destroy', ['id' => $user->id, 'company' => $company->id]) }}"
+                                <a href="{{ route('managers.destroy', ['id' => $user->id, 'company' => $company->name]) }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('{{ 'delete' . $user->id }}').submit();"><i class="fa fa-trash"></i></a>
-                                <form id="{{ 'delete' . $user->id }}" action="{{ route('managers.destroy', ['id' => $user->id, 'company' => $company->id]) }}" method="POST" style="display: none;">
+                                <form id="{{ 'delete' . $user->id }}" action="{{ route('managers.destroy', ['id' => $user->id, 'company' => $company->name]) }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                 </form>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import DropzoneComponent from 'react-dropzone-component';
 
-export default class Example extends Component {
+export default class ImportEmployee extends Component {
 
     constructor (props) {
         super(props);
@@ -108,7 +108,6 @@ export default class Example extends Component {
         );
     }
 
-
     renderResponse () {
         const { errors, success } = this.state;
 
@@ -172,5 +171,5 @@ export default class Example extends Component {
 }
 
 if (document.getElementById('employee-import')) {
-    ReactDOM.render(<Example />, document.getElementById('employee-import'));
+    ReactDOM.render(<ImportEmployee />, document.getElementById('employee-import'));
 }

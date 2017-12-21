@@ -196,5 +196,16 @@ table {
   color: $alert-color !important;
 }
 
+.pagination {
+
+  .active {
+    background: $primary-color;
+    color: white;
+    padding: 15px;
+  }
+}
+
+
+
 @import '~react-dropzone-component/styles/filepicker.css';
 @import '~dropzone/dist/min/dropzone.min.css';

@@ -33,12 +33,7 @@
                         </tr>
                         <tr>
                             <td>Type</td>
-                            <td>{{ $employee->employee_type}}</td>
-                        </tr>
-
-                        <tr>
-                            <td>File Number</td>
-                            <td>{{ $employee->file_number }}</td>
+                            <td>{{ $employee->employee_type ?? 'N/A'}}</td>
                         </tr>
                         <tr>
                             <td>Temp Department</td>
@@ -50,7 +45,7 @@
                         </tr>
                         <tr>
                             <td>Full Time Threshold</td>
-                            <td>{{ $employee->fulltime_threshold or $company->fulltime_threshold }}</td>
+                            <td>{{ $employee->fulltime_threshold }}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
@@ -73,11 +68,19 @@
                     <tbody>
                         <tr>
                             <td>Name</td>
-                            <td><a href="{{ '/offices/'.$employee->office->id }}">{{ $employee->office->name }}</a></td>
+                            @if($employee->office)
+                                <td><a href="{{ '/offices/'.$employee->office->id }}">{{ $employee->office->name }}</a></td>
+                            @else
+                                <td>N/A</td>
+                            @endif
                         </tr>
                         <tr>
                             <td>Batch ID</td>
-                            <td>{{ $employee->office->batch_id}}</td>
+                            @if($employee->office)
+                                <td>{{ $employee->office->batch_id}}</td>
+                            @else
+                                <td>N/A</td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
@@ -100,6 +103,11 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <hr>
+                <h4>Address</h4>
+                <p>{{ $employee->address->street }} <br> {{ $employee->address->city . ', ' . $employee->address->state . ' ' . $employee->address->zip_code }}</p>
+                <hr>
             </div>
 
         </div>

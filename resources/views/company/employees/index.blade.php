@@ -67,7 +67,7 @@
                         <tr>
                             <td>{{ $employee->employee_id }}</td>
                             <td>{{ $employee->first_name . ' ' . $employee->last_name }}</td>
-                            <td>{{ $employee->employee_type }}</td>
+                            <td>{{ $employee->employee_type ?? 'N\A' }}</td>
                             <td><a href="{{ route('employees.show', ['employee' => $employee->id, 'company' => $company->name]) }}"><i class="fa fa-eye"></i></a></td>
                             <td><a href="{{ route('employees.service_codes.show', ['employee' => $employee->id, 'company' => $company->name]) }}"><i class="fa fa-plus-circle"></i></a></td>
                             <td><a href="{{ route('employees.edit', ['employee' => $employee->id, 'company' => $company->name]) }}"><i class="fa fa-pencil"></i></a></td>

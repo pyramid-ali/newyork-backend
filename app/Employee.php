@@ -12,7 +12,6 @@ class Employee extends Model
         'first_name',
         'employee_type',
         'employee_id',
-        'file_number',
         'temp_department',
         'reimbursement_rate',
         'fulltime_threshold',
@@ -34,7 +33,10 @@ class Employee extends Model
 
     public function getReimbursementRateAttribute($value)
     {
-        return $value / 100;
+        if ($value) {
+            return $value / 100;
+        }
+        return 0.53;
     }
 
     public function serviceCodes()
@@ -55,6 +57,16 @@ class Employee extends Model
         return $this->serviceCodes()->withPivot('rate')->get()->filter(function($serviceCode) use ($serviceCodeFind) {
             return $serviceCode->id === $serviceCodeFind->id;
         })->first()->pivot->rate;
+    }
+
+    public function rate(ServiceCode $serviceCodeFind)
+    {
+        if ($ownRate = $this->serviceCodeRate($serviceCodeFind)) {
+            return $ownRate;
+        }
+
+        return $serviceCodeFind->rate;
+
     }
 
     public function office()

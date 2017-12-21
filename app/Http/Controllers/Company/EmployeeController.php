@@ -52,7 +52,6 @@ class EmployeeController extends Controller
             'first_name' => 'required|string',
             'employee_type' => 'required|string',
             'employee_id' => 'required|numeric|unique:employees,id',
-            'file_number' => 'required|numeric',
             'temp_department' => 'required|numeric',
             'reimbursement_rate' => 'nullable|numeric',
             'fulltime_threshold' => 'nullable|numeric',
@@ -71,7 +70,6 @@ class EmployeeController extends Controller
             'first_name',
             'employee_type',
             'employee_id',
-            'file_number',
             'temp_department',
             'reimbursement_rate',
             'fulltime_threshold',
@@ -122,7 +120,8 @@ class EmployeeController extends Controller
      */
     public function edit(Company $company, Employee $employee)
     {
-        return view('company.employees.edit', compact('employee', 'company'));
+        $offices = $company->offices;
+        return view('company.employees.edit', compact('employee', 'company', 'offices'));
     }
 
     /**
@@ -141,7 +140,6 @@ class EmployeeController extends Controller
             'first_name' => 'required|string',
             'employee_type' => 'required|string',
             'employee_id' => 'required|numeric|unique:employees,id',
-            'file_number' => 'required|numeric',
             'temp_department' => 'required|numeric',
             'reimbursement_rate' => 'nullable|numeric',
             'fulltime_threshold' => 'nullable|numeric',
@@ -160,7 +158,6 @@ class EmployeeController extends Controller
             'first_name',
             'employee_type',
             'employee_id',
-            'file_number',
             'temp_department',
             'reimbursement_rate',
             'fulltime_threshold',

@@ -1,5 +1,14 @@
+import Echo from "laravel-echo"
 
 window._ = require('lodash');
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '229a862ffdd2adc9b055',
+    cluster: 'us2',
+    encrypted: true
+});
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

@@ -90,44 +90,41 @@ class EmployeeBatchController extends Controller
         $skipped = collect();
 
         $rows->each(function ($row, $index) use($company, $skipped) {
-
-        try {
-            if ($office = $company->offices->where('batch_id', $row['batch_id'])->first()) {
+            try {
 
                 \DB::beginTransaction();
 
                 $employeeFields = [
                     'first_name' => $row['first_name'],
                     'last_name' => $row['last_name'],
-                    'employee_type' => $row['employee_type'],
                     'employee_id' => $row['employee_id'],
-                    'file_number' => $row['file_number'],
-                    'temp_department' => $row['temp_department'],
-                    'reimbursement_rate' => $row['reimbursement_rate'],
-                    'fulltime_threshold' => $row['fulltime_threshold'],
-                    'status' => $row['status'],
-                    'office_id' => $office->id
+                    'temp_department' => $row['temp_dept'],
+                    'employee_type' => snake_case(strtolower($row['employee_temp']))
                 ];
 
+                if (isset($row['productivity_threshold'])) {
+                    $employeeFields['threshold_time'] = $row['productivity_threshold'];
+                }
 
                 $employee = $company->employees()->create($employeeFields);
                 $addressFields = [
                     'city' => $row['city'],
-                    'state' => $row['city'],
+                    'state' => $row['state'],
                     'zip_code' => $row['zip_code'],
-                    'street' => $row['street'],
+                    'street' => $row['street_address'],
                 ];
 
                 $employee->address()->create($addressFields);
 
                 \DB::commit();
                 return;
+
             }
-        }
-        catch (\Exception $error) {
-            \DB::rollBack();
-        }
-            $skipped->push($row);
+            catch (\Exception $error) {
+                Log::error($error);
+                \DB::rollBack();
+                $skipped->push($row);
+            }
         });
 
         return $skipped;

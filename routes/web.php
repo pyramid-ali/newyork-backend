@@ -55,6 +55,9 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
             Route::post('payroll/process', 'Company\PayrollController@process')->name('payroll.process.store');
             Route::get('settings/change_password', 'Company\SettingController@showChangePasswordForm')->name('settings.change_password.show');
             Route::put('settings/change_password', 'Company\SettingController@changePassword')->name('settings.change_password.update');
+            Route::get('payroll/test', function (\App\Company $company) {
+                return view('company.test', compact('company'));
+            });
         });
 
     });

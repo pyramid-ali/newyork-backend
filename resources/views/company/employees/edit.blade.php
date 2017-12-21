@@ -37,22 +37,12 @@
                                     <input class="input-group-field" id="employee_id" type="text" name="employee_id" placeholder="Employee Id - Required" value="{{ $employee->employee_id }}">
                                 </div>
                             </label>
-                            <label for="file-number"> File Number
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-sort-numeric-asc"></i></span>
-                                    <input class="input-group-field" id="file-number" type="text" name="file_number" placeholder="File Number - Required" value="{{ $employee->file_number }}">
-                                </div>
-                            </label>
                             <label for="temp_department"> Temp Department
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-building"></i></span>
                                     <input class="input-group-field" id="temp_department" type="text" name="temp_department" placeholder="Temp Department - required" value="{{ $employee->temp_department }}">
                                 </div>
                             </label>
-
-                        </div>
-                        <div class="cell large-3">
-
                             <label for="reimbursement_rate"> Reimbursement Rate
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-random"></i></span>
@@ -60,6 +50,8 @@
                                 </div>
                             </label>
 
+                        </div>
+                        <div class="cell large-3">
 
                             <label for="cel"> CEL
                                 <div class="input-group">
@@ -91,15 +83,15 @@
                                     <input class="input-group-field" id="fulltime_threshold" type="text" name="fulltime_threshold" placeholder="Full Time Threshold - Default is global Setting" value="{{ $employee->fulltime_threshold }}">
                                 </div>
                             </label>
+
                             <label for="office"> Office
-                                <label for="office"> Office
-                                    <select name="office_id" id="office">
-                                        @foreach($offices as $office)
-                                            <option value="{{ $office->id }}" {{ $employee->office->id === $office->id ? 'selected' : '' }}>{{ $office->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </label>
+                                <select name="office_id" id="office">
+                                    @foreach($offices as $office)
+                                        <option value="{{ $office->id }}" {{ $employee->office ? ($employee->office->id === $office->id ? 'selected' : '') : '' }}>{{ $office->name }}</option>
+                                    @endforeach
+                                </select>
                             </label>
+
 
                             <label for="status"> Status
                                 <select name="status" id="status">

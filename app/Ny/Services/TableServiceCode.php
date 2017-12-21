@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: pyramid
+ * Date: 12/21/17
+ * Time: 2:50 PM
+ */
+
+namespace App\Ny\Services;
+
+
+use App\Employee;
+use App\ServiceCode;
+
+class TableServiceCode implements ServiceWorker
+{
+
+    public function work($job, Employee $employee)
+    {
+
+        $serviceCode = ServiceCode::where('name', $job['service_code'])->first();
+
+        $rate = 0;
+        if ($employee->employee_type === 'pdm') {
+            $rate = $employee->rate($serviceCode);
+        }
+
+        return [
+            'temp_rate' => [
+                'rate' => $rate,
+                'unit' => $serviceCode->unit
+            ]
+        ];
+    }
+}

@@ -43,7 +43,7 @@ class OfficeController extends Controller
     {
         $request->validate([
             'name' => 'string|required',
-            'batch_id' => 'required|numeric',
+            'batch_id' => 'required|string',
             'rate' => 'required|numeric'
         ]);
 
@@ -91,7 +91,7 @@ class OfficeController extends Controller
     {
         $request->validate([
             'name' => 'string|required',
-            'batch_id' => 'required|numeric',
+            'batch_id' => 'required|string',
             'rate' => 'required|numeric'
         ]);
 

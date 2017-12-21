@@ -15,3 +15,9 @@ require('./bootstrap');
 
 require('./components/ImportEmployee');
 require('./components/ExportEmployee');
+require('./components/PayrollProcess');
+
+window.Echo.channel('users')
+    .listen('user.created', (e) => {
+        console.log(e);
+    });

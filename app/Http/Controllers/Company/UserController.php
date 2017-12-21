@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use App\Company;
+use App\Events\NewUserCreated;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -47,19 +48,24 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6'
+            'password' => 'nullable|string|min:6'
         ]);
+
+        $password = $request->password;
+        if (!$password) {
+            $password = str_random(8);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($password)
         ]);
 
         $role = Role::manager()->first();
         $user->roles()->sync($role);
         $user->companies()->sync($company);
-
+        event(new NewUserCreated($company, $user, $password));
         return redirect('/managers');
 
     }

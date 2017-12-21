@@ -7,18 +7,25 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewUserRegistered extends Mailable
+class NewUserRegistered extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $company;
+    public $user;
+    public $password;
+
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * NewUserCreated constructor.
+     * @param $company
+     * @param $user
+     * @param $password
      */
-    public function __construct()
+    public function __construct($company, $user, $password)
     {
-        //
+        $this->company = $company;
+        $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -28,6 +35,9 @@ class NewUserRegistered extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $user = $this->user;
+        $company = $this->company;
+        $password = $this->password;
+        return $this->view('mail.new_user_created', compact('user', 'company', 'password'));
     }
 }

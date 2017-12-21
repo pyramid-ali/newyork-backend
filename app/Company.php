@@ -35,4 +35,9 @@ class Company extends Model
     {
         return $this->hasMany(Office::class);
     }
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
+    }
 }

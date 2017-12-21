@@ -31,21 +31,12 @@
                                     <input class="input-group-field" id="employee_id" type="text" name="employee_id" placeholder="Employee Id - Required" value="{{ old('employee_id') }}">
                                 </div>
                             </label>
-                            <label for="file-number"> File Number
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-sort-numeric-asc"></i></span>
-                                    <input class="input-group-field" id="file-number" type="text" name="file_number" placeholder="File Number - Required" value="{{ old('file_number') }}">
-                                </div>
-                            </label>
                             <label for="temp_department"> Temp Department
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-building"></i></span>
                                     <input class="input-group-field" id="temp_department" type="text" name="temp_department" placeholder="Temp Department - required" value="{{ old('temp_department') }}">
                                 </div>
                             </label>
-
-                        </div>
-                        <div class="cell large-3">
 
                             <label for="reimbursement_rate"> Reimbursement Rate
                                 <div class="input-group">
@@ -58,6 +49,9 @@
                                            value="{{ old('reimbursement_rate') }}">
                                 </div>
                             </label>
+
+                        </div>
+                        <div class="cell large-3">
 
 
                             <label for="cel"> CEL

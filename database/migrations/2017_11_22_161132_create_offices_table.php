@@ -16,7 +16,7 @@ class CreateOfficesTable extends Migration
         Schema::create('offices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('batch_id')->index();
+            $table->string('batch_id')->index();
             $table->unsignedInteger('company_id');
             $table->float('rate');
             $table->timestamps();
