@@ -1,0 +1,1161 @@
+[2017-12-28 10:20:12] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:20:12] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:20:12] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:20:12] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 10:27:46] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:27:46] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:27:46] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:27:46] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 10:36:04] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:36:04] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:36:04] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:36:04] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:36:04] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:40:34] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:40:34] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:40:34] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:40:34] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:41:25] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:41:26] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:41:26] Processing: App\Jobs\PayrollProcess
+[2017-12-28 10:41:26] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Failed:     App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Processing: App\Events\PayrollProcessed
+[2017-12-28 10:41:26] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:05:27] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:05:27] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:05:27] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:18:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:18:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:18:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:18:41] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:18:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:18:42] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:18:42] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:18:42] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:18:42] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:18:42] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:18:44] Processed:  App\Events\PayrollProcessed
+[2017-12-28 13:18:44] Processed:  App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:21:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:21:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:21:37] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:21:37] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:25:34] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:25:34] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:25:35] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:25:35] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:25:35] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:28:35] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:28:35] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:28:35] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:28:36] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:28:36] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:28:36] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:28:38] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:28:38] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:28:38] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:28:38] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:28:38] Processed:  App\Events\PayrollProcessed
+[2017-12-28 13:28:40] Processed:  App\Events\PayrollProcessed
+[2017-12-28 13:41:22] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:41:22] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:41:22] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:41:23] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:41:23] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:44:23] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:44:23] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:44:24] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:44:24] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:45:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:45:41] Processing: App\Jobs\PayrollProcess
+[2017-12-28 13:45:41] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Processing: App\Events\PayrollProcessed
+[2017-12-28 13:45:41] Failed:     App\Events\PayrollProcessed
+[2017-12-28 13:54:26] Processing: App\Jobs\PayrollProcess
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:29 GMT
+< Expires: Fri, 29 Dec 2017 13:54:29 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=426+Mount+Misery+Rd+Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C19++10th++Ave+Huntington+Station+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C1804+Shannon++Way+Melville+NY%7C30+Turtle+Cove+Lane+Huntington+NY%7C1804+Shannon++Way+Melville+NY%7C1802++Court+North+Dr.+++Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY&destinations=70+Pine+Lawn+Rd++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C1804+Shannon++Way+Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C1804+Shannon++Way+Melville+NY%7C1802++Court+North+Dr.+++Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:31 GMT
+< Expires: Fri, 29 Dec 2017 13:54:31 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=3+Keith+Court+Centerport+NY%7C19++10th++Ave+Huntington+Station+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C1804+Shannon++Way+Melville+NY%7C40+Lawn+Street+Greenlawn+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY&destinations=19++10th++Ave+Huntington+Station+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C40+Lawn+Street+Greenlawn+NY%7C1804+Shannon++Way+Melville+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C30+Turtle+Cove+Lane+Huntington+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:33 GMT
+< Expires: Fri, 29 Dec 2017 13:54:33 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=30+Turtle+Cove+Lane+Huntington+NY%7C909+Altessa+Blvd+Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C70+Pine+Lawn+Rd++Melville+NY&destinations=909+Altessa+Blvd+Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C43+Arbor+Rd++Syosset+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:36 GMT
+< Expires: Fri, 29 Dec 2017 13:54:36 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=125+Ocean+Avenue++Lynbrook+NY%7C921+Merrick+Rd++Baldwin+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C1212+Habor+Rd+Hewlett+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C125+Ocean+Avenue++Lynbrook+NY%7C1212+Habor+Rd+Hewlett+NY%7C55+Lenox+Road+Rockville+Centre+NY&destinations=921+Merrick+Rd++Baldwin+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C921+Merrick+Rd++Baldwin+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:38 GMT
+< Expires: Fri, 29 Dec 2017 13:54:38 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=921+Merrick+Rd++Baldwin+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C415+National+Blvd+Long+Beach+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C2118++Seneca++Drive++N.++Merrick+NY&destinations=120+Belmont+Ave+Long+Beach+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C415+National+Blvd+Long+Beach+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C921+Merrick+Rd++Baldwin+NY%7C1212+Habor+Rd+Hewlett+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:40 GMT
+< Expires: Fri, 29 Dec 2017 13:54:40 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=2760+Bellmore+Avenue+Bellmore+NY%7C51+Gordon+Road+Valley+Stream+NY%7C51+Gordon+Road+Valley+Stream+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C120+Belmont+Ave+Long+Beach+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C575+Church+Ave++Woodmere+NY&destinations=51+Gordon+Road+Valley+Stream+NY%7C415+National+Blvd+Long+Beach+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C415+National+Blvd+Long+Beach+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C575+Church+Ave++Woodmere+NY%7C1212+Habor+Rd+Hewlett+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:42 GMT
+< Expires: Fri, 29 Dec 2017 13:54:42 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=1212+Habor+Rd+Hewlett+NY&destinations=357+E+Olive+Street+Long+Beach+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:45 GMT
+< Expires: Fri, 29 Dec 2017 13:54:45 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 13:54:45] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:46 GMT
+< Expires: Fri, 29 Dec 2017 13:54:46 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+[2017-12-28 13:54:47] Processing: App\Events\PayrollProcessed
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=426+Mount+Misery+Rd+Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C19++10th++Ave+Huntington+Station+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C1804+Shannon++Way+Melville+NY%7C30+Turtle+Cove+Lane+Huntington+NY%7C1804+Shannon++Way+Melville+NY%7C1802++Court+North+Dr.+++Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY&destinations=70+Pine+Lawn+Rd++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C1804+Shannon++Way+Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C1804+Shannon++Way+Melville+NY%7C1802++Court+North+Dr.+++Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+[2017-12-28 13:54:49] Processed:  App\Events\PayrollProcessed
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:49 GMT
+< Expires: Fri, 29 Dec 2017 13:54:49 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=3+Keith+Court+Centerport+NY%7C19++10th++Ave+Huntington+Station+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C1804+Shannon++Way+Melville+NY%7C40+Lawn+Street+Greenlawn+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY&destinations=19++10th++Ave+Huntington+Station+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C40+Lawn+Street+Greenlawn+NY%7C1804+Shannon++Way+Melville+NY%7C70+Pine+Lawn+Rd++Melville+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C30+Turtle+Cove+Lane+Huntington+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:51 GMT
+< Expires: Fri, 29 Dec 2017 13:54:51 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=30+Turtle+Cove+Lane+Huntington+NY%7C909+Altessa+Blvd+Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C70+Pine+Lawn+Rd++Melville+NY&destinations=909+Altessa+Blvd+Melville+NY%7C426+Mount+Misery+Rd+Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C43+Arbor+Rd++Syosset+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:53 GMT
+< Expires: Fri, 29 Dec 2017 13:54:53 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=125+Ocean+Avenue++Lynbrook+NY%7C921+Merrick+Rd++Baldwin+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C1212+Habor+Rd+Hewlett+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C125+Ocean+Avenue++Lynbrook+NY%7C1212+Habor+Rd+Hewlett+NY%7C55+Lenox+Road+Rockville+Centre+NY&destinations=921+Merrick+Rd++Baldwin+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C1212+Habor+Rd+Hewlett+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C921+Merrick+Rd++Baldwin+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:55 GMT
+< Expires: Fri, 29 Dec 2017 13:54:55 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=921+Merrick+Rd++Baldwin+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C415+National+Blvd+Long+Beach+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C2118++Seneca++Drive++N.++Merrick+NY&destinations=120+Belmont+Ave+Long+Beach+NY%7C51+Gordon+Road+Valley+Stream+NY%7C1212+Habor+Rd+Hewlett+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C415+National+Blvd+Long+Beach+NY%7C477+Hungry+Harbor+Rd++Valley+Stream+NY%7C921+Merrick+Rd++Baldwin+NY%7C1212+Habor+Rd+Hewlett+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:57 GMT
+< Expires: Fri, 29 Dec 2017 13:54:57 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=2760+Bellmore+Avenue+Bellmore+NY%7C51+Gordon+Road+Valley+Stream+NY%7C51+Gordon+Road+Valley+Stream+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C120+Belmont+Ave+Long+Beach+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C575+Church+Ave++Woodmere+NY&destinations=51+Gordon+Road+Valley+Stream+NY%7C415+National+Blvd+Long+Beach+NY%7C2118++Seneca++Drive++N.++Merrick+NY%7C2760+Bellmore+Avenue+Bellmore+NY%7C921+Merrick+Rd++Baldwin+NY%7C415+National+Blvd+Long+Beach+NY%7C55+Lenox+Road+Rockville+Centre+NY%7C260+Maple+Ave++Rockville+Centre+NY%7C575+Church+Ave++Woodmere+NY%7C1212+Habor+Rd+Hewlett+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:54:58 GMT
+< Expires: Fri, 29 Dec 2017 13:54:58 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=1212+Habor+Rd+Hewlett+NY&destinations=357+E+Olive+Street+Long+Beach+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:55:00 GMT
+< Expires: Fri, 29 Dec 2017 13:55:00 GMT
+< Cache-Control: public, max-age=86400
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 13:55:00] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+[2017-12-28 13:55:01] Processing: App\Events\PayrollProcessed
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:55:02 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 13:55:02] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+[2017-12-28 13:55:02] Processed:  App\Events\PayrollProcessed
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:55:03 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 13:55:03] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.234...
+*   Trying 2607:f8b0:4009:804::200a...
+* Immediate connect fail for 2607:f8b0:4009:804::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 13:55:05 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 13:55:05] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 14:15:02] Processing: App\Jobs\PayrollProcess
+* Hostname in DNS cache was stale, zapped
+*   Trying 216.58.216.234...
+* Connected to maps.googleapis.com (216.58.216.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 14:15:04 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 14:15:04] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 216.58.216.234...
+*   Trying 2607:f8b0:4009:810::200a...
+* Immediate connect fail for 2607:f8b0:4009:810::200a: Network is unreachable
+* Connected to maps.googleapis.com (216.58.216.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 14:15:06 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 14:15:06] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 216.58.216.234...
+*   Trying 2607:f8b0:4009:810::200a...
+* Immediate connect fail for 2607:f8b0:4009:810::200a: Network is unreachable
+* Connected to maps.googleapis.com (216.58.216.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 14:15:07 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 14:15:07] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 216.58.216.234...
+*   Trying 2607:f8b0:4009:810::200a...
+* Immediate connect fail for 2607:f8b0:4009:810::200a: Network is unreachable
+* Connected to maps.googleapis.com (216.58.216.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 14:15:09 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 14:15:09] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 216.58.216.234...
+*   Trying 2607:f8b0:4009:810::200a...
+* Immediate connect fail for 2607:f8b0:4009:810::200a: Network is unreachable
+* Connected to maps.googleapis.com (216.58.216.234) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Nov 29 09:54:48 2017 GMT
+* 	 expire date: Feb 21 09:37:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=45+Jericho+Turnpike++Jericho+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C205+Paumanack+Village+dr.++Greenlawn+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C19++10th++Ave+Huntington+Station+NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY&destinations=150+Sunnyside+Boulevard++Plainview+NY%7C150+Sunnyside+Boulevard++Plainview+NY%7C19++10th++Ave+Huntington+Station+NY%7C337+Deer+Park+Road++Huntington+Station+NY%7C3+Keith+Court+Centerport+NY%7C1802++Court+North+Dr.+++Melville+NY%7C136+Christine+Dr.++Dix+Hills++NY%7C40+Lawn+Street+Greenlawn+NY%7C10+Chablis+Drive+Dix+Hills++NY%7C426+Mount+Misery+Rd+Melville+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Thu, 28 Dec 2017 14:15:10 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2017-12-28 14:15:10] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 14:18:31] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:18:31] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:18:31] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:18:31] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:18:32] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:18:32] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 14:18:32] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:18:33] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:18:33] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:18:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:18:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:18:34] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:18:35] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:18:35] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:18:35] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:18:35] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:20:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:20:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:20:37] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:20:38] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:20:38] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:20:38] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 14:20:38] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:20:40] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:20:40] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:20:40] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:20:40] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:20:40] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:20:41] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:20:42] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:20:42] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:20:42] Processed:  App\Events\PayrollProcessed
+[2017-12-28 14:22:36] Processing: App\Jobs\PayrollProcess
+[2017-12-28 14:22:39] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 14:22:39] Processing: App\Events\PayrollProcessed
+[2017-12-28 14:22:40] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:10:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:10:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:10:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:10:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:10:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:10:02] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 15:11:48] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:11:50] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:11:50] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:11:52] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:15:05] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:15:05] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:15:05] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:15:06] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:15:06] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:15:06] Failed:     App\Jobs\PayrollProcess
+[2017-12-28 15:17:11] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:17:13] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:17:13] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:17:15] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:19:17] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:19:18] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:19:19] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:19:20] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:21:16] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:21:17] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:21:17] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:21:20] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:22:56] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:22:56] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:22:58] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:22:58] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:33:47] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:33:49] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:33:51] Processed:  App\Events\PayrollProcessed
+[2017-12-28 15:33:52] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:37:02] Processing: App\Jobs\PayrollProcess
+[2017-12-28 15:37:03] Processing: App\Events\PayrollProcessed
+[2017-12-28 15:37:04] Processed:  App\Jobs\PayrollProcess
+[2017-12-28 15:37:06] Processed:  App\Events\PayrollProcessed

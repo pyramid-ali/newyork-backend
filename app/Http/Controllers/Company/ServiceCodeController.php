@@ -40,7 +40,7 @@ class ServiceCodeController extends Controller
     {
         $request->validate([
             'name' => 'string|required',
-            'rate' => 'nullable|numeric',
+            'rate' => 'required|numeric',
             'unit' => 'required|numeric'
         ]);
 
@@ -84,7 +84,7 @@ class ServiceCodeController extends Controller
     {
         $request->validate([
             'name' => 'string|required',
-            'rate' => 'nullable|numeric',
+            'rate' => 'required|numeric',
             'unit' => 'required|numeric'
         ]);
 

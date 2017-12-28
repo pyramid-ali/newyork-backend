@@ -1,4 +1,4 @@
-<form action="{{ route('payroll.process.store', ['company' => $company->name]) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('payroll.process.test', ['company' => $company->name]) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="file" name="file">
     <input type="submit" value="upload">

@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NewUserCreated' => [
             'App\Listeners\NotifyUserCreated',
         ],
+        'App\Events\PayrollProcessed' => [
+            'App\Listeners\PayrollProcessedListener'
+        ]
     ];
 
     /**

@@ -8,10 +8,12 @@ export default class PayrollProcess extends Component {
         super(props);
 
         this.state = {
-            errors: null,
-            success: null,
-            employees: null,
-            didReceiveResponse: false
+            error: null,
+            payroll: null,
+            processing: false,
+            misc: false,
+            success: false,
+            failue: null
         }
     }
 
@@ -36,35 +38,26 @@ export default class PayrollProcess extends Component {
             dragleave: null,
             // All of these receive the file as first parameter:
             addedfile: null,
-            removedfile: (file) => {
-                console.log('file removed', file);
-            },
+            removedfile: null,
             thumbnail: null,
             error: (file, error) => {
-                console.log('error')
+                this.setState({
+                    error: error,
+                    payroll: null
+                });
+                console.log('error', file, error);
             },
-            processing: (file) => {
-                console.log('proccessing')
-            },
-            uploadprogress: (file) => {
-                console.log('upload progress')
-            },
+            processing: null,
+            uploadprogress: null,
             sending: null,
             success: (file, response) => {
                 this.setState({
-                    errors: response.errors,
-                    success: response.success,
-                    employees: response.employees,
-                    didReceiveResponse:  true
+                    error: null,
+                    payroll: response.payroll
                 });
-                console.log('success', file, response);
             },
-            complete: (file, response) => {
-                console.log('complete', file, response);
-            },
-            canceled: (file) => {
-                console.log('canceled');
-            },
+            complete: null,
+            canceled: null,
             maxfilesreached: null,
             maxfilesexceeded: null,
             // All of these receive a list of files as first parameter
@@ -90,7 +83,7 @@ export default class PayrollProcess extends Component {
             }
         };
 
-        const { didReceiveResponse } = this.state
+        const { didReceiveResponse } = this.state;
 
         return (
 
@@ -102,7 +95,7 @@ export default class PayrollProcess extends Component {
                         eventHandlers={eventHandlers}
                         djsConfig={djsConfig} />
                 </form>
-                {didReceiveResponse ? this.renderResponse() : ''}
+                {this.renderResponse()}
 
             </div>
         );
@@ -110,67 +103,101 @@ export default class PayrollProcess extends Component {
 
 
     renderResponse () {
-        const { errors, success } = this.state;
-
+        const { error, payroll, success } = this.state;
         return (
             <div className="margin-top">
-                <div className='success'>
-                    { success > 0 ? this.renderSuccess() : null }
-                </div>
-                <div className='error'>
-                    { errors > 0 ? this.renderError() : null }
-                </div>
+                { payroll !== null ? this.renderPayroll(payroll) : null }
+                { success ? this.renderSuccessMessage() : null }
+                { error !== null  ? this.renderError(error) : null }
             </div>
         )
     }
 
-    renderSuccess () {
-        const {success} = this.state;
+    renderError (error) {
+
+        const { employees, service_codes } = error;
+
         return (
-            <div className="callout success">
-                <h4>Success Employee Import: {success}</h4>
+            <div className='callout large alert'>
+                <h5>Some Error Happens, please review it</h5>
+                <div className="missing-employees">
+                    <h4>The following employee IDs are missing</h4>
+                    <ul className='missing-employee-list'>
+                        {employees.map((id) => {
+                            return (
+                                <li key={id}>{id}</li>
+                            )
+                        })}
+                    </ul>
+                    <div className="clearfix"></div>
+                </div>
+                <div className="missing-services">
+                    <h4>the following Service Codes are missing</h4>
+                    <ol>
+                        {service_codes.map((code, index) => {
+                            return (
+                                <li key={index}>{code}</li>
+                            )
+                        })}
+                    </ol>
+                </div>
             </div>
         )
+
     }
 
-    renderError () {
-        const {errors, employees} = this.state;
-        console.log(employees, 'employees');
+    renderSuccessMessage () {
+        return <div className='callout large success'>
+            <h4>Payroll Successfully queued</h4>
+            <p>when processing finish we notify you here and by your email</p>
+        </div>
+    }
+
+    renderPayroll (payroll) {
+
         return (
-            <div className="callout alert">
-                <h4>Failed Employee Import: {errors}</h4>
-                <h5>List of Failed Employees</h5>
-                <table>
-                    <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>First name</td>
-                        <td>Last name</td>
-                        <td>Employee id</td>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    {employees.map((employee, index) => {
-
-                        return (
-                            <tr>
-                                <td>{index}</td>
-                                <td>{employee['first_name']}</td>
-                                <td>{employee['last_name']}</td>
-                                <td>{employee['employee_id']}</td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-
-
-                </table>
+            <div className='callout large success'>
+                <h4>Payroll Reviewed Successfully</h4>
+                <p>You can now process reviewed payroll, you can close this window any time you want, we notify you when payroll processed</p>
+                <input type="checkbox" value={this.state.misc} /> Include Miscellaneous Benefits in output
+                <div className="button-group">
+                    <button className="button success" onClick={this.processPayroll.bind(this)} disabled={this.state.processing}>
+                        { this.state.processing ?
+                            <span><i className="fa fa-spin fa-spinner"></i></span> :
+                            <span>Process Payroll</span>
+                        }
+                    </button>
+                </div>
             </div>
-        )
+        );
+    }
+
+    processPayroll () {
+        this.setState({
+            processing: true
+        });
+
+        console.log(this.state.payroll, 'payroll');
+
+        window.axios.post('/payroll/' + this.state.payroll.id + '/output', {
+            miscellaneous: this.state.misc,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        }).then((response) => {
+            this.setState({
+                success: true,
+                processing: false
+            })
+        }).catch(failure => {
+            this.setState({
+                failure,
+                success: false,
+                processing: false
+            })
+        })
     }
 }
 
 if (document.getElementById('payroll-process')) {
     ReactDOM.render(<PayrollProcess />, document.getElementById('payroll-process'));
 }
+

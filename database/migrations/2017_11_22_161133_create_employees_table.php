@@ -27,6 +27,8 @@ class CreateEmployeesTable extends Migration
             $table->unsignedInteger('office_id')->nullable();
             $table->float('cel')->nullable();
             $table->float('metro_card')->nullable();
+            $table->unsignedInteger('rate')->nullable();
+            $table->unsignedInteger('tehd')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

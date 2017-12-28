@@ -12,17 +12,47 @@
                 <table>
                     <thead>
                     <tr>
-                        <td>File Name</td>
-                        <td>Processed At</td>
-                        <td>Delete Record</td>
+                        <td>#id</td>
+                        <td>Uploaded At</td>
+                        <td>Status</td>
+                        <td>Download Input File</td>
+                        <td>Download Output File</td>
+                        <td>Download Interm File</td>
                     </tr>
                     </thead>
                     <tbody>
-
+                        @foreach($payrolls as $payroll)
+                            <tr>
+                                <td>{{ $payroll->id }}</td>
+                                <td>{{ $payroll->created_at }}</td>
+                                @if($payroll->processed)
+                                    <td>processed</td>
+                                @elseif($payroll->processing)
+                                    <td><i class="fa fa-spinner fa-spin"></i></td>
+                                @else
+                                    <td><i class="fa fa-recycle"></i><a href="#"> Process Now</a></td>
+                                @endif
+                                <td><a href="{{ route('download.payroll', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
+                                @if($payroll->output_path)
+                                    <td><a href="{{ route('download.payroll.output', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
+                                @else
+                                    <td><i class="fa fa-times-circle"></i> No File</td>
+                                @endif
+                                @if($payroll->interm_path)
+                                    <td><a href="{{ route('download.payroll.interm', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
+                                @else
+                                    <td><i class="fa fa-times-circle"></i> No File</td>
+                                @endif
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
 
+
+        </div>
+        <div class="cell large-8">
+            {{ $payrolls->links() }}
         </div>
     </div>
 

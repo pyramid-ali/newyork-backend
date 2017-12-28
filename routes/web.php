@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::domain('{company}.'.env('DOMAIN'))->group(function () {
 
     Route::get('login', 'Company\LoginController@showLoginForm')->name('company.login');
@@ -23,6 +22,12 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
     Route::post('logout', 'Company\LoginController@logout')->name('company.logout');
 
     Route::group(['middleware' => 'auth'], function() {
+
+        Route::get('me', function () {
+            return response()->json([
+                'user' => Auth::user()
+            ]);
+        });
 
         Route::group(['middleware' => 'company'], function() {
 
@@ -36,7 +41,7 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
                 Route::put('settings/general', 'Company\SettingController@general')->name('settings.general.update');
             });
 
-
+            Route::post('payroll/test/output', 'Company\PayrollController@generateTestOutput')->name('payroll.process.test');
 
             Route::get('employees/import', 'Company\EmployeeBatchController@showImportForm')->name('employees.import.show');
             Route::post('employees/import', 'Company\EmployeeBatchController@import');
@@ -53,11 +58,20 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
             Route::get('payroll/history', 'Company\PayrollController@history')->name('payroll.history');
             Route::get('payroll/process', 'Company\PayrollController@showProcessForm')->name('payroll.process.show');
             Route::post('payroll/process', 'Company\PayrollController@process')->name('payroll.process.store');
+            Route::get('payroll/{payroll}/download', 'Company\PayrollController@downloadPayroll')->name('download.payroll');
+            Route::post('payroll/{payroll}/output', 'Company\PayrollController@generateOutput')->name('payroll.process.store');
+
+            Route::get('payroll/{payroll}/output/download', 'Company\PayrollController@downloadOutput')->name('download.payroll.output');
+            Route::post('payroll/{payroll}/interm', 'Company\PayrollController@generateInterm')->name('payroll.process.store');
+            Route::get('payroll/{payroll}/interm/download', 'Company\PayrollController@downloadInterm')->name('download.payroll.interm');
             Route::get('settings/change_password', 'Company\SettingController@showChangePasswordForm')->name('settings.change_password.show');
             Route::put('settings/change_password', 'Company\SettingController@changePassword')->name('settings.change_password.update');
             Route::get('payroll/test', function (\App\Company $company) {
                 return view('company.test', compact('company'));
             });
+
+
+
         });
 
     });

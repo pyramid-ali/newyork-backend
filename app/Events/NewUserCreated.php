@@ -43,7 +43,7 @@ class NewUserCreated implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'user.created';
+        return 'created';
     }
 
 

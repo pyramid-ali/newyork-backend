@@ -13,6 +13,9 @@
                     {{ csrf_field() }}
                     <div class="grid-x grid-padding-x align-center">
                         <div class="cell large-3">
+
+                            <h5>General Information</h5>
+
                             <label for="first-name"> First Name
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-user-circle-o"></i></span>
@@ -50,34 +53,6 @@
                                 </div>
                             </label>
 
-                        </div>
-                        <div class="cell large-3">
-
-
-                            <label for="cel"> CEL
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-mobile"></i></span>
-                                    <input class="input-group-field"
-                                           id="cel"
-                                           type="text"
-                                           name="cel"
-                                           placeholder="CEL - Optional"
-                                           value="{{ old('cel') }}">
-                                </div>
-                            </label>
-
-                            <label for="metro_card"> Metro Card
-                                <div class="input-group">
-                                    <span class="input-group-label"><i class="fa fa-credit-card"></i></span>
-                                    <input class="input-group-field"
-                                           id="metro_card"
-                                           type="text"
-                                           name="metro_card"
-                                           placeholder="Metro Card - Optional"
-                                           value="{{ old('metro_card') }}">
-                                </div>
-                            </label>
-
                             <label for="fulltime_threshold"> Full Time Threshold
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-clock-o"></i></span>
@@ -89,6 +64,36 @@
                                            value="{{ old('fulltime_threshold') }}">
                                 </div>
                             </label>
+
+                            <label for="tehd"> Total Expected Hour for the day
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-clock-o"></i></span>
+                                    <input class="input-group-field"
+                                           id="tehd"
+                                           type="text"
+                                           name="tehd"
+                                           placeholder="Total Expected Hour for the day"
+                                           value="{{ old('tehd') }}">
+                                </div>
+                            </label>
+
+                            <label for="rate"> Payment Rate
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-dollar"></i></span>
+                                    <input class="input-group-field"
+                                           id="rate"
+                                           type="text"
+                                           name="rate"
+                                           placeholder="Payment Rate - it is used for over threshold FT Patient payment"
+                                           value="{{ old('rate') }}">
+                                </div>
+                            </label>
+
+                        </div>
+                        <div class="cell large-3">
+
+                            <h5>Employee Information</h5>
+
                             <label for="office"> Office
                                 <select name="office_id" id="office">
                                     @foreach($offices as $office)
@@ -112,9 +117,36 @@
                                 </select>
                             </label>
 
+                            <h5>Miscellaneous Benefits</h5>
+
+                            <label for="cel"> Cell Phone Reimbursement
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-mobile"></i></span>
+                                    <input class="input-group-field"
+                                           id="cel"
+                                           type="text"
+                                           name="cel"
+                                           placeholder="CEL - Optional"
+                                           value="{{ old('cel') }}">
+                                </div>
+                            </label>
+
+                            <label for="metro_card"> Metro Card
+                                <div class="input-group">
+                                    <span class="input-group-label"><i class="fa fa-credit-card"></i></span>
+                                    <input class="input-group-field"
+                                           id="metro_card"
+                                           type="text"
+                                           name="metro_card"
+                                           placeholder="Metro Card - Optional"
+                                           value="{{ old('metro_card') }}">
+                                </div>
+                            </label>
+
 
                         </div>
                         <div class="cell large-3">
+                            <h5>Address</h5>
                             <label for="city"> City
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-pencil"></i></span>

@@ -20,15 +20,16 @@ class TableServiceCode implements ServiceWorker
 
         $serviceCode = ServiceCode::where('name', $job['service_code'])->first();
 
-        $rate = 0;
+        $rate = $employee->rate($serviceCode);
+        $unit = $serviceCode->unit;
         if ($employee->employee_type === 'pdm') {
-            $rate = $employee->rate($serviceCode);
+            $unit = 1;
         }
 
         return [
             'temp_rate' => [
                 'rate' => $rate,
-                'unit' => $serviceCode->unit
+                'unit' => $unit
             ]
         ];
     }

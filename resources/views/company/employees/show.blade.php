@@ -51,7 +51,18 @@
                             <td>Status</td>
                             <td>{{ $employee->status }}</td>
                         </tr>
-
+                        <tr>
+                            <td>Total Hour Expected for the day</td>
+                            <td>{{ $employee->tehd or 'N\A' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Rate </td>
+                            <td>{{ $employee->rate or 'N\A' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cell Phone Reimbursement </td>
+                            <td>{{ $employee->cel or 'N\A' }}</td>
+                        </tr>
 
                     </tbody>
                 </table>

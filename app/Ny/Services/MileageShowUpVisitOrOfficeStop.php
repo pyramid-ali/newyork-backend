@@ -16,7 +16,6 @@ class MileageShowUpVisitOrOfficeStop implements ServiceWorker
 
     public function work($job, Employee $employee)
     {
-        // TODO: Implement work() method.
         $mileage = $job['mileage_entry'];
         $multiplier = $employee->reimbursement_rate;
         return ['aex' => $mileage * $multiplier];

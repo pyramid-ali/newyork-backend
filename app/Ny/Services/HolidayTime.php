@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/20/17
- * Time: 1:56 AM
- */
+
 
 namespace App\Ny\Services;
 
@@ -17,9 +12,6 @@ class HolidayTime implements ServiceWorker
 
     public function work($job, Employee $employee)
     {
-        $startTime = Carbon::parse($job['start_datetime']);
-        $endTime = Carbon::parse($job['end_datetime']);
-        $hours = $endTime->diffInHours($startTime);
-        return ['hol' => $hours > 4 ? 8 : 4];
+        return ['hol' => $employee->tehd];
     }
 }

@@ -2,33 +2,55 @@
 
 namespace App\Jobs;
 
+use App\Ny\ExportInterim;
+use App\User;
+use Exception;
 use App\Company;
 use App\Employee;
+use App\Events\PayrollProcessed;
+use App\Ny\ExportPayrollOutput;
+use App\Ny\FullTimePatientModifier;
 use App\Ny\Services\ServiceWorker;
 use App\Ny\Services\TableServiceCode;
+use App\Payroll;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollProcess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $payroll;
+    private $file;
     private $company;
+    private $miscellaneous;
     private $serviceWorkersNamespace = 'App\Ny\Services\\';
+    private $exporter;
+    private $payroll;
+    private $user;
+    private $interimExporter;
 
     /**
      * Create a new job instance.
      *
-     * @param $payroll
+     * @param Company $company
+     * @param Payroll $payroll
+     * @param User $user
+     * @param $miscellaneous boolean
      */
-    public function __construct($payroll, Company $company)
+    public function __construct(Company $company, Payroll $payroll, User $user, $miscellaneous)
     {
-        $this->payroll = base64_decode($payroll);
+        $this->file = 'storage/app/public/' . $payroll->path;
+        $this->payroll = $payroll;
         $this->company = $company;
+        $this->miscellaneous = $miscellaneous;
+        $this->user = $user;
+        $this->exporter = new ExportPayrollOutput();
+        $this->interimExporter = new ExportInterim();
     }
 
     /**
@@ -46,7 +68,7 @@ class PayrollProcess implements ShouldQueue
 
     private function getRows()
     {
-        $rows = Excel::load($this->payroll)->get();
+        $rows = Excel::load($this->file)->get();
         return $this->modifyRows($rows);
     }
 
@@ -65,10 +87,36 @@ class PayrollProcess implements ShouldQueue
     private function processEmployees($rows)
     {
         foreach ($rows as $employeeId => $works) {
+
             $employee = Employee::where('employee_id', $employeeId)->first();
             $processedWorks = $this->processEmployeeWorks($works, $employee);
-            dd($processedWorks);
+            $processedWorks = $this->sumTempRates($processedWorks);
+
+            if ($employee->employee_type === 'ft_patient') {
+                $modifier = new FullTimePatientModifier($processedWorks, $works, $employee);
+                $processedWorks = $modifier->modify();
+            }
+
+            if ($this->miscellaneous) {
+                $processedWork = $this->includeMiscellaneous($employee);
+                $processedWorks = $this->sumUp($processedWorks, $processedWork);
+            }
+
+            $this->exporter->entry($employee, $processedWorks);
+            $this->interimExporter->entry($employee, $processedWorks, $works);
         }
+
+        $export = $this->exporter->export();
+        $this->payroll->output_path = 'processed/' . $export . '.csv';
+        $this->payroll->processing = false;
+        $this->payroll->processed = true;
+        $this->payroll->save();
+
+        $interim = $this->interimExporter->export();
+        $this->payroll->interm_path = 'interim/' . $interim . '.csv';
+        $this->payroll->save();
+
+        event(new PayrollProcessed($this->company, $this->payroll, $this->user));
     }
 
     private function processEmployeeWorks($works, Employee $employee)
@@ -76,6 +124,7 @@ class PayrollProcess implements ShouldQueue
         $processedWorks = collect();
         foreach ($works as $work) {
             $processedWork = $this->processWork($work, $employee);
+
             $processedWorks = $this->sumUp($processedWorks, $processedWork);
         }
         return $processedWorks;
@@ -102,8 +151,9 @@ class PayrollProcess implements ShouldQueue
 
         foreach ($newProcessedWork as $key => $value) {
             if ($prop = $cloned->get($key)) {
+
                 if(is_array($prop)) {
-                    $prop->push($value);
+                    array_push($prop, $value);
                     $cloned->put($key, $prop);
                 }
                 else {
@@ -112,7 +162,7 @@ class PayrollProcess implements ShouldQueue
             }
             else {
                 if(is_array($value)) {
-                    $cloned->put($key, collect([$value]));
+                    $cloned->put($key, [$value]);
                 }
                 else {
                     $cloned->put($key, $value);
@@ -123,5 +173,42 @@ class PayrollProcess implements ShouldQueue
         return $cloned;
     }
 
+    public function sumTempRates($processedWorks)
+    {
+        if (!$processedWorks->has('temp_rate')) {
+            return $processedWorks;
+        }
+
+        $result = array();
+        $tempRates = $processedWorks->get('temp_rate');
+        foreach ($tempRates as $tempRate) {
+            $rate = $tempRate['rate'];
+            if(isset($result[$rate])) {
+                $result[$rate] += $tempRate['unit'];
+            }
+            else {
+                $result[$rate] = $tempRate['unit'];
+            }
+        }
+
+        $temps = collect();
+        foreach ($result as $rate => $unit) {
+            $temps->push(['rate' => $rate, 'unit' => $unit]);
+        }
+
+        $processedWorks->put('temp_rate', $temps->toArray());
+        return $processedWorks;
+
+    }
+
+    public function includeMiscellaneous(Employee $employee)
+    {
+        return ['cel' => $employee->cel];
+    }
+
+    public function failed(Exception $exception)
+    {
+        Log::error($exception);
+    }
 
 }

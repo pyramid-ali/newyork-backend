@@ -1,0 +1,14 @@
+{
+  "name": "alish/google-distance-matrix",
+  "description": "a laravel package for calculating distance between points using google map api",
+  "type": "library",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Ali Shabani",
+      "email": "pyramidalish@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}

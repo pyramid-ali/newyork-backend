@@ -16,6 +16,5 @@ class InclementWeatherDay implements ServiceWorker
 
     public function work($job, Employee $employee)
     {
-        // TODO: Implement work() method.
     }
 }

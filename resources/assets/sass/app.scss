@@ -129,18 +129,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.alert {
-  ul {
-    margin-top: 15px;
-    list-style: none;
-    li {
-      padding: 10px;
-      background: $alert-color;
-      color: white;
-    }
-  }
-}
-
 .dropzone {
   .dz-preview.dz-image-preview {
     background: none;
@@ -205,6 +193,27 @@ table {
   }
 }
 
+.missing-employee-list {
+  list-style: none;
+  li {
+    float: left;
+    padding: 10px 0;
+    width: 100px;
+    text-align: center;
+    margin: 5px 10px;
+    border: 1px solid black;
+    border-radius: 50px;
+    color: red;
+  }
+}
+
+.missing-employees {
+  margin-bottom: 15px;
+}
+
+.missing-services {
+  background: none;
+}
 
 
 @import '~react-dropzone-component/styles/filepicker.css';

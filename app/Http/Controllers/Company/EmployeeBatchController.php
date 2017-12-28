@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use App\Company;
+use App\Office;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -94,12 +95,15 @@ class EmployeeBatchController extends Controller
 
                 \DB::beginTransaction();
 
+                $office = Office::where('batch_id', $row['batch_id'])->firstOrFail();
+
                 $employeeFields = [
                     'first_name' => $row['first_name'],
                     'last_name' => $row['last_name'],
                     'employee_id' => $row['employee_id'],
                     'temp_department' => $row['temp_dept'],
-                    'employee_type' => snake_case(strtolower($row['employee_temp']))
+                    'employee_type' => $this->employeeType($row['employment_status']),
+                    'tehd' => $this->totalExpectedHour($row['employment_status']),
                 ];
 
                 if (isset($row['productivity_threshold'])) {
@@ -115,7 +119,7 @@ class EmployeeBatchController extends Controller
                 ];
 
                 $employee->address()->create($addressFields);
-
+                $office->employees()->save($employee);
                 \DB::commit();
                 return;
 
@@ -128,6 +132,32 @@ class EmployeeBatchController extends Controller
         });
 
         return $skipped;
+    }
+
+    private function employeeType($status)
+    {
+        $status = strtolower($status);
+
+        if ($status == 'per diem') {
+            return 'pdm';
+        }
+
+        if (str_contains('office', $status)) {
+            return 'ft_office';
+        }
+
+        return 'ft_patient';
+
+    }
+
+    private function totalExpectedHour($status)
+    {
+        preg_match('/\d{2}/', $status, $matches);
+        if (isset($matches[0])) {
+            return (int)$matches[0] / 10;
+        }
+
+        return null;
     }
 
     public function download(Company $company, $fileName)

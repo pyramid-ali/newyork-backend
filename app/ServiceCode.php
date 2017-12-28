@@ -31,6 +31,4 @@ class ServiceCode extends Model
         $this->attributes['unit'] = $value * 100;
     }
 
-
-
 }

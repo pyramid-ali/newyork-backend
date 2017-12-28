@@ -63,6 +63,8 @@ class EmployeeController extends Controller
             'street' => 'required|string',
             'cel' => 'nullable|numeric',
             'metro_card' => 'nullable|numeric',
+            'tehd' => 'nullable|numeric',
+            'rate' => 'nullable|numeric'
         ]);
 
         $properties = $request->only([
@@ -76,7 +78,9 @@ class EmployeeController extends Controller
             'status',
             'office_id',
             'cel',
-            'metro_card'
+            'metro_card',
+            'tehd',
+            'rate'
         ]);
 
         $properties = array_filter($properties);
@@ -151,6 +155,8 @@ class EmployeeController extends Controller
             'street' => 'required|string',
             'cel' => 'nullable|numeric',
             'metro_card' => 'nullable|numeric',
+            'tehd' => 'nullable|numeric',
+            'rate' => 'nullable|numeric'
         ]);
 
         $properties = $request->only([
@@ -164,10 +170,10 @@ class EmployeeController extends Controller
             'status',
             'office_id',
             'cel',
-            'metro_card'
+            'metro_card',
+            'tehd',
+            'rate'
         ]);
-
-        $properties = array_filter($properties);
 
         $employee->update($properties);
 

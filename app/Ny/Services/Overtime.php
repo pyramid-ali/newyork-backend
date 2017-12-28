@@ -24,6 +24,6 @@ class Overtime implements ServiceWorker
 
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
-        return ['ot_times' => $exactHour * 1.5];
+        return ['ot_hours' => $exactHour];
     }
 }

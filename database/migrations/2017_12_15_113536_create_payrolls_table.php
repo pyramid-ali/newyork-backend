@@ -16,6 +16,11 @@ class CreatePayrollsTable extends Migration
         Schema::create('payrolls', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path');
+            $table->string('output_path')->nullable();
+            $table->string('interm_path')->nullable();
+            $table->boolean('processed')->default(false);
+            $table->boolean('processing')->default(false);
+            $table->text('error')->nullable();
             $table->unsignedInteger('company_id');
             $table->timestamps();
 

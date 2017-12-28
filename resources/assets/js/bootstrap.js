@@ -1,14 +1,4 @@
-import Echo from "laravel-echo"
-
 window._ = require('lodash');
-window.Pusher = require('pusher-js');
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '229a862ffdd2adc9b055',
-    cluster: 'us2',
-    encrypted: true
-});
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -47,6 +37,24 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+import Echo from "laravel-echo"
+
+window.Pusher = require('pusher-js');
+
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '229a862ffdd2adc9b055',
+    cluster: 'us2',
+    encrypted: true,
+    authEndpoint: '/broadcasting/auth',
+    auth: {
+        headers: {
+            'X-CSRF-TOKEN': token.content
+        }
+    }
+});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

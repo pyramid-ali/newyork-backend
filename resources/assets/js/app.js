@@ -17,7 +17,25 @@ require('./components/ImportEmployee');
 require('./components/ExportEmployee');
 require('./components/PayrollProcess');
 
-window.Echo.channel('users')
-    .listen('user.created', (e) => {
-        console.log(e);
-    });
+
+
+window.axios.get('/me').then(response => {
+    const user = response.data.user;
+    window.Echo.private('payrolls.user.' + user.id)
+        .listen('.processed', (e) => {
+            console.log(e);
+            const r = confirm('payroll with #' + e.payroll.id + ' id processed, do you want to download?');
+            console.log(window.location);
+            if (r) {
+                window.location.href = window.location.origin + `/payroll/${e.payroll.id}/output/download`
+            } else {
+                if (window.location.pathname.includes('/payrolls/history')) {
+                    document.location.reload();
+                }
+            }
+
+
+        });
+})
+
+

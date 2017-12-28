@@ -16,7 +16,7 @@ class CreateServiceCodesTable extends Migration
         Schema::create('service_codes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('rate')->nullable();
+            $table->unsignedInteger('rate');
             $table->unsignedInteger('unit');
             $table->unsignedInteger('company_id');
             $table->timestamps();

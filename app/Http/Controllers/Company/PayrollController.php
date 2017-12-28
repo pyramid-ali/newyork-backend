@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Company;
 use App\Company;
 use App\Employee;
 use App\Jobs\PayrollProcess;
+use App\Payroll;
 use App\ServiceCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollController extends Controller
@@ -16,7 +19,8 @@ class PayrollController extends Controller
 
     public function history(Company $company)
     {
-        return view('company.payroll.history', compact('company'));
+        $payrolls = Payroll::orderBy('created_at', 'desc')->paginate();
+        return view('company.payroll.history', compact('company', 'payrolls'));
     }
 
     public function showProcessForm(Company $company)
@@ -45,7 +49,61 @@ class PayrollController extends Controller
             );
         }
 
-        PayrollProcess::dispatch(base64_encode($file), $company);
+        $filename = uniqid().'.csv';
+        $path = 'payrolls';
+        Storage::putFileAs('public/' . $path, $file, $filename);
+
+        $payroll = $company->payrolls()->create([
+            'path' => $path.'/'.$filename
+        ]);
+
+        return response()->json([
+            'payroll' => $payroll
+        ]);
+    }
+
+    public function generateTestOutput(Request $request, Company $company)
+    {
+
+        $file = $request->file('file');
+        dd($file);
+        PayrollProcess::dispatch(base64_encode($file), $company, true);
+        return response()->json([
+            'ok' => true
+        ]);
+    }
+
+    public function generateOutput(Request $request, Company $company, Payroll $payroll)
+    {
+        try {
+            $miscellaneous = $request->miscellaneous;
+            PayrollProcess::dispatch($company, $payroll, \Auth::user(), $miscellaneous);
+            $payroll->processing = true;
+            $payroll->save();
+            return response()->json([
+                'ok' => true
+            ]);
+        }
+        catch (\Exception $error) {
+            Log::error($error);
+            return response()->json([
+                'ok' => false,
+                'error' => $error->getMessage()
+            ], 444);
+        }
+
+    }
+
+    public function generateInterm(Company $company, Payroll $payroll)
+    {
+        try {
+            $file = Storage::get($payroll->path);
+//            PayrollProcess::dispatch(base64_encode($file), $company);
+        }
+        catch (\Exception $error) {
+
+        }
+
     }
 
     private function missingEmployees($rows)
@@ -86,6 +144,25 @@ class PayrollController extends Controller
         $escaped = preg_replace('/[!@#$%^&*(),.]/', ' ', $serviceCode);
         $serviceClassName = studly_case($escaped);
         return 'App\Ny\Services\\' . $serviceClassName;
+    }
+
+    public function downloadPayroll(Company $company, Payroll $payroll)
+    {
+        $this->authorize('download', $payroll);
+        $path = 'storage/' . $payroll->path;
+        return response()->download($path);
+    }
+
+    public function downloadOutput(Company $company, Payroll $payroll)
+    {
+        $this->authorize('download', $payroll);
+        return response()->download('storage/' . $payroll->output_path);
+    }
+
+    public function downloadInterm(Company $company, Payroll $payroll)
+    {
+        $this->authorize('download', $payroll);
+        return response()->download('storage/' . $payroll->interm_path);
     }
 
 

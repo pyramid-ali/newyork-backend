@@ -14,6 +14,7 @@ class PersonalTime implements ServiceWorker
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
         $hours = $endTime->diffInHours($startTime);
-        return ['per' => $hours > 4 ? 8 : 4];
+        $per = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
+        return ['per' => $per];
     }
 }

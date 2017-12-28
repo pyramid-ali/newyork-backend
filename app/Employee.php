@@ -18,7 +18,9 @@ class Employee extends Model
         'status',
         'office_id',
         'cel',
-        'metro_card'
+        'metro_card',
+        'rate',
+        'tehd'
     ];
 
     public function address()
@@ -36,7 +38,13 @@ class Employee extends Model
         if ($value) {
             return $value / 100;
         }
+
         return 0.53;
+    }
+
+    public function setReimbursementRateAttribute($value)
+    {
+        $this->attributes['reimbursement_rate'] = $value * 100;
     }
 
     public function serviceCodes()
@@ -54,19 +62,26 @@ class Employee extends Model
 
     public function serviceCodeRate(ServiceCode $serviceCodeFind)
     {
-        return $this->serviceCodes()->withPivot('rate')->get()->filter(function($serviceCode) use ($serviceCodeFind) {
+
+        $serviceCode = $this->serviceCodes()->withPivot('rate')->get()->filter(function($serviceCode) use ($serviceCodeFind) {
             return $serviceCode->id === $serviceCodeFind->id;
-        })->first()->pivot->rate;
+        })->first();
+
+        if ($serviceCode) {
+            return $serviceCode->pivot->rate;
+        }
+
+        return $serviceCodeFind->rate;
     }
 
     public function rate(ServiceCode $serviceCodeFind)
     {
-        if ($ownRate = $this->serviceCodeRate($serviceCodeFind)) {
-            return $ownRate;
+
+        if ($this->employee_type === 'pdm') {
+            return $this->serviceCodeRate($serviceCodeFind);
         }
 
-        return $serviceCodeFind->rate;
-
+        return $this->rate;
     }
 
     public function office()
@@ -74,13 +89,30 @@ class Employee extends Model
         return $this->belongsTo(Office::class);
     }
 
-    public function getFulltimeThresholdAttribute()
+    public function getFulltimeThresholdAttribute($value)
     {
-        if ($this->fulltile_threshold) {
-            return $this->fulltile_threshold;
+        if (!!$value) {
+            return $value;
         }
 
         return $this->company->fulltime_threshold;
+    }
+
+    public function getRateAttribute($value)
+    {
+        if (!!$value) {
+            return $value;
+        }
+
+        if ($this->employee_type === 'pdm') {
+            return 35;
+        }
+
+        if ($this->office->rate) {
+            return $this->office->rate;
+        }
+
+        return 55;
     }
 
 }
