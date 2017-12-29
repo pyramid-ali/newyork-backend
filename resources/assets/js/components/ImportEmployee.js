@@ -84,7 +84,7 @@ export default class ImportEmployee extends Component {
         const djsConfig = {
             addRemoveLinks: true,
             autoProcessQueue: true,
-            acceptedFiles: 'text/csv',
+            acceptedFiles: 'text/csv,application/vnd.ms-excel',
             params: {
                 '_token': $('meta[name="csrf-token"]').attr('content')
             }

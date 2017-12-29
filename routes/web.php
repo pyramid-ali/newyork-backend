@@ -62,7 +62,6 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
             Route::post('payroll/{payroll}/output', 'Company\PayrollController@generateOutput')->name('payroll.process.store');
 
             Route::get('payroll/{payroll}/output/download', 'Company\PayrollController@downloadOutput')->name('download.payroll.output');
-            Route::post('payroll/{payroll}/interm', 'Company\PayrollController@generateInterm')->name('payroll.process.store');
             Route::get('payroll/{payroll}/interm/download', 'Company\PayrollController@downloadInterm')->name('download.payroll.interm');
             Route::get('settings/change_password', 'Company\SettingController@showChangePasswordForm')->name('settings.change_password.show');
             Route::put('settings/change_password', 'Company\SettingController@changePassword')->name('settings.change_password.update');

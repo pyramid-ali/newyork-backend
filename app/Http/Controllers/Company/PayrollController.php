@@ -94,18 +94,6 @@ class PayrollController extends Controller
 
     }
 
-    public function generateInterm(Company $company, Payroll $payroll)
-    {
-        try {
-            $file = Storage::get($payroll->path);
-//            PayrollProcess::dispatch(base64_encode($file), $company);
-        }
-        catch (\Exception $error) {
-
-        }
-
-    }
-
     private function missingEmployees($rows)
     {
         $employeeIDs = $rows->groupBy(function ($item, $key) {
