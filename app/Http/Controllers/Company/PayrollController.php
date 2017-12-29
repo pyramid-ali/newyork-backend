@@ -9,6 +9,7 @@ use App\Payroll;
 use App\ServiceCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -62,22 +63,11 @@ class PayrollController extends Controller
         ]);
     }
 
-    public function generateTestOutput(Request $request, Company $company)
-    {
-
-        $file = $request->file('file');
-        dd($file);
-        PayrollProcess::dispatch(base64_encode($file), $company, true);
-        return response()->json([
-            'ok' => true
-        ]);
-    }
-
     public function generateOutput(Request $request, Company $company, Payroll $payroll)
     {
         try {
             $miscellaneous = $request->miscellaneous;
-            PayrollProcess::dispatch($company, $payroll, \Auth::user(), $miscellaneous);
+            PayrollProcess::dispatch($company, $payroll, Auth::user(), $miscellaneous);
             $payroll->processing = true;
             $payroll->save();
             return response()->json([
