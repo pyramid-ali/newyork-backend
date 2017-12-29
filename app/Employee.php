@@ -68,7 +68,9 @@ class Employee extends Model
         })->first();
 
         if ($serviceCode) {
-            return $serviceCode->pivot->rate;
+            if ($serviceCode->pivot->rate) {
+                return $serviceCode->pivot->rate;
+            }
         }
 
         return $serviceCodeFind->rate;
