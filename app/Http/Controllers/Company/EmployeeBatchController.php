@@ -107,7 +107,7 @@ class EmployeeBatchController extends Controller
                 ];
 
                 if (isset($row['productivity_threshold'])) {
-                    $employeeFields['threshold_time'] = $row['productivity_threshold'];
+                    $employeeFields['fulltime_threshold'] = $row['productivity_threshold'];
                 }
 
                 $employee = $company->employees()->create($employeeFields);

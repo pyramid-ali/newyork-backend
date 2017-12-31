@@ -34,7 +34,7 @@ class FullTimePatientModifier
 
         // TODO: 10 must be replace with period review days
         $this->processedWorks->put('reg_hours', $this->regHours());
-//        $this->processedWorks->put('aex', $this->adjustDedAmount());
+        $this->processedWorks->put('aex', $this->adjustDedAmount());
 
         if ($threshold > 0) {
             $this->processedWorks->put('temp_rate', [['rate' => $this->employee->rate, 'unit' => $threshold]]);

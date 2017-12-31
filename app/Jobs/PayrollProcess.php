@@ -107,12 +107,10 @@ class PayrollProcess implements ShouldQueue
         }
 
         $export = $this->exporter->export();
+        $interim = $this->interimExporter->export();
         $this->payroll->output_path = 'processed/' . $export . '.csv';
         $this->payroll->processing = false;
         $this->payroll->processed = true;
-        $this->payroll->save();
-
-        $interim = $this->interimExporter->export();
         $this->payroll->interm_path = 'interim/' . $interim . '.csv';
         $this->payroll->save();
 
