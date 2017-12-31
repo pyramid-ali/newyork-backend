@@ -177,7 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider::class,
-        Alish\GoogleDistanceMatrix\GoogleDistanceServiceProvider::class
+        Alish\GoogleDistanceMatrix\GoogleDistanceServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class
     ],
 
     /*
@@ -226,8 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'GoogleDistance' => Alish\GoogleDistanceMatrix\Facades\GoogleDistance::class
-
+        'GoogleDistance' => Alish\GoogleDistanceMatrix\Facades\GoogleDistance::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class
     ],
 
 ];
