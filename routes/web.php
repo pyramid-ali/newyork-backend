@@ -88,7 +88,10 @@ Route::domain(env('DOMAIN'))->group(function () {
     Route::get('login', 'Moderator\LoginController@showLoginForm');
     Route::post('login', 'Moderator\LoginController@login')->name('login');
     Route::post('logout', 'Moderator\LoginController@logout')->name('logout');
-    Route::get('forgot-password', 'ForgotPasswordController@showLinkRequestForm');
+    Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
     Route::group(['middleware' => ['moderator', 'auth']], function() {
 

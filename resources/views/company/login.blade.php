@@ -16,7 +16,6 @@
         <div class="cell large-6">
             <header>
                 <h3>Welcome to {{ $company->name }}</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto aspernatur, atque beatae consequatur debitis dolore mollitia quod ratione sequi similique, voluptates! Beatae ea optio soluta! Assumenda maiores nobis repellendus!</p>
             </header>
         </div>
         <div class="cell large-4 medium-8 small-12">
