@@ -35,6 +35,13 @@ window.axios.get('/me').then(response => {
             }
 
 
+        })
+        .listen('.error', (e) => {
+            alert('payroll process failed');
+            if (window.location.pathname.includes('/payrolls/history')) {
+                document.location.reload();
+            }
+
         });
 })
 

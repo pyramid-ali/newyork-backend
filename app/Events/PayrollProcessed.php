@@ -43,8 +43,6 @@ class PayrollProcessed implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
-
         return new PrivateChannel('payrolls.user.'. $this->user->id);
     }
 

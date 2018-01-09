@@ -25,7 +25,9 @@
                             <tr>
                                 <td>{{ $payroll->id }}</td>
                                 <td>{{ $payroll->created_at }}</td>
-                                @if($payroll->processed)
+                                @if($payroll->error)
+                                    <td>Error</td>
+                                @elseif($payroll->processed)
                                     <td>processed</td>
                                 @elseif($payroll->processing)
                                     <td><i class="fa fa-spinner fa-spin"></i></td>
@@ -35,13 +37,16 @@
                                 <td><a href="{{ route('download.payroll', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
                                 @if($payroll->output_path)
                                     <td><a href="{{ route('download.payroll.output', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
-                                @else
+                                @elseif(!$payroll->error)
                                     <td><i class="fa fa-times-circle"></i> No File</td>
                                 @endif
                                 @if($payroll->interm_path)
                                     <td><a href="{{ route('download.payroll.interm', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
-                                @else
+                                @elseif(!$payroll->error)
                                     <td><i class="fa fa-times-circle"></i> No File</td>
+                                @endif
+                                @if($payroll->error)
+                                    <td colspan="2">{{ $payroll->error }}</td>
                                 @endif
                             </tr>
                         @endforeach

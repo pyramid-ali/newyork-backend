@@ -18,7 +18,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\PayrollProcessed' => [
             'App\Listeners\PayrollProcessedListener'
-        ]
+        ],
+        'App\Events\PayrollError' => [
+            'App\Listeners\PayrollErrorListener'
+        ],
     ];
 
     /**

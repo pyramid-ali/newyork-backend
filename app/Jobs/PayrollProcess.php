@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\PayrollError;
 use App\Ny\ExportInterim;
 use App\User;
 use Exception;
@@ -207,6 +208,9 @@ class PayrollProcess implements ShouldQueue
     public function failed(Exception $exception)
     {
         Log::error($exception);
+        $this->payroll->error = $exception->getMessage();
+        $this->payroll->save();
+        event(new PayrollError($this->user, $this->payroll));
     }
 
 }

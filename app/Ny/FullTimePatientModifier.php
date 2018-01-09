@@ -126,8 +126,15 @@ class FullTimePatientModifier
     private function getDistance($response, $count)
     {
         $distance = 0;
+        Log::info($response);
         for ($i = 0; $i < $count; $i++) {
-            $distance += $response['rows'][$i]['elements'][$i]['distance']['value'] / 1000;
+            if (isset($response['error_message'])) {
+                throw new \Exception('Google map key Error: ' . $response['error_message']);
+            }
+            else {
+                $distance += $response['rows'][$i]['elements'][$i]['distance']['value'] / 1000;
+            }
+
         }
         return $distance;
     }
