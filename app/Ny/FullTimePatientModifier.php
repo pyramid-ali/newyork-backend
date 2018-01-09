@@ -126,7 +126,7 @@ class FullTimePatientModifier
     private function getDistance($response, $count)
     {
         $distance = 0;
-        Log::info($response);
+        sleep(5);
         for ($i = 0; $i < $count; $i++) {
             if (isset($response['error_message'])) {
                 throw new \Exception('Google map key Error: ' . $response['error_message']);
