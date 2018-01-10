@@ -2905,3 +2905,199 @@ Accept: */*
 [2018-01-09 20:56:26] Processing: App\Events\PayrollError
 [2018-01-09 20:56:27] Failed:     App\Jobs\PayrollProcess
 [2018-01-09 20:56:27] Processed:  App\Events\PayrollError
+[2018-01-09 21:03:46] Processing: App\Jobs\PayrollProcess
+*   Trying 172.217.1.42...
+*   Trying 2607:f8b0:4009:815::200a...
+* Immediate connect fail for 2607:f8b0:4009:815::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.1.42) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Dec 13 13:18:44 2017 GMT
+* 	 expire date: Mar  7 13:01:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=171+East+89th+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C817+5th+Ave+New+York+NY%7C220+E+65th+Street+New+York+NY%7C1520+York+Avenue+New+York+NY&destinations=500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C1520+York+Avenue+New+York+NY%7C1520+York+Avenue+New+York+NY%7C19+EAST+80th+Street++New+York+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Tue, 09 Jan 2018 21:03:47 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2018-01-09 21:03:53] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.1.42...
+*   Trying 2607:f8b0:4009:815::200a...
+* Immediate connect fail for 2607:f8b0:4009:815::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.1.42) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Dec 13 13:18:44 2017 GMT
+* 	 expire date: Mar  7 13:01:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=171+East+89th+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C817+5th+Ave+New+York+NY%7C220+E+65th+Street+New+York+NY%7C1520+York+Avenue+New+York+NY&destinations=500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C1520+York+Avenue+New+York+NY%7C1520+York+Avenue+New+York+NY%7C19+EAST+80th+Street++New+York+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Tue, 09 Jan 2018 21:03:54 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2018-01-09 21:04:00] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.1.42...
+*   Trying 2607:f8b0:4009:815::200a...
+* Immediate connect fail for 2607:f8b0:4009:815::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.1.42) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Dec 13 13:18:44 2017 GMT
+* 	 expire date: Mar  7 13:01:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=171+East+89th+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C817+5th+Ave+New+York+NY%7C220+E+65th+Street+New+York+NY%7C1520+York+Avenue+New+York+NY&destinations=500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C1520+York+Avenue+New+York+NY%7C1520+York+Avenue+New+York+NY%7C19+EAST+80th+Street++New+York+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Tue, 09 Jan 2018 21:04:01 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2018-01-09 21:04:07] Processing: App\Jobs\PayrollProcess
+*   Trying 172.217.4.42...
+*   Trying 2607:f8b0:4009:815::200a...
+* Immediate connect fail for 2607:f8b0:4009:815::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.42) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Dec 13 13:18:44 2017 GMT
+* 	 expire date: Mar  7 13:01:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=171+East+89th+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C817+5th+Ave+New+York+NY%7C220+E+65th+Street+New+York+NY%7C1520+York+Avenue+New+York+NY&destinations=500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C1520+York+Avenue+New+York+NY%7C1520+York+Avenue+New+York+NY%7C19+EAST+80th+Street++New+York+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Tue, 09 Jan 2018 21:04:08 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2018-01-09 21:04:14] Processing: App\Jobs\PayrollProcess
+* Hostname maps.googleapis.com was found in DNS cache
+*   Trying 172.217.4.42...
+*   Trying 2607:f8b0:4009:815::200a...
+* Immediate connect fail for 2607:f8b0:4009:815::200a: Network is unreachable
+* Connected to maps.googleapis.com (172.217.4.42) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-ECDSA-AES128-GCM-SHA256
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+* 	 subject: C=US; ST=California; L=Mountain View; O=Google Inc; CN=*.googleapis.com
+* 	 start date: Dec 13 13:18:44 2017 GMT
+* 	 expire date: Mar  7 13:01:00 2018 GMT
+* 	 subjectAltName: maps.googleapis.com matched
+* 	 issuer: C=US; O=Google Inc; CN=Google Internet Authority G2
+* 	 SSL certificate verify ok.
+> GET /maps/api/distancematrix/json?origins=171+East+89th+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C817+5th+Ave+New+York+NY%7C817+5th+Ave+New+York+NY%7C220+E+65th+Street+New+York+NY%7C1520+York+Avenue+New+York+NY&destinations=500+East+77th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C500+East+77th+Street+New+York+NY%7C171+East+89th+Street+New+York+NY%7C150+East+69th+Street+New+York+NY%7C345+E+73rd+Street+New+York+NY%7C1520+York+Avenue+New+York+NY%7C1520+York+Avenue+New+York+NY%7C19+EAST+80th+Street++New+York+NY&key=AIzaSyASbyaGUdJjJQC3BIn00lp8hqKiQJciGIs HTTP/1.1
+Host: maps.googleapis.com
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=UTF-8
+< Date: Tue, 09 Jan 2018 21:04:15 GMT
+< Pragma: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Cache-Control: no-cache, must-revalidate
+< Server: mafe
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: hq=":443"; ma=2592000; quic=51303431; quic=51303339; quic=51303338; quic=51303337; quic=51303335,quic=":443"; ma=2592000; v="41,39,38,37,35"
+< Accept-Ranges: none
+< Vary: Accept-Language,Accept-Encoding
+< Transfer-Encoding: chunked
+< 
+* Connection #0 to host maps.googleapis.com left intact
+[2018-01-09 21:04:22] Processing: App\Events\PayrollError
+[2018-01-09 21:04:22] Failed:     App\Jobs\PayrollProcess
+[2018-01-09 21:04:23] Processed:  App\Events\PayrollError
