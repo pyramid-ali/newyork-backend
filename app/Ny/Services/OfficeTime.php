@@ -17,7 +17,7 @@ class OfficeTime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
 
         $divider = 1.5;
-        if ($employee->type === 'pdm') {
+        if ($employee->employee_type === 'pdm') {
             $divider = 1;
         }
 
