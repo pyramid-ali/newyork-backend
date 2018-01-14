@@ -141,7 +141,7 @@ class EmployeeBatchController extends Controller
     {
         $status = strtolower($status);
 
-        if ($status == 'per diem') {
+        if ($status === 'per diem') {
             return 'pdm';
         }
 

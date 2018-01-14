@@ -262,6 +262,33 @@ table {
   background: none;
 }
 
+table.import-desc {
+
+  thead {
+    color: white;
+    background: $primary-color;
+  }
+
+  tbody {
+    tr {
+      td:first-child {
+        background: black;
+        color: white;
+        border-bottom: 1px solid white;
+      }
+      td:last-child {
+        text-align: left;
+      }
+    }
+  }
+
+
+}
+
+.text-info {
+  font-style: italic;
+  color: $success-color;
+}
 
 @import '~react-dropzone-component/styles/filepicker.css';
 @import '~dropzone/dist/min/dropzone.min.css';

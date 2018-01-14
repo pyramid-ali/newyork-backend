@@ -21,7 +21,7 @@ class EmployeeController extends Controller
      */
     public function index(Company $company)
     {
-        $employees = $company->employees()->paginate();
+        $employees = $company->employees()->orderBy('employee_id', 'asc')->paginate();
         return view('company.employees.index', compact('employees', 'company'));
     }
 
