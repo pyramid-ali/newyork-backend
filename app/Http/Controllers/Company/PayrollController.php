@@ -129,20 +129,31 @@ class PayrollController extends Controller
     {
         $this->authorize('download', $payroll);
         $path = 'storage/' . $payroll->path;
-        return response()->download($path);
+        $name = $this->nameGenerator($payroll, 'PAYROLL');
+        return response()->download($path, $name);
     }
 
     public function downloadOutput(Company $company, Payroll $payroll)
     {
         $this->authorize('download', $payroll);
-        return response()->download('storage/' . $payroll->output_path);
+        $name = $this->nameGenerator($payroll, 'EPI');
+        return response()->download('storage/' . $payroll->output_path, $name);
     }
 
     public function downloadInterm(Company $company, Payroll $payroll)
     {
         $this->authorize('download', $payroll);
-        return response()->download('storage/' . $payroll->interm_path);
+        $name = $this->nameGenerator($payroll, 'INTERIM');
+        return response()->download('storage/' . $payroll->interm_path, $name);
     }
 
+    public function nameGenerator(Payroll $payroll, $prefix)
+    {
+        return
+            $prefix .
+            $payroll->created_at->format('ymd') .
+            str_pad($payroll->id, 6, '0', STR_PAD_LEFT) .
+            '.csv';
+    }
 
 }
