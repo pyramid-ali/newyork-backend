@@ -30,6 +30,5 @@ class OrientationTime implements ServiceWorker
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
         return ['reg_hours' => $exactHour / $divider];
-
     }
 }

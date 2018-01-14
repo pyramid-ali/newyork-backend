@@ -93,6 +93,9 @@ class PayrollProcess implements ShouldQueue
             $processedWorks = $this->processEmployeeWorks($works, $employee);
             $processedWorks = $this->sumTempRates($processedWorks);
 
+            // interim exporter should calculate before modifying ft_patient
+            $this->interimExporter->entry($employee, $processedWorks, $works);
+
             if ($employee->employee_type === 'ft_patient') {
                 $modifier = new FullTimePatientModifier($processedWorks, $works, $employee);
                 $processedWorks = $modifier->modify();
@@ -103,8 +106,9 @@ class PayrollProcess implements ShouldQueue
                 $processedWorks = $this->sumUp($processedWorks, $processedWork);
             }
 
+            // export epic file should be done after modifying fulltime patient
             $this->exporter->entry($employee, $processedWorks);
-            $this->interimExporter->entry($employee, $processedWorks, $works);
+
         }
 
         $export = $this->exporter->export();
