@@ -106,7 +106,8 @@ class PayrollController extends Controller
 
         $missingServiceCodes = collect();
         foreach ($serviceCodes as $serviceCode) {
-            if (!ServiceCode::where('name', $serviceCode)->exists()) {
+            $code = explode(' ', $serviceCode)[0];
+            if (!ServiceCode::where('name', 'like', $code.'%')->exists()) {
                 $serviceWorker = $this->serviceWorker($serviceCode);
                 if (!class_exists($serviceWorker)) {
                     $missingServiceCodes->push($serviceCode);

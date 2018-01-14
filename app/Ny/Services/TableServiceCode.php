@@ -18,7 +18,8 @@ class TableServiceCode implements ServiceWorker
     public function work($job, Employee $employee)
     {
 
-        $serviceCode = ServiceCode::where('name', $job['service_code'])->first();
+        $code = explode(' ', $job['service_code'])[0];
+        $serviceCode = ServiceCode::where('name', 'like', $code.'%')->first();
 
         $rate = $employee->rate($serviceCode);
         $unit = $serviceCode->unit;
