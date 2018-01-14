@@ -204,7 +204,7 @@ class EmployeeController extends Controller
 
     public function serviceCodes(Company $company, Employee $employee)
     {
-        $serviceCodes = ServiceCode::all();
+        $serviceCodes = ServiceCode::orderBy('name', 'asc')->get();
         return view('company.employees.service_codes', compact('serviceCodes', 'company', 'employee'));
     }
 

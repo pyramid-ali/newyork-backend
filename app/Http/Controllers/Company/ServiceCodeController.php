@@ -16,7 +16,7 @@ class ServiceCodeController extends Controller
      */
     public function index(Company $company)
     {
-        $serviceCodes = ServiceCode::paginate();
+        $serviceCodes = ServiceCode::orderBy('name', 'asc')->paginate();
         return view('company.services.index', compact('serviceCodes', 'company'));
     }
 
