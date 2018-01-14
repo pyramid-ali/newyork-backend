@@ -41,7 +41,7 @@
                         </tr>
                         <tr>
                             <td>Reimbursement Rate</td>
-                            <td>{{ $employee->reimbursement_rate }} $</td>
+                            <td>${{ $employee->reimbursement_rate }}</td>
                         </tr>
                         <tr>
                             <td>Full Time Threshold</td>
