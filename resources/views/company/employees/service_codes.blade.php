@@ -13,27 +13,6 @@
 
             <div class="service-codes">
                 <p>Attach service code to this employee</p>
-                <form action="{{ route('employees.service_codes.store', ['employee' => $employee->id, 'company' => $company->name]) }}" method="post">
-                    {{ csrf_field() }}
-                    <fieldset class="fieldset">
-                        <legend>Service Codes</legend>
-                        @foreach($serviceCodes as $serviceCode)
-                            <input id="{{ 'service' . $serviceCode->id }}"
-                                   type="checkbox"
-                                   name="services[]"
-                                   value="{{ $serviceCode->id }}"
-                                    {{ $employee->hasServiceCode($serviceCode) ? 'checked' : '' }}>
-                            <label for="{{ 'service' . $serviceCode->id }}">
-                                {{ $serviceCode->name }}
-                                {{ $employee->hasServiceCode($serviceCode) ?
-                                    '(value: ' .($employee->serviceCodeRate($serviceCode) ? $employee->serviceCodeRate($serviceCode) : 'Default')  . ')' :
-                                    ''
-                                }}
-                            </label>
-                        @endforeach
-                    </fieldset>
-                    <button class="button primary">Submit</button>
-                </form>
 
                 <form action="{{ route('employees.service_codes.set_rate', ['employee' => $employee->id, 'company' => $company->name]) }}" method="post">
                     {{ csrf_field() }}
@@ -60,6 +39,30 @@
                         </div>
 
                     </fieldset>
+                </form>
+
+                <form action="{{ route('employees.service_codes.store', ['employee' => $employee->id, 'company' => $company->name]) }}" method="post">
+                    {{ csrf_field() }}
+                    <fieldset class="fieldset">
+                        <legend>Service Codes</legend>
+                        @foreach($serviceCodes as $serviceCode)
+                            <p>
+                                <input id="{{ 'service' . $serviceCode->id }}"
+                                       type="checkbox"
+                                       name="services[]"
+                                       value="{{ $serviceCode->id }}"
+                                        {{ $employee->hasServiceCode($serviceCode) ? 'checked' : '' }}>
+                                <label for="{{ 'service' . $serviceCode->id }}">
+                                    {{ $serviceCode->name }}
+                                    {{ $employee->hasServiceCode($serviceCode) ?
+                                        '(value: ' .($employee->serviceCodeRate($serviceCode) ? $employee->serviceCodeRate($serviceCode) : 'Default')  . ')' :
+                                        ''
+                                    }}
+                                </label>
+                            </p>
+                        @endforeach
+                    </fieldset>
+                    <button class="button primary">Submit</button>
                 </form>
 
             </div>
