@@ -120,7 +120,7 @@ class FullTimePatientModifier
     {
         $response = GoogleDistance::distance($origins, $destinations);
         $distance = $this->getDistance($response, $origins->count());
-        return $distance;
+        return $distance / 1.60934;
     }
 
     private function getDistance($response, $count)
