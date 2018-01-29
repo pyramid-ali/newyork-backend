@@ -119,6 +119,7 @@ h1, h2, h3, h4, h5, h6 {
 .wrapper {
   background: #eee;
   height: 100vh;
+  overflow-y: auto;
 }
 
 .forgot-password-container {
