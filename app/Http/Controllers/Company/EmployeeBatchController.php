@@ -104,7 +104,7 @@ class EmployeeBatchController extends Controller
                     'first_name' => $row['first_name'],
                     'last_name' => $row['last_name'],
                     'employee_id' => $row['employee_id'],
-                    'temp_department' => $row['temp_dept'],
+                    'temp_department' => $row['temp_dept'] ?? $row['temp_department'],
                     'employee_type' => $this->employeeType($row['employment_status']),
                     'tehd' => $this->totalExpectedHour($row['employment_status']),
                 ];
