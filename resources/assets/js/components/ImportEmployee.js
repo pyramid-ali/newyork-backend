@@ -146,6 +146,7 @@ export default class ImportEmployee extends Component {
                             <td>First name</td>
                             <td>Last name</td>
                             <td>Employee id</td>
+                            <td>Error Code</td>
                         </tr>
                     </thead>
 
@@ -158,6 +159,7 @@ export default class ImportEmployee extends Component {
                                     <td>{employee['first_name']}</td>
                                     <td>{employee['last_name']}</td>
                                     <td>{employee['employee_id']}</td>
+                                    <td>{employee['error_code']}</td>
                                 </tr>
                             )
                         })}

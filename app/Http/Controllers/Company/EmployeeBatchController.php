@@ -130,6 +130,8 @@ class EmployeeBatchController extends Controller
             catch (\Exception $error) {
                 Log::error($error);
                 \DB::rollBack();
+                $row->put('error',$error->getMessage());
+                $row->put('error_code',$error->getCode());
                 $skipped->push($row);
             }
         });
