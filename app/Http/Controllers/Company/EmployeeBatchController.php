@@ -118,7 +118,7 @@ class EmployeeBatchController extends Controller
                     'city' => $row['city'],
                     'state' => $row['state'],
                     'zip_code' => $row['zip_code'],
-                    'street' => $row['street_address'],
+                    'street' => $row['street'],
                 ];
 
                 $employee->address()->create($addressFields);
