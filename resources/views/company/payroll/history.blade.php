@@ -32,7 +32,7 @@
                                 @elseif($payroll->processing)
                                     <td><i class="fa fa-spinner fa-spin"></i></td>
                                 @else
-                                    <td><i class="fa fa-recycle"></i><a href="#"> Process Now</a></td>
+                                    <td>Not Processed</td>
                                 @endif
                                 <td><a href="{{ route('download.payroll', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
                                 @if($payroll->output_path)

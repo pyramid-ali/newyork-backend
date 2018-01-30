@@ -10,13 +10,14 @@ namespace App\Ny;
 
 
 use App\Employee;
+use App\Ny\Services\ServiceWorker;
 use App\ServiceCode;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExportInterim
 {
 
-
+    private $serviceWorkersNamespace = 'App\Ny\Services\\';
     public $rows;
 
     public function __construct()
@@ -68,9 +69,18 @@ class ExportInterim
         $regHours = $processedWorks->get('reg_hours');
         $tempRates = $processedWorks->get('temp_rate', []);
         $units = $this->units($tempRates);
+        $totalServiceCodeUnits = $units + $regHours;
 
-        $row->put('total_service_code_units', $units);
-        $row->put('productivity', ($units / $employee->fulltime_threshold));
+        if ($employee->employee_type === 'ft_patient') {
+            $fullTimeThreshold = $this->fullTimeThreshold($processedWorks, $employee);
+        }
+        else {
+            $fullTimeThreshold = $employee->fulltime_threshold;
+        }
+
+
+        $row->put('total_service_code_units', $totalServiceCodeUnits);
+        $row->put('productivity', ($totalServiceCodeUnits / $fullTimeThreshold));
         $row->put('total_time_off', $this->timeOff($processedWorks));
 
         if ($employee->type !== 'pdm') {
@@ -103,7 +113,7 @@ class ExportInterim
     {
         $row = clone collect($work);
         $row->put('employee_type', $employee->employee_type);
-        $row->put('service_code_units', $this->serviceCodeUnit($work));
+        $row->put('service_code_units', $this->serviceCodeUnit($work, $employee));
         $row->put('total_service_code_units', null);
         $row->put('productivity', null);
         $row->put('total_time_off', null);
@@ -111,12 +121,24 @@ class ExportInterim
         return $row;
     }
 
-    private function serviceCodeUnit($work)
+    private function serviceCodeUnit($work, Employee $employee)
     {
         $serviceCode = ServiceCode::where('name', $work['service_code'])->first();
         if ($serviceCode) {
             return $serviceCode->unit;
         }
+
+        $serviceWorker = $this->serviceWorker($work['service_code']);
+        if (class_exists($serviceWorker)) {
+            $instance = new $serviceWorker;
+            if ($instance instanceof ServiceWorker) {
+                $output =  $instance->work($work, $employee);
+                if (isset($output['reg_hours'])) {
+                    return $output['reg_hours'];
+                }
+            }
+        }
+
         return null;
     }
 
@@ -139,6 +161,41 @@ class ExportInterim
         })->store('csv', storage_path('app/public/interim'), true);
 
         return $name;
+    }
+
+    private function serviceWorker($serviceCode)
+    {
+        $escaped = preg_replace('/[!@#$%^&*(),.]/', ' ', $serviceCode);
+        $serviceClassName = studly_case($escaped);
+        return $this->serviceWorkersNamespace . $serviceClassName;
+    }
+
+    private function getMinusWorkHour($processedWorks, $key)
+    {
+        return $processedWorks->get($key);
+    }
+
+    private function calcRegHoursMinus($processedWorks)
+    {
+        $minus = $this->getMinusWorkHour($processedWorks, 'hol') +
+            $this->getMinusWorkHour($processedWorks, 'sic') +
+            $this->getMinusWorkHour($processedWorks, 'per') +
+            $this->getMinusWorkHour($processedWorks, 'pto');
+
+        return $minus;
+    }
+
+    private function thresholdMinus($processedWorks, Employee $employee)
+    {
+        $minus = $this->calcRegHoursMinus($processedWorks);
+        $percent = $minus / $employee->tehd;
+        // TODO: 10 should must be replace with days in period review
+        return $percent * 0.1;
+    }
+
+    private function fullTimeThreshold($processedWorks, Employee $employee)
+    {
+        return $employee->fulltime_threshold - $this->thresholdMinus($processedWorks, $employee);
     }
 
 }
