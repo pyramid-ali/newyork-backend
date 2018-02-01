@@ -94,7 +94,8 @@ class FullTimePatientModifier
 
                         $origins->push($origin);
                         $destinations->push($destination);
-                        if ($origins->count() > 9 || $this->maxUrlLength($origins, $destinations)) {
+
+                        if ($origins->count() > 9) {
                             $aex += $this->distances($origins, $destinations);
                             $origins = collect();
                             $destinations = collect();
@@ -111,17 +112,23 @@ class FullTimePatientModifier
         return $aex;
     }
 
-    private function maxUrlLength ($origins, $destinations) {
-        $originString = implode(',', $origins->toArray());
-        $destinationString = implode(',', $destinations->toArray());
-        return strlen($originString . $destinationString) > 1500;
-    }
+//    private function maxUrlLength ($origins, $destinations) {
+//        $originString = implode(',', $origins->toArray());
+//        $destinationString = implode(',', $destinations->toArray());
+//        return strlen($originString . $destinationString) > 1500;
+//    }
 
     private function getLocation($row)
     {
         return trim($row['care_location_street_address_1'] . ' ' . $row['care_location_city'] . ' ' . $row['care_location_state']);
     }
 
+    /**
+     * @param $origins
+     * @param $destinations
+     * @return float
+     * @throws \Exception
+     */
     private function distances($origins, $destinations)
     {
         $response = GoogleDistance::distance($origins, $destinations);
@@ -129,17 +136,25 @@ class FullTimePatientModifier
         return $distance / 1.60934;
     }
 
+    /**
+     * @param $response
+     * @param $count
+     * @return float|int
+     * @throws \Exception
+     */
     private function getDistance($response, $count)
     {
         $distance = 0;
         sleep(5);
         for ($i = 0; $i < $count; $i++) {
-            if (count($response['rows']) < $count) {
-                throw new \Exception('Google map key Error: Unknown Error');
+
+            if (strtolower($response['status']) !== 'ok') {
+                if (isset($response['error_message'])) {
+                    throw new \Exception('Google map key Error: ' . $response['error_message']);
+                }
+                throw new \Exception('Google map key Error: ' . $response['status']);
             }
-            if (isset($response['error_message'])) {
-                throw new \Exception('Google map key Error: ' . $response['error_message']);
-            }
+
             else {
                 $distance += $response['rows'][$i]['elements'][$i]['distance']['value'] / 1000;
             }
