@@ -114,7 +114,7 @@ class FullTimePatientModifier
     private function maxUrlLength ($origins, $destinations) {
         $originString = implode(',', $origins->toArray());
         $destinationString = implode(',', $destinations->toArray());
-        return strlen($originString + $destinationString) > 1500;
+        return strlen($originString . $destinationString) > 1500;
     }
 
     private function getLocation($row)
