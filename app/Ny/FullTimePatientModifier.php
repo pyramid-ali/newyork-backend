@@ -94,7 +94,7 @@ class FullTimePatientModifier
 
                         $origins->push($origin);
                         $destinations->push($destination);
-                        if (pow($origins->count(), 2) > 99) {
+                        if ($origins->count() > 9 || $this->maxUrlLength($origins, $destinations)) {
                             $aex += $this->distances($origins, $destinations);
                             $origins = collect();
                             $destinations = collect();
@@ -109,6 +109,12 @@ class FullTimePatientModifier
         }
 
         return $aex;
+    }
+
+    private function maxUrlLength ($origins, $destinations) {
+        $originString = implode(',', $origins->toArray());
+        $destinationString = implode(',', $destinations->toArray());
+        return strlen($originString + $destinationString) > 1500;
     }
 
     private function getLocation($row)
@@ -128,6 +134,9 @@ class FullTimePatientModifier
         $distance = 0;
         sleep(5);
         for ($i = 0; $i < $count; $i++) {
+            if (count($response['rows']) < $count) {
+                throw new \Exception('Google map key Error: Unknown Error');
+            }
             if (isset($response['error_message'])) {
                 throw new \Exception('Google map key Error: ' . $response['error_message']);
             }
