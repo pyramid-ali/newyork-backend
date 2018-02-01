@@ -95,7 +95,7 @@ class FullTimePatientModifier
                         $origins->push($origin);
                         $destinations->push($destination);
 
-                        if ($origins->count() > 9) {
+                        if ($origins->count() > 8) {
                             $aex += $this->distances($origins, $destinations);
                             $origins = collect();
                             $destinations = collect();
@@ -132,7 +132,7 @@ class FullTimePatientModifier
     private function distances($origins, $destinations)
     {
         $response = GoogleDistance::distance($origins, $destinations);
-        $distance = $this->getDistance($response, $origins->count());
+        $distance = $this->getDistance($response, $origins->count(), $origins, $destinations);
         return $distance / 1.60934;
     }
 
@@ -142,7 +142,7 @@ class FullTimePatientModifier
      * @return float|int
      * @throws \Exception
      */
-    private function getDistance($response, $count)
+    private function getDistance($response, $count, $origins, $destinations)
     {
         $distance = 0;
         sleep(5);
@@ -156,6 +156,18 @@ class FullTimePatientModifier
             }
 
             else {
+
+                $destinationAddresses = $response['destination_addresses'];
+                $originAddresses = $response['origin_addresses'];
+
+                if (!$destinationAddresses[$i]) {
+                    throw new \Exception('Address Not Found: ' . $destinations[$i]);
+                }
+
+                if (!$originAddresses[$i]) {
+                    throw new \Exception('Address Not Found: ' . $origins[$i]);
+                }
+
                 $distance += $response['rows'][$i]['elements'][$i]['distance']['value'] / 1000;
             }
 
