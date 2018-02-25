@@ -22,7 +22,7 @@ class OrientationTime implements ServiceWorker
         $minutes = $endTime->diffInMinutes($startTime);
         $hours = $endTime->diffInHours($startTime);
 
-        $divider = 1.3;
+        $divider = 1.5;
         if ($employee->employee_type === 'pdm') {
             $divider = 1;
         }
