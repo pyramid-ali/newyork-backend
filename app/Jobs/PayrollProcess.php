@@ -206,7 +206,17 @@ class PayrollProcess implements ShouldQueue
 
     public function includeMiscellaneous(Employee $employee)
     {
+        if ($employee->metro_card) {
+            return ['cel' => $employee->cel, 'aex' => $employee->metro_card];
+        }
         return ['cel' => $employee->cel];
+    }
+
+    private function includeMetroCard($employee)
+    {
+        if ($employee->metro_card) {
+            return [];
+        }
     }
 
     public function failed(Exception $exception)
@@ -216,5 +226,7 @@ class PayrollProcess implements ShouldQueue
         $this->payroll->save();
         event(new PayrollError($this->user, $this->payroll));
     }
+
+
 
 }
