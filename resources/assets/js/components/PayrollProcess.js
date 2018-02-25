@@ -159,7 +159,7 @@ export default class PayrollProcess extends Component {
             <div className='callout large success'>
                 <h4>Payroll Reviewed Successfully</h4>
                 <p>You can now process reviewed payroll, you can close this window any time you want, we notify you when payroll processed</p>
-                <input type="checkbox" value={this.state.misc} /> Include Miscellaneous Benefits in output
+                <input type="checkbox" checked={this.state.misc} onChange={(e) => this.setState({misc: e.target.checked})} /> Include Miscellaneous Benefits in output
                 <div className="button-group">
                     <button className="button success" onClick={this.processPayroll.bind(this)} disabled={this.state.processing}>
                         { this.state.processing ?
