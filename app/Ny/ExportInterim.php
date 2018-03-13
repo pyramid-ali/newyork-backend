@@ -78,9 +78,11 @@ class ExportInterim
             $fullTimeThreshold = $employee->fulltime_threshold;
         }
 
+        if ($employee->employee_type === 'ft_patient') {
+            $row->put('total_service_code_units', $totalServiceCodeUnits);
+            $row->put('productivity', ($totalServiceCodeUnits / $fullTimeThreshold));
+        }
 
-        $row->put('total_service_code_units', $totalServiceCodeUnits);
-        $row->put('productivity', ($totalServiceCodeUnits / $fullTimeThreshold));
         $row->put('total_time_off', $this->timeOff($processedWorks));
 
         if ($employee->type !== 'pdm') {
