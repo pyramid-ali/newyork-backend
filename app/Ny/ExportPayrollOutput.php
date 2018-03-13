@@ -119,12 +119,14 @@ class ExportPayrollOutput
         $row[16] = $this->personalAmount($processedWorks);
         $row[17] = $this->holidayCode($processedWorks);
         $row[18] = $this->holidayAmount($processedWorks);
-        $row[19] = $this->adjustDedCode($processedWorks);
-        $row[20] = $this->adjustDedAmount($processedWorks);
-        $row[21] = $this->celCode($processedWorks);
-        $row[22] = $this->celAmount($processedWorks);
-        $row[23] = $this->onCallCode($processedWorks);
-        $row[24] = $this->onCallAmount($processedWorks);
+        $row[19] = $this->bereavementCode($processedWorks);
+        $row[20] = $this->bereavementAmount($processedWorks);
+        $row[21] = $this->adjustDedCode($processedWorks);
+        $row[22] = $this->adjustDedAmount($processedWorks);
+        $row[23] = $this->celCode($processedWorks);
+        $row[24] = $this->celAmount($processedWorks);
+        $row[25] = $this->onCallCode($processedWorks);
+        $row[26] = $this->onCallAmount($processedWorks);
 
         return $row;
     }
@@ -274,6 +276,16 @@ class ExportPayrollOutput
     private function onCallAmount($processedWorks)
     {
         return $processedWorks->get('onc');
+    }
+
+    private function bereavementCode($processedWorks)
+    {
+        return $this->bereavementAmount($processedWorks) ? 'BVT' : null;
+    }
+
+    private function bereavementAmount($processedWorks)
+    {
+        return $processedWorks->get('bvt');
     }
 
 }
