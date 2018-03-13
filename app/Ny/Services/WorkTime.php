@@ -22,6 +22,11 @@ class WorkTime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
-        return ['reg_hours' => $exactHour * 0.75];
+        $multiplier = 0.75;
+        if ($employee->employee_type === 'pdm') {
+            $multiplier = 1;
+        }
+
+        return ['reg_hours' => $exactHour * $multiplier];
     }
 }
