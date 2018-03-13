@@ -44,6 +44,7 @@ class ExportInterim
         $work = $works->first();
         $row = collect([
             'company' => $work->company,
+            'top_unit' => $work->top_unit,
             'parent_unit' => $work->company,
             'sub_unit' => $work->sub_unit,
             'employee_name' => $work->employee_name,
