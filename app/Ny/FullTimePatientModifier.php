@@ -63,6 +63,7 @@ class FullTimePatientModifier
         $minus = $this->getMinusWorkHour('hol') +
             $this->getMinusWorkHour('sic') +
             $this->getMinusWorkHour('per') +
+            $this->getMinusWorkHour('bvt') +
             $this->getMinusWorkHour('pto');
 
         return $minus;

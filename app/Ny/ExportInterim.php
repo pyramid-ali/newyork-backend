@@ -103,6 +103,7 @@ class ExportInterim
         return $processedWorks->get('hol', 0) +
             $processedWorks->get('per', 0) +
             $processedWorks->get('pto', 0) +
+            $processedWorks->get('bvt', 0) +
             $processedWorks->get('sic', 0);
     }
 
