@@ -21,7 +21,6 @@ class BereavementTime implements ServiceWorker
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
         $hours = $endTime->diffInHours($startTime);
-        $bvt = (floor($hours / $employee->tehd) + 1) * $employee->tehd;
-        return ['bvt' => $bvt];
+        return ['bvt' => $hours];
     }
 }
