@@ -113,12 +113,6 @@ class FullTimePatientModifier
         return $aex;
     }
 
-//    private function maxUrlLength ($origins, $destinations) {
-//        $originString = implode(',', $origins->toArray());
-//        $destinationString = implode(',', $destinations->toArray());
-//        return strlen($originString . $destinationString) > 1500;
-//    }
-
     private function getLocation($row)
     {
         return trim($row['care_location_street_address_1'] . ' ' . $row['care_location_city'] . ' ' . $row['care_location_state']);

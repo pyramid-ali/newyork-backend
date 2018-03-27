@@ -86,8 +86,10 @@ class ExportInterim
 
         $row->put('total_time_off', $this->timeOff($processedWorks));
 
-        if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
-            throw new \Exception('"FT employee exceeding max hours for the period, employee id #' . $employee->employee_id);
+        if ($employee->employee_type === 'ft_office') {
+            if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
+                throw new \Exception('"FT employee exceeding max hours for the period, employee id #' . $employee->employee_id);
+            }
         }
 
         if ($employee->type !== 'pdm') {

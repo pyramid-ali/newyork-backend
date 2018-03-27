@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/21/17
- * Time: 5:01 PM
- */
 
 namespace App\Ny;
 
