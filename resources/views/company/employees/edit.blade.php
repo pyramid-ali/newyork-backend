@@ -54,7 +54,7 @@
                             <label for="fulltime_threshold"> Full Time Threshold
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-clock-o"></i></span>
-                                    <input class="input-group-field" id="fulltime_threshold" type="text" name="fulltime_threshold" placeholder="Full Time Threshold - Default is global Setting" value="{{ $employee->fulltime_threshold }}">
+                                    <input class="input-group-field" id="fulltime_threshold" type="number" name="fulltime_threshold" placeholder="Full Time Threshold - Default is global Setting" value="{{ $employee->fulltime_threshold }}">
                                 </div>
                             </label>
 
