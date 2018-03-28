@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/28/17
- * Time: 6:08 PM
- */
 
 namespace App\Ny;
 
@@ -19,10 +13,12 @@ class ExportInterim
 
     private $serviceWorkersNamespace = 'App\Ny\Services\\';
     public $rows;
+    private $exceededTimeEmployee;
 
     public function __construct()
     {
         $this->rows = collect();
+        $this->exceededTimeEmployee = collect();
     }
 
     public function entry(Employee $employee, $processedWorks, $works)
@@ -88,7 +84,7 @@ class ExportInterim
 
         if ($employee->employee_type === 'ft_office') {
             if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
-                throw new \Exception('"FT employee exceeding max hours for the period, employee id #' . $employee->employee_id);
+                $this->exceededTimeEmployee->push($employee);
             }
         }
 
@@ -154,6 +150,14 @@ class ExportInterim
 
     public function export()
     {
+        if ($this->exceededTimeEmployee->count() > 0) {
+            $ids = $this->exceededTimeEmployee->map(function($employee) {
+                return '#' .$employee->id;
+            })->toArray();
+            $message = implode(', ', $ids);
+            throw new \Exception('"FT employee exceeding max hours for the period, employees id ' . $message);
+        }
+
         $name = uniqid();
         $csv = Excel::create($name, function($excel) {
 
