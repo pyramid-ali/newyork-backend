@@ -115,7 +115,7 @@ export default class PayrollProcess extends Component {
 
     renderError (error) {
 
-        const { employees, service_codes } = error;
+        const { employees, service_codes, zero_tehd } = error;
 
         return (
             <div className='callout large alert'>
@@ -135,6 +135,16 @@ export default class PayrollProcess extends Component {
                     <h4>the following Service Codes are missing</h4>
                     <ol>
                         {service_codes.map((code, index) => {
+                            return (
+                                <li key={index}>{code}</li>
+                            )
+                        })}
+                    </ol>
+                </div>
+                <div className="zero-tehd">
+                    <h4>the following Employees have 0 tehd</h4>
+                    <ol>
+                        {zero_tehd.map((code, index) => {
                             return (
                                 <li key={index}>{code}</li>
                             )

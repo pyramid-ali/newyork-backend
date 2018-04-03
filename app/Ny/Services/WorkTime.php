@@ -18,6 +18,10 @@ class WorkTime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
+        if ($employee->employee_type === 'ft_office' && $exactHour > $employee->tehd) {
+            $exactHour = $employee->tehd;
+        }
+
         $multiplier = 1;
         if ($employee->employee_type === 'ft_patient') {
             $multiplier = 0.75;

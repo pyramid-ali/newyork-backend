@@ -40,12 +40,14 @@ class PayrollController extends Controller
 
         $missingEmployees = $this->missingEmployees($rows);
         $missingServiceCodes = $this->missingServiceCodes($rows);
+        $zeroExpectedTime = $this->zeroExpectedTime($rows);
 
         if ($missingEmployees->count() > 0 || $missingServiceCodes->count() > 0) {
             return response()->json(
                 [
                     'employees' => $missingEmployees->toArray(),
-                    'service_codes' => $missingServiceCodes->toArray()
+                    'service_codes' => $missingServiceCodes->toArray(),
+                    'zero_tehd' => $zeroExpectedTime->toArray()
                 ], 444
             );
         }
@@ -93,6 +95,22 @@ class PayrollController extends Controller
         $missingEmployees = collect();
         foreach ($employeeIDs as $employeeID) {
             if (!Employee::where('employee_id', $employeeID)->exists()) {
+                $missingEmployees->push($employeeID);
+            }
+        }
+
+        return $missingEmployees;
+    }
+
+    private function zeroExpectedTime($rows) {
+
+        $employeeIDs = $rows->groupBy(function ($item, $key) {
+            return (string) $item['empid'];
+        })->keys()->toArray();
+
+        $missingEmployees = collect();
+        foreach ($employeeIDs as $employeeID) {
+            if (optional(Employee::where('employee_id', $employeeID)->first())->tehd === 0) {
                 $missingEmployees->push($employeeID);
             }
         }
