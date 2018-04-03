@@ -42,7 +42,7 @@ class PayrollController extends Controller
         $missingServiceCodes = $this->missingServiceCodes($rows);
         $zeroExpectedTime = $this->zeroExpectedTime($rows);
 
-        if ($missingEmployees->count() > 0 || $missingServiceCodes->count() > 0) {
+        if ($missingEmployees->count() > 0 || $missingServiceCodes->count() > 0 || $zeroExpectedTime->count() > 0) {
             return response()->json(
                 [
                     'employees' => $missingEmployees->toArray(),
