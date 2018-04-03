@@ -152,7 +152,7 @@ class ExportInterim
     {
         if ($this->exceededTimeEmployee->count() > 0) {
             $ids = $this->exceededTimeEmployee->map(function($employee) {
-                return '#' .$employee->id;
+                return '#' .$employee->employee_id;
             })->toArray();
             $message = implode(', ', $ids);
             throw new \Exception('"FT employee exceeding max hours for the period, employees id ' . $message);
