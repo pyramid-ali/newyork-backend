@@ -110,8 +110,10 @@ class PayrollController extends Controller
 
         $missingEmployees = collect();
         foreach ($employeeIDs as $employeeID) {
-            if (optional(Employee::where('employee_id', $employeeID)->first())->tehd === 0) {
-                $missingEmployees->push($employeeID);
+            if($employee = Employee::where('employee_id', $employeeID)->first()) {
+                if ($employee->employee_type !== 'pdm' && !$employee->tehd) {
+                    $missingEmployees->push($employeeID);
+                }
             }
         }
 
