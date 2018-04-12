@@ -29,12 +29,14 @@ class ExportPayrollOutput
         16 => 'Amount 3 Amount',
         17 => 'Amount 3 Code',
         18 => 'Amount 3 Amount',
-        19 => 'Adjust Ded Code',
-        20 => 'Adjust Ded Amount',
-        21 => 'Earnings 3 Code',
-        22 => 'Earnings 3 Amount',
+        19 => 'Amount 3 Code',
+        20 => 'Amount 3 Amount',
+        21 => 'Adjust Ded Code',
+        22 => 'Adjust Ded Amount',
         23 => 'Earnings 3 Code',
         24 => 'Earnings 3 Amount',
+        25 => 'Earnings 3 Code',
+        26 => 'Earnings 3 Amount',
     ];
 
     public $rows;
