@@ -106,8 +106,8 @@ class PayrollProcess implements ShouldQueue
                 $processedWorks = $this->sumUp($processedWorks, $processedWork);
             }
 
-            if ($employee->metro_card) {
-                $processedWorks->put('aex', $employee->metro_card);
+            if ($employee->cel) {
+                $processedWorks->put('aex', $employee->cel);
             }
 
             // export epic file should be done after modifying fulltime patient
