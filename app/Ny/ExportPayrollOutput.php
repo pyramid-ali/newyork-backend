@@ -57,15 +57,18 @@ class ExportPayrollOutput
             );
         }
 
-        if ($tempRates = $processedWorks->get('temp_rate') && $employee->employee_type !== "ft_office") {
-            foreach ($tempRates as $tempRate) {
-                $row = $this->tempRateHour($employee, $tempRate);
-                if ($row) {
-                    $this->rows->push($row);
-                }
+        if ($employee->employee_type !== "ft_office") {
+            if ($tempRates = $processedWorks->get('temp_rate')) {
+                foreach ($tempRates as $tempRate) {
+                    $row = $this->tempRateHour($employee, $tempRate);
+                    if ($row) {
+                        $this->rows->push($row);
+                    }
 
+                }
             }
         }
+
     }
 
     public function export()
