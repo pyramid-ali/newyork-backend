@@ -107,7 +107,7 @@ class PayrollProcess implements ShouldQueue
             }
 
             if ($employee->cel) {
-                $processedWorks->put('aex', $employee->cel);
+                $processedWorks->put('aex', 0);
             }
 
             // export epic file should be done after modifying fulltime patient
