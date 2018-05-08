@@ -138,8 +138,10 @@ class PayrollProcess implements ShouldQueue
         $processedWorks = collect();
         foreach ($works as $work) {
             $processedWork = $this->processWork($work, $employee);
+            if ($processedWork) {
+                $processedWorks = $this->sumUp($processedWorks, $processedWork);
+            }
 
-            $processedWorks = $this->sumUp($processedWorks, $processedWork);
         }
         return $processedWorks;
     }
@@ -149,6 +151,9 @@ class PayrollProcess implements ShouldQueue
         $serviceCode = $work['service_code'];
         $serviceWorker = $this->serviceWorker($serviceCode);
         if (!class_exists($serviceWorker)) {
+            if ($employee->employee_type === 'ft_office') {
+                return null;
+            }
             $serviceWorker = TableServiceCode::class;
         }
 
