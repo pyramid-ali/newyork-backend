@@ -46,7 +46,7 @@ class ExportInterim
             'employee_name' => $work->employee_name,
             '' => '',
             'empid' => $work->empid,
-            'service_code' => null,
+            'service_code' => 'summary',
             'visit_status' => null,
             'start_datetime' => null,
             'end_datetime' => null,
@@ -58,7 +58,7 @@ class ExportInterim
             'care_location_city' => null,
             'care_location_state' => null,
             'mileage_entry' => null,
-            'employee_temp' => null,
+            'employee_type' => $employee->employee_type,
             'service_code_units' => null
 
         ]);
@@ -84,7 +84,8 @@ class ExportInterim
 
         if ($employee->employee_type === 'ft_office') {
             if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
-                $this->exceededTimeEmployee->push($employee);
+//                $this->exceededTimeEmployee->push($employee);
+                $row->put('notes', 'exceeding max hours for the period');
             }
         }
 
@@ -150,13 +151,13 @@ class ExportInterim
 
     public function export()
     {
-        if ($this->exceededTimeEmployee->count() > 0) {
-            $ids = $this->exceededTimeEmployee->map(function($employee) {
-                return '#' .$employee->employee_id;
-            })->toArray();
-            $message = implode(', ', $ids);
-            throw new \Exception('"FT employee exceeding max hours for the period, employees id ' . $message);
-        }
+//        if ($this->exceededTimeEmployee->count() > 0) {
+//            $ids = $this->exceededTimeEmployee->map(function($employee) {
+//                return '#' .$employee->employee_id;
+//            })->toArray();
+//            $message = implode(', ', $ids);
+//            throw new \Exception('"FT employee exceeding max hours for the period, employees id ' . $message);
+//        }
 
         $name = uniqid();
         $csv = Excel::create($name, function($excel) {
