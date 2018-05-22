@@ -59,8 +59,12 @@ class ExportInterim
             'care_location_state' => null,
             'mileage_entry' => null,
             'employee_type' => $employee->employee_type,
-            'service_code_units' => null
-
+            'service_code_units' => null,
+            'total_service_code_units' => null,
+            'productivity' => null,
+            'total_time_off' => null,
+            'reg_hours' => null,
+            'notes' => null
         ]);
 
         $regHours = $processedWorks->get('reg_hours');
@@ -82,6 +86,10 @@ class ExportInterim
 
         $row->put('total_time_off', $this->timeOff($processedWorks));
 
+        if ($employee->type !== 'pdm') {
+            $row->put('reg_hours', $regHours);
+        }
+
         if ($employee->employee_type === 'ft_office') {
             if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
 //                $this->exceededTimeEmployee->push($employee);
@@ -89,9 +97,7 @@ class ExportInterim
             }
         }
 
-        if ($employee->type !== 'pdm') {
-            $row->put('reg_hours', $regHours);
-        }
+
 
         return $row;
 
