@@ -20,7 +20,7 @@ class PayrollController extends Controller
 
     public function history(Company $company)
     {
-        $payrolls = Payroll::orderBy('created_at', 'desc')->paginate();
+        $payrolls = $company->payrolls()->orderBy('created_at', 'desc')->paginate();
         return view('company.payroll.history', compact('company', 'payrolls'));
     }
 
