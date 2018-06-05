@@ -38,34 +38,25 @@ class ExportInterim
     private function additionalRow(Employee $employee, $processedWorks, $works)
     {
         $work = $works->first();
-        $row = collect([
-            'company' => $work->company,
-            'top_unit' => $work->top_unit,
-            'parent_unit' => $work->company,
-            'sub_unit' => $work->sub_unit,
-            'employee_name' => $work->employee_name,
-            '' => '',
-            'empid' => $work->empid,
-            'service_code' => 'summary',
-            'visit_status' => null,
-            'start_datetime' => null,
-            'end_datetime' => null,
-            'mrn' => null,
-            'patient' => null,
-            'care_location_street_address_1' => null,
-            'care_location_street_address_2' => null,
-            'care_location_aptsteunit' => null,
-            'care_location_city' => null,
-            'care_location_state' => null,
-            'mileage_entry' => null,
-            'employee_type' => $employee->employee_type,
-            'service_code_units' => null,
-            'total_service_code_units' => null,
-            'productivity' => null,
-            'total_time_off' => null,
-            'reg_hours' => null,
-            'notes' => null
-        ]);
+        $row = clone collect($work);
+        $row->put('service_code', 'summary');
+        $row->put('visit_status', null);
+        $row->put('start_datetime', null);
+        $row->put('end_datetime', null);
+        $row->put('mrn', null);
+        $row->put('patient', null);
+        $row->put('care_location_street_address_1', null);
+        $row->put('care_location_street_address_2', null);
+        $row->put('care_location_aptsteunit', null);
+        $row->put('care_location_city', null);
+        $row->put('care_location_state', null);
+        $row->put('mileage_entry', null);
+        $row->put('service_code_units', null);
+        $row->put('total_service_code_units', null);
+        $row->put('productivity', null);
+        $row->put('total_time_off', null);
+        $row->put('reg_hours', null);
+        $row->put('notes', null);
 
         $regHours = $processedWorks->get('reg_hours');
         $tempRates = $processedWorks->get('temp_rate', []);
