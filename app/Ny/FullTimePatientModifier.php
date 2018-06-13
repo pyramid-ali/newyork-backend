@@ -100,7 +100,7 @@ class FullTimePatientModifier
                         $origins->push($origin);
                         $destinations->push($destination);
 
-                        if ($origins->count() > 8) {
+                        if ($origins->count() > 0) {
                             $aex += $this->distances($origins, $destinations);
                             $origins = collect();
                             $destinations = collect();
