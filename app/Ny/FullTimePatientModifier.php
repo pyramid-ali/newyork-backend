@@ -144,7 +144,7 @@ class FullTimePatientModifier
     private function getDistance($response, $count, $origins, $destinations)
     {
         $distance = 0;
-        sleep(1);
+        sleep(0.1);
         for ($i = 0; $i < $count; $i++) {
 
             if (strtolower($response['status']) !== 'ok') {
