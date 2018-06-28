@@ -49,9 +49,10 @@ class ExportPayrollOutput
 
     public function entry(Employee $employee, $processedWorks)
     {
-
+        $withoutWork = true;
         // calculate employees that have reg Amount
         if ($processedWorks->get('reg_hours')) {
+            $withoutWork = false;
             $this->rows->push(
                 $this->regHourRow($employee, $processedWorks)
             );
@@ -59,6 +60,7 @@ class ExportPayrollOutput
 
 
         if ($tempRates = $processedWorks->get('temp_rate')) {
+            $withoutWork = false;
             foreach ($tempRates as $tempRate) {
                 $row = $this->tempRateHour($employee, $tempRate);
                 if ($row) {
@@ -68,6 +70,11 @@ class ExportPayrollOutput
             }
         }
 
+        if ($withoutWork) {
+            $this->rows->push(
+                $this->regHourRow($employee, $processedWorks)
+            );
+        }
 
     }
 
