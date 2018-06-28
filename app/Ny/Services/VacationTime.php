@@ -19,8 +19,10 @@ class VacationTime implements ServiceWorker
     {
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
+        $minutes = $endTime->diffInMinutes($startTime);
         $hours = $endTime->diffInHours($startTime);
-        $pto = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['pto' => $pto];
+        $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
+//        $pto = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
+        return ['pto' => $exactHours];
     }
 }

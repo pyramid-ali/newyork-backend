@@ -19,8 +19,10 @@ class SickTime implements ServiceWorker
     {
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
+        $minutes = $endTime->diffInMinutes($startTime);
         $hours = $endTime->diffInHours($startTime);
-        $sic = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['sic' => $sic];
+        $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
+//        $sic = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
+        return ['sic' => $exactHours];
     }
 }

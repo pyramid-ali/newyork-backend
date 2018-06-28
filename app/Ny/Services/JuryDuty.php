@@ -19,8 +19,10 @@ class JuryDuty implements ServiceWorker
     {
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
+        $minutes = $endTime->diffInMinutes($startTime);
         $hours = $endTime->diffInHours($startTime);
-        $jur = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['jur' => $jur];
+        $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
+//        $jur = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
+        return ['jur' => $exactHours];
     }
 }
