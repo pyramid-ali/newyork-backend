@@ -51,6 +51,7 @@ class ExportInterim
         $row->put('care_location_city', null);
         $row->put('care_location_state', null);
         $row->put('mileage_entry', null);
+        $row->put('employee_type', $employee->employee_type);
         $row->put('service_code_units', null);
         $row->put('total_service_code_units', null);
         $row->put('productivity', null);
