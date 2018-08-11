@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    //
+
     protected $fillable = [
-        'name', 'code', 'fulltime_threshold', 'review_period', 'account_number'
+        'name', 'slug', 'account_number'
     ];
 
     public function users()
@@ -39,5 +39,14 @@ class Company extends Model
     public function payrolls()
     {
         return $this->hasMany(Payroll::class);
+    }
+
+    public static function build($name)
+    {
+        return static::create([
+            'name' => $name,
+            'slug' => str_slug($name),
+            'account_number' => rand(100, 999)
+        ]);
     }
 }

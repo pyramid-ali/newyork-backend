@@ -11,8 +11,17 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/assets/js/app.js', 'public/js')
-    .sourceMaps()
-    .react('resources/assets/js/moderator.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('resources/assets/sass/moderator.scss', 'public/css');
+
+mix.js('resources/assets/js/app.js', 'public/js')
+    .extract(['vue', 'jquery', 'bootstrap', 'lodash', 'axios']);
+
+mix.sass('resources/assets/sass/bootstrap.scss', 'public/css')
+    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.sass('resources/assets/sass/bite/style.scss', 'public/css/bite.min.css',
+    {
+        outputStyle: 'compressed'
+    })
+    .sourceMaps();
+
+mix.copyDirectory('resources/assets/images', 'public/images');

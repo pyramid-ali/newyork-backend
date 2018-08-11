@@ -58,7 +58,6 @@ class CompanyController extends Controller
 
         $company = Company::create($companyProperties);
 
-
         $company->address()->save($address);
 
         return redirect('/moderator/companies');

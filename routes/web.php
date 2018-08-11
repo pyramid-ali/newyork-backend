@@ -11,11 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+//Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
+//Route::post('/register', 'Auth\RegisterController@register')->name('register');
+//Route::get('/email/verification', 'Auth\EmailVerificationController')->name('email.verification');
+//Route::get('/wizard', 'Auth\WizardController')->name('wizard');
+//Route::post('/companies', 'CompanyController@store');
+//Route::post('/companies/address', 'AddressController@store');
 
 Route::domain('{company}.'.env('DOMAIN'))->group(function () {
+
+    Route::get('/', function () {
+        return 'h';
+    });
 
     Route::get('login', 'Company\LoginController@showLoginForm')->name('company.login');
     Route::post('login', 'Company\LoginController@login')->name('company.login');
@@ -68,18 +79,14 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
             Route::get('payroll/test', function (\App\Company $company) {
                 return view('company.test', compact('company'));
             });
-
-
-
         });
 
     });
-
-
-
 });
 
 Route::domain(env('DOMAIN'))->group(function () {
+
+
 
     Route::get('home', function() {
         return redirect('/moderator/users');
@@ -94,11 +101,8 @@ Route::domain(env('DOMAIN'))->group(function () {
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
     Route::group(['middleware' => ['moderator', 'auth']], function() {
-
         Route::resource('moderator/users', 'Moderator\UserController');
         Route::resource('moderator/companies', 'Moderator\CompanyController');
-
     });
-
 });
 

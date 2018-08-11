@@ -1,5 +1,6 @@
 window._ = require('lodash');
 
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -7,11 +8,9 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('foundation-sites');
-
-    $(document).foundation();
+    global.$ = global.jQuery = require('jquery');
+    require('popper.js');
+    require('bootstrap');
 } catch (e) {}
 
 /**
@@ -38,23 +37,23 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-import Echo from "laravel-echo"
-
-window.Pusher = require('pusher-js');
-
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '229a862ffdd2adc9b055',
-    cluster: 'us2',
-    encrypted: true,
-    authEndpoint: '/broadcasting/auth',
-    auth: {
-        headers: {
-            'X-CSRF-TOKEN': token.content
-        }
-    }
-});
+// import Echo from "laravel-echo"
+//
+// window.Pusher = require('pusher-js');
+//
+//
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: '229a862ffdd2adc9b055',
+//     cluster: 'us2',
+//     encrypted: true,
+//     authEndpoint: '/broadcasting/auth',
+//     auth: {
+//         headers: {
+//             'X-CSRF-TOKEN': token.content
+//         }
+//     }
+// });
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
