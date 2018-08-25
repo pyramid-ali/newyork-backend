@@ -11,7 +11,7 @@
         <div class="grid-x">
             <div class="cell">
 
-                <form action="{{ route('companies.update', ['id' => $company->id]) }}" method="post">
+                <form action="{{ route('companies.update', $company) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="grid-x grid-padding-x align-center">
@@ -85,6 +85,18 @@
                     </div>
 
                 </form>
+
+
+
+                @if(session('company'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('company') }} Updated Successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if(count($errors) > 0)
                     <div class="error-form">

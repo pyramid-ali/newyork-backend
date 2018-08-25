@@ -51,7 +51,7 @@
                             <label id="role">Select User Role
                                 <select name="role" id="role">
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                        <option value="{{ $role->name }}" {{ old('role') == $role->id ? 'selected' : '' }}>{{ ucfirst($role->name) }}</option>
                                     @endforeach
                                 </select>
                             </label>
@@ -61,6 +61,16 @@
                     </div>
 
                 </form>
+
+                @if(session('user'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('user') }} created successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if ($errors->any())
                     <div class="alert alert-danger">

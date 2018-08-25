@@ -3,12 +3,7 @@
 @section('dashboard-content')
     <header>
         <h3><i class="fa fa-plus"></i> Create New Company</h3>
-        <h5>Notes</h5>
-        <ul>
-            <li>in this section you can define new users in any role</li>
-            <li>For creating admin user for specific company please first create company then create admin for it</li>
-            <li>also you can create manager for companies here, but this ability has for company admins also</li>
-        </ul>
+
 
     </header>
 
@@ -89,6 +84,16 @@
                     </div>
 
                 </form>
+
+                @if(session('company'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('company') }} created successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if(count($errors) > 0)
                     <div class="error-form">

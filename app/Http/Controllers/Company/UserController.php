@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index(Company $company)
     {
-        $users = $company->users()->managers()->paginate();
+        $users = $company->users()->role('manager')->latest()->paginate();
         return view('company.users.index', compact('users', 'company'));
     }
 

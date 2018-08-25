@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -27,63 +28,45 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
+    /**
+     * get user companies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function companies()
     {
         return $this->belongsToMany(Company::class);
     }
 
-    public function scopeModerators($query)
+    /**
+     * get user company: $this->company
+     *
+     * @return Company
+     */
+    public function getCompanyAttribute()
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'moderator');
-        });
+        return $this->companies->first();
     }
 
-    public function scopeAdmins($query)
+    /**
+     * check a user belongs to a company or not
+     *
+     * @param $company
+     * @return bool
+     */
+    public function hasCompany($company)
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'admin');
-        });
+        return $this->companies()->where('id', $company->id)->count() > 0;
     }
 
-    public function scopeManagers($query)
+    /**
+     * join a user to a company
+     *
+     * @param Company $company
+     * @return array
+     */
+    public function joinToCompany(Company $company)
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'manager');
-        });
-    }
-
-    public function isModerator()
-    {
-        return $this->hasRole('moderator');
-    }
-
-    public function isAdmin()
-    {
-        return $this->hasRole('admin');
-    }
-
-    public function isManager()
-    {
-        return $this->hasRole('manager');
-    }
-
-    public function hasRole($roleName)
-    {
-        return $this->roles->filter(function ($role) use ($roleName) {
-                return $role->name === $roleName;
-            })->count() > 0;
-    }
-
-    public function hasCompany($presentCompany)
-    {
-        return $this->companies->filter(function ($company) use ($presentCompany) {
-            return $company->id === $presentCompany->id;
-        })->count() > 0;
+        return $this->companies()->sync([$company->id]);
     }
 }

@@ -9,13 +9,13 @@
             <div class="container">
                 <div class="grid-x">
                     <div class="cell large-4">
-                        @if (Auth::user()->isAdmin())
+                        @can ('subscriber')
                             <h5>Managers</h5>
                             <ul>
                                 <li><a href="/managers">View All Managers</a></li>
                                 <li><a href="/managers/create">Add New Manager</a></li>
                             </ul>
-                        @endif
+                        @endCan
                         <h5>Offices</h5>
                         <ul>
                             <li><a href="/offices">View All Offices</a></li>
@@ -45,9 +45,9 @@
                         <h5>Settings</h5>
                         <ul>
                             <li><a href="/settings/change_password">Change Password</a></li>
-                            @if (Auth::user()->isAdmin())
+                            @can ('subscriber')
                                 <li><a href="/settings/general">Change Company General Settings</a></li>
-                            @endif
+                            @endCan
                         </ul>
                     </div>
                 </div>

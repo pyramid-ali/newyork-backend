@@ -14,7 +14,8 @@
         "maatwebsite/excel": "~2.1.0",
         "pda/pheanstalk": "~3.0",
         "pusher/pusher-php-server": "~3.0",
-        "sentry/sentry-laravel": "^0.8.0"
+        "sentry/sentry-laravel": "^0.8.0",
+        "spatie/laravel-permission": "^2.13"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -35,7 +36,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "tests/Utilities/functions.php"
+        ]
     },
     "extra": {
         "laravel": {

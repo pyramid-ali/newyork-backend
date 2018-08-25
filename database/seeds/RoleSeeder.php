@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -11,8 +12,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        \App\Role::create(['name' => 'moderator']);
-        \App\Role::create(['name' => 'admin']);
-        \App\Role::create(['name' => 'manager']);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'subscriber']);
+        Role::create(['name' => 'manager']);
     }
 }

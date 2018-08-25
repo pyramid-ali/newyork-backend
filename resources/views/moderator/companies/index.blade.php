@@ -24,17 +24,17 @@
                     <tbody>
                     @foreach($companies as $company)
                         <tr>
-                            <td><a href="{{ route('companies.show', ['id' => $company->id]) }}">{{ $company->name }}</a></td>
+                            <td><a href="{{ route('companies.show', $company) }}">{{ $company->name }}</a></td>
                             <td>{{ $company->code }}</td>
                             <td>{{ $company->fulltime_threshold }}</td>
                             <td>{{ $company->review_period }}</td>
                             <td>{{ $company->account_number }}</td>
-                            <td><a href="{{ route('companies.edit', ['id' => $company->id]) }}"><i class="fa fa-pencil"></i></a></td>
+                            <td><a href="{{ route('companies.edit', $company) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">
-                                <a href="{{ route('companies.destroy', ['id' => $company->id]) }}"
+                                <a href="{{ route('companies.destroy', $company) }}"
                                    onclick="event.preventDefault();
                                            document.getElementById('{{ 'delete' . $company->id }}').submit();"><i class="fa fa-trash"></i></a>
-                                <form id="{{ 'delete' . $company->id }}" action="{{ route('companies.destroy', ['id' => $company->id]) }}" method="POST" style="display: none;">
+                                <form id="{{ 'delete' . $company->id }}" action="{{ route('companies.destroy', $company) }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                 </form>
@@ -43,6 +43,16 @@
                     @endforeach
                     </tbody>
                 </table>
+
+                @if(session('company'))
+                    <div class="callout alert" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('company') }} Removed successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
             </div>
             {{ $companies->links() }}
         </div>

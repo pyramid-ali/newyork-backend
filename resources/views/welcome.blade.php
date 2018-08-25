@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="/login">login</a>
+                    <a href="{{ route('login') }}">login</a>
                 </div>
             </div>
         </div>

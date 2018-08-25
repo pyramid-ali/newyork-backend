@@ -16,12 +16,12 @@ class CompanyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $company = \Route::input('company');
-        $user = \Auth::user();
-        if ($user->hasCompany($company)) {
-            return $next($request);
-        }
-
+//        $company = \Route::input('company');
+//        $user = \Auth::user();
+//        if ($user->hasCompany($company)) {
+//            return $next($request);
+//        }
+        return $next($request);
         return redirect('/login');
     }
 }

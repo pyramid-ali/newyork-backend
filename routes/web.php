@@ -11,17 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::domain('{company}.'.env('DOMAIN'))->group(function () {
+Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
 
-    Route::get('login', 'Company\LoginController@showLoginForm')->name('company.login');
-    Route::post('login', 'Company\LoginController@login')->name('company.login');
-    Route::post('logout', 'Company\LoginController@logout')->name('company.logout');
+    Route::get('login', 'Auth\LoginController@redirectToLogin')->name('company.login');
+    Route::get('/', function () {
+        return 'a';
+    });
 
     Route::group(['middleware' => 'auth'], function() {
+
 
         Route::get('me', function () {
             return response()->json([
@@ -31,11 +30,9 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
 
         Route::group(['middleware' => 'company'], function() {
 
-            Route::get('home', function () {
-                return view('company.home');
-            });
+            Route::get('dashboard', 'Company\DashboardController')->name('company.dashboard');
 
-            Route::group(['middleware' => 'admin'], function() {
+            Route::group(['middleware' => 'role:subscriber'], function() {
                 Route::resource('managers', 'Company\UserController');
                 Route::get('settings/general', 'Company\SettingController@showGeneralForm')->name('settings.general.show');
                 Route::put('settings/general', 'Company\SettingController@general')->name('settings.general.update');
@@ -69,34 +66,38 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
                 return view('company.test', compact('company'));
             });
 
-
-
         });
 
     });
 
-
-
 });
 
-Route::domain(env('DOMAIN'))->group(function () {
+Route::domain(env('APP_DOMAIN'))->group(function () {
 
-    Route::get('home', function() {
-        return redirect('/moderator/users');
+    Route::get('/', function () {
+        return view('welcome');
     });
 
-    Route::get('login', 'Moderator\LoginController@showLoginForm');
-    Route::post('login', 'Moderator\LoginController@login')->name('login');
-    Route::post('logout', 'Moderator\LoginController@logout')->name('logout');
+
+
+    // login
+    Route::get('login', 'Auth\LoginController@showLoginForm');
+    Route::post('login', 'Auth\LoginController@login')->name('login');
+
+    // logout
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // reset password
     Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-    Route::group(['middleware' => ['moderator', 'auth']], function() {
+    Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function() {
 
-        Route::resource('moderator/users', 'Moderator\UserController');
-        Route::resource('moderator/companies', 'Moderator\CompanyController');
+        Route::get('dashboard', 'Moderator\DashboardController')->name('admin.dashboard');
+        Route::resource('users', 'Moderator\UserController');
+        Route::resource('companies', 'Moderator\CompanyController');
 
     });
 
