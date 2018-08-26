@@ -49,18 +49,13 @@ class ExportPayrollOutput
 
     public function entry(Employee $employee, $processedWorks)
     {
-        $withoutWork = true;
-        // calculate employees that have reg Amount
-        if ($processedWorks->get('reg_hours')) {
-            $withoutWork = false;
-            $this->rows->push(
-                $this->regHourRow($employee, $processedWorks)
-            );
+
+        $row = $this->regHourRow($employee, $processedWorks);
+        if ($this->checkEmptyCell($row, 7)) {
+            $this->rows->push($row);
         }
 
-
         if ($tempRates = $processedWorks->get('temp_rate')) {
-            $withoutWork = false;
             foreach ($tempRates as $tempRate) {
                 $row = $this->tempRateHour($employee, $tempRate);
                 if ($row) {
@@ -68,12 +63,6 @@ class ExportPayrollOutput
                 }
 
             }
-        }
-
-        if ($withoutWork) {
-            $this->rows->push(
-                $this->regHourRow($employee, $processedWorks)
-            );
         }
 
     }
@@ -292,6 +281,19 @@ class ExportPayrollOutput
     private function bereavementAmount($processedWorks)
     {
         return $processedWorks->get('bvt');
+    }
+
+    private function checkEmptyCell($cell, $start = null, $end = null)
+    {
+        $index = $start ?? 0;
+        $endIndex = $end ?? count($cell);
+        for ($i = $index; $i < $endIndex; $i++) {
+            if ($cell[$i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
