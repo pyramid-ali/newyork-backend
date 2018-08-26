@@ -80,6 +80,16 @@
                                 </div>
                             </label>
 
+                            <label for="name"> Service Tier
+                                <div class="input-group">
+                                    <select name="service_tier" id="service_tier">
+                                        @foreach($serviceTiers as $serviceTier)
+                                            <option value="{{ $serviceTier->id }}" {{ $company->serviceTier->id === $serviceTier->id ? 'selected' : '' }}>{{ $serviceTier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </label>
+
                             <button class="button success float-right input-margin-fix"><i class="fa fa-plus"></i> Edit Company</button>
                         </div>
                     </div>

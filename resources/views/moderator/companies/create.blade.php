@@ -37,7 +37,7 @@
                             <label for="ac-number"> Account Number
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-sort-numeric-asc"></i></span>
-                                    <input class="input-group-field" id="ac-number" type="text" name="account_number" placeholder="Account Number"  value="{{ old('account_number') }}">
+                                    <input class="input-group-field" id="ac-number" type="text" name="account_number" placeholder="Leave it blank to auto generate"  value="{{ old('account_number') }}">
                                 </div>
                             </label>
                             <label for="review_period">Update Review Period
@@ -76,6 +76,16 @@
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-street-view"></i></span>
                                     <input class="input-group-field" id="street" type="text" name="street" placeholder="Street" value="{{ old('street') }}">
+                                </div>
+                            </label>
+
+                            <label for="name"> Service Tier
+                                <div class="input-group">
+                                    <select name="service_tier" id="service_tier">
+                                        @foreach($serviceTiers as $serviceTier)
+                                            <option value="{{ $serviceTier->id }}"  {{ old('service_tier') === $serviceTier->id ? 'selected' : '' }}>{{ $serviceTier->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </label>
 

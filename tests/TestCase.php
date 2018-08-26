@@ -20,7 +20,7 @@ abstract class TestCase extends BaseTestCase
      * @param string $role
      * @return mixed
      */
-    protected function signIn($role = 'subscriber')
+    protected function signIn($role = 'company_admin')
     {
         $user = create('App\User')->assignRole($role);
         $this->actingAs($user);

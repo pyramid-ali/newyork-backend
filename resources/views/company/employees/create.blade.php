@@ -9,7 +9,8 @@
         <div class="grid-x">
             <div class="cell">
 
-                <form action="{{ route('employees.store', ['company' => $company->name]) }}" method="post">
+                @can('create', \App\Employee::class)
+                    <form action="{{ route('employees.store', ['company' => $company->name]) }}" method="post">
                     {{ csrf_field() }}
                     <div class="grid-x grid-padding-x align-center">
                         <div class="cell large-3">
@@ -176,6 +177,10 @@
                     </div>
 
                 </form>
+                @else
+                    <p class="form-error">You're not allowed to create employee anymore, please upgrade your plan</p>
+                @endcan
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <h4>Some Errors occurred during form proccess</h4>
@@ -186,6 +191,7 @@
                         </ul>
                     </div>
                 @endif
+
             </div>
         </div>
     </div>

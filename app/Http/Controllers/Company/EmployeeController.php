@@ -46,6 +46,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request, Company $company)
     {
+        $this->authorize('create', Employee::class);
 
         $request->validate([
             'last_name' => 'required|string',

@@ -23,7 +23,7 @@ class CompanyTest extends TestCase
      */
     public function unauthorized_user_can_see_company_index() {
 
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         $this->get(route('companies.index'))
             ->assertStatus(403);
     }
@@ -42,7 +42,7 @@ class CompanyTest extends TestCase
      */
     public function unauthorized_user_can_see_create_company_form() {
 
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         $this->get(route('companies.create'))
             ->assertStatus(403);
     }
@@ -77,7 +77,7 @@ class CompanyTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('/login');
 
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         $this->post(route('companies.store'), array_merge($company, $address))
             ->assertStatus(403);
 
@@ -100,7 +100,7 @@ class CompanyTest extends TestCase
      */
     public function unauthorized_user_can_see_edit_company_form() {
 
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         ($company = create('App\Company'))->address()->save(make('App\Address'));
 
         $this->get(route('companies.edit', $company))
@@ -133,7 +133,7 @@ class CompanyTest extends TestCase
      */
     public function unauthorized_user_cant_update_company()
     {
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         ($company = create('App\Company'))
             ->address()->save($address = make('App\Address'));
 
@@ -164,7 +164,7 @@ class CompanyTest extends TestCase
      */
     public function unauthorized_user_cant_destroy_company()
     {
-        $this->signIn('subscriber');
+        $this->signIn('company_admin');
         ($company = create('App\Company'))
             ->address()->save($address = make('App\Address'));
 

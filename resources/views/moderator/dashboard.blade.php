@@ -25,6 +25,13 @@
                                 <li class="{{ Route::currentRouteName() === 'companies.create' ? 'active' : '' }}"><a href="{{ route('companies.create') }}"><i class="fa fa-plus"></i>Create</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dashcube"></i>Service Tiers</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'service_tiers.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.create' ? 'active' : '' }}"><a href="{{ route('service_tiers.create') }}"><i class="fa fa-plus"></i>Create</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </section>
             </div>

@@ -25,14 +25,14 @@ class AdminPanelTest extends TestCase
      */
     public function non_admin_user_cant_access_to_admin_dashboard()
     {
-        // sign in as subscriber
-        $this->signIn('subscriber');
+        // sign in as company_admin
+        $this->signIn('company_admin');
 
         $this->get('/admin/dashboard')
             ->assertStatus(403);
 
-        // sign in as manager
-        $this->signIn('manager');
+        // sign in as company_manager
+        $this->signIn('company_manager');
 
         $this->get('/admin/dashboard')
             ->assertStatus(403);

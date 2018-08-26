@@ -45,10 +45,10 @@ class LoginTest extends TestCase
     /**
      * @test
      */
-    public function subscriber_redirect_to_own_company_dashboard()
+    public function company_admin_redirect_to_own_company_dashboard()
     {
         $password = '123456';
-        $user = $this->createSubscriber(['password' => bcrypt($password)]);
+        $user = $this->createCompanyAdmin(['password' => bcrypt($password)]);
 
         $this->post('/login', ['email' => $user->email, 'password' => $password])
             ->assertRedirect(route('company.dashboard', $user->company));
@@ -61,10 +61,10 @@ class LoginTest extends TestCase
      * @param $attributes
      * @return User
      */
-    private function createSubscriber($attributes)
+    private function createCompanyAdmin($attributes)
     {
         $user = create('App\User', $attributes);
-        $user->assignRole('subscriber');
+        $user->assignRole('company_admin');
         $user->companies()->save(create('App\Company'));
 
         return $user;

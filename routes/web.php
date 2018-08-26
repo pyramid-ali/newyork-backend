@@ -28,6 +28,8 @@ Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
             ]);
         });
 
+        Route::get('inactive', 'Company\InactiveCompanyController')->name('companies.inactive');
+
         Route::group(['middleware' => 'company'], function() {
 
             Route::get('dashboard', 'Company\DashboardController')->name('company.dashboard');
@@ -96,8 +98,12 @@ Route::domain(env('APP_DOMAIN'))->group(function () {
     Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function() {
 
         Route::get('dashboard', 'Moderator\DashboardController')->name('admin.dashboard');
+        Route::resource('service_tiers', 'Moderator\ServiceTierController');
         Route::resource('users', 'Moderator\UserController');
         Route::resource('companies', 'Moderator\CompanyController');
+
+
+        Route::post('companies/{company}/settings/toggle_activation', 'Moderator\CompanySettingsController@toggleActivation')->name('companies.settings.toggle_activation');
 
     });
 

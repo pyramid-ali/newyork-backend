@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class Company extends Model
 {
@@ -42,6 +43,16 @@ class Company extends Model
         return $this->hasMany(Payroll::class);
     }
 
+    public function serviceTiers()
+    {
+        return $this->belongsToMany(ServiceTier::class);
+    }
+
+    public function getServiceTierAttribute()
+    {
+        return $this->serviceTiers()->first();
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -75,12 +86,19 @@ class Company extends Model
     {
         $attributes = static::formInputAttributes($request);
 
-        return static::create(
+        $company = static::create(
             array_merge(
                 $attributes,
-                ['slug' => str_slug($attributes['name'])]
+                [
+                    'slug' => str_slug($attributes['name']),
+                    'account_number' => isset($attributes['account_number']) ? $attributes['account_number'] : (string) Uuid::generate()
+                ]
             )
         );
+
+        $company->serviceTiers()->sync($request->service_tier);
+
+        return $company;
     }
 
     protected static function formInputAttributes(Request $request)
@@ -106,5 +124,12 @@ class Company extends Model
                 ['slug' => str_slug($attributes['name'])]
             )
         );
+    }
+
+    public function toggleActivation()
+    {
+        $this->is_active = !$this->is_active;
+        $this->save();
+        return $this;
     }
 }

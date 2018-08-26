@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Moderator;
 
 use App\Address;
 use App\Company;
+use App\ServiceTier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('moderator.companies.create');
+        $serviceTiers = ServiceTier::latest()->get();
+        return view('moderator.companies.create', compact('serviceTiers'));
     }
 
     /**
@@ -68,7 +70,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('moderator.companies.edit', compact('company'));
+        $serviceTiers = ServiceTier::latest()->get();
+        return view('moderator.companies.edit', compact('company', 'serviceTiers'));
     }
 
     /**
@@ -110,8 +113,9 @@ class CompanyController extends Controller
             'name' => 'required|string|unique:companies,name',
             'code' => 'string|nullable',
             'fulltime_threshold' => 'numeric|nullable',
-            'account_number' => 'string|required',
+            'account_number' => 'string|nullable|unique:companies,account_number',
             'review_period' => 'string|nullable|in:weekly,bi-weekly,monthly,bi-monthly',
+            'service_tier' => 'required|exists:service_tiers,id'
         ]);
     }
 
@@ -121,8 +125,9 @@ class CompanyController extends Controller
             'name' => 'required|string|unique:companies,name,' . $company->id,
             'code' => 'string|nullable',
             'fulltime_threshold' => 'numeric|nullable',
-            'account_number' => 'string|required',
+            'account_number' => 'string|required|unique:companies,account_number,' . $company->id,
             'review_period' => 'string|nullable|in:weekly,bi-weekly,monthly,bi-monthly',
+            'service_tier' => 'required|exists:service_tiers,id'
         ]);
     }
 

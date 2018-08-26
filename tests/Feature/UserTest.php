@@ -17,7 +17,7 @@ class UserTest extends TestCase
     {
         $users = create('App\User', [], 5)
             ->each(function ($u) {
-                $u->assignRole('subscriber');
+                $u->assignRole('company_admin');
             });
 
         $this->signIn('admin');
@@ -85,7 +85,7 @@ class UserTest extends TestCase
     public function authorized_user_can_create_any_user_type()
     {
         $this->signIn('admin');
-        $roles = ['admin', 'subscriber', 'manager'];
+        $roles = ['admin', 'company_admin', 'company_manager'];
 
         foreach ($roles as $role) {
             $data = array_merge($user = make('App\User')->toArray(), [
@@ -97,7 +97,7 @@ class UserTest extends TestCase
             $this->post(route('users.store'), $data)
                 ->assertStatus(302);
 
-            $this->assertDatabaseHas('users', $user);
+            $this->assertDatabaseHas('users', ['email' => $user['email']]);
 
             $this->assertTrue(User::where('email', $user['email'])->first()->hasRole($role));
         }
@@ -126,7 +126,7 @@ class UserTest extends TestCase
     {
         $this->signIn('admin');
 
-        ($user = create('App\User'))->assignRole('subscriber');
+        ($user = create('App\User'))->assignRole('company_admin');
         $user->companies()->save(make('App\Company'));
 
         $this->get(route('users.edit', $user))
@@ -154,13 +154,13 @@ class UserTest extends TestCase
     {
         $this->signIn('admin');
 
-        ($user = create('App\User'))->assignRole('subscriber');
+        ($user = create('App\User'))->assignRole('company_admin');
         $user->companies()->save(make('App\Company'));
 
         $this->patch(route('users.update', $user), $newUser = make('App\User')->toArray())
             ->assertStatus(302);
 
-        $this->assertDatabaseHas('users', $newUser);
+        $this->assertDatabaseHas('users', ['email' => $newUser['email']]);
         $this->assertDatabaseMissing('users', $user->toArray());
     }
 }

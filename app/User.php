@@ -54,9 +54,14 @@ class User extends Authenticatable
      * @param $company
      * @return bool
      */
-    public function hasCompany($company)
+    public function hasCompany(Company $company)
     {
-        return $this->companies()->where('id', $company->id)->count() > 0;
+        return $this->company->id === $company->id;
+    }
+
+    public function hasCompanySlug($slug)
+    {
+        return $this->companies()->where('slug', $slug)->count() > 0;
     }
 
     /**
@@ -68,5 +73,23 @@ class User extends Authenticatable
     public function joinToCompany(Company $company)
     {
         return $this->companies()->sync([$company->id]);
+    }
+
+    /**
+     * convert to lower case user's name
+     * @param $name
+     */
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+
+    /**
+     * get title case user's name
+     */
+    public function getNameAttribute()
+    {
+        return title_case($this->attributes['name']);
     }
 }

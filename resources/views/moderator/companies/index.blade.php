@@ -17,6 +17,7 @@
                         <td>Full Time Threshold</td>
                         <td>Update Review Period</td>
                         <td>Account Number</td>
+                        <td>Activation</td>
                         <td>Edit</td>
                         <td>Delete</td>
                     </tr>
@@ -29,6 +30,14 @@
                             <td>{{ $company->fulltime_threshold }}</td>
                             <td>{{ $company->review_period }}</td>
                             <td>{{ $company->account_number }}</td>
+                            <td>
+                                <a href="{{ route('companies.settings.toggle_activation', $company) }}"
+                                   onclick="event.preventDefault();
+                                           document.getElementById('{{ 'toggleActivation' . $company->id }}').submit();">{{ $company->is_active ? 'Deactivate' : 'Activate' }}</a>
+                                <form id="{{ 'toggleActivation' . $company->id }}" action="{{ route('companies.settings.toggle_activation', $company) }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </td>
                             <td><a href="{{ route('companies.edit', $company) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">
                                 <a href="{{ route('companies.destroy', $company) }}"
