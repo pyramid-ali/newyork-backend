@@ -98,9 +98,11 @@ Route::domain(env('APP_DOMAIN'))->group(function () {
     Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function() {
 
         Route::get('dashboard', 'Moderator\DashboardController')->name('admin.dashboard');
+        Route::get('service_tiers/brain_tree', 'Moderator\BrainTreeController@index')->name('service_tiers.braintree.index');
         Route::resource('service_tiers', 'Moderator\ServiceTierController');
         Route::resource('users', 'Moderator\UserController');
         Route::resource('companies', 'Moderator\CompanyController');
+
 
 
         Route::post('companies/{company}/settings/toggle_activation', 'Moderator\CompanySettingsController@toggleActivation')->name('companies.settings.toggle_activation');

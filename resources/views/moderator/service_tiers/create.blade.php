@@ -28,6 +28,15 @@
                                     <textarea class="input-group-field" id="code" rows="3" name="description" placeholder="Description - shown for users" >{{ old('description') }}</textarea>
                                 </div>
                             </label>
+                            <label for="code"> BrainTree Plan
+                                <div class="input-group">
+                                    <select name="braintree_plan" id="braintree_plan">
+                                        @foreach($plans as $plan)
+                                            <option value="{{ $plan->id }}" {{ $plan->id === old('braintree_plan') ? 'selected' : '' }}>{{ $plan->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </label>
                         </div>
                         <div class="cell large-4">
                             <h5>Options</h5>

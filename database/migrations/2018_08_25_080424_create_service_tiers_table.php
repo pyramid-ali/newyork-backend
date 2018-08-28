@@ -17,6 +17,7 @@ class CreateServiceTiersTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->text('description');
+            $table->string('braintree_plan')->unique();
             $table->timestamps();
         });
     }

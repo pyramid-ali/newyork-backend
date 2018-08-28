@@ -21,6 +21,11 @@ class CreateUsersTable extends Migration
             $table->boolean('is_active')->default(false);
             $table->rememberToken();
             $table->timestamps();
+            $table->string('braintree_id')->nullable();
+            $table->string('paypal_email')->nullable();
+            $table->string('card_brand')->nullable();
+            $table->string('card_last_four')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
         });
     }
 

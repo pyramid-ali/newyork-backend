@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Moderator;
 use App\ServiceTier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Braintree_Plan;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceTierController extends Controller
 {
@@ -15,6 +17,7 @@ class ServiceTierController extends Controller
      */
     public function index()
     {
+
         $tiers = ServiceTier::latest()->paginate();
         return view('moderator.service_tiers.index', compact('tiers'));
     }
@@ -26,7 +29,11 @@ class ServiceTierController extends Controller
      */
     public function create()
     {
-        return view('moderator.service_tiers.create');
+        $plans = Cache::remember('braintree_plans', 60, function () {
+            return Braintree_Plan::all();
+        });
+
+        return view('moderator.service_tiers.create', compact('plans'));
     }
 
     /**
@@ -101,7 +108,8 @@ class ServiceTierController extends Controller
         $request->validate([
             'name' => 'required|string|unique:service_tiers',
             'description' => 'required|string',
-            'max_employees' => 'required|numeric'
+            'max_employees' => 'required|numeric',
+            'braintree_plan' => 'required|string|brain_tree|unique:service_tiers,braintree_plan'
         ]);
     }
 

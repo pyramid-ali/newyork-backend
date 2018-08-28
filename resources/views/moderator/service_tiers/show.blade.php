@@ -21,6 +21,10 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>BrainTree Plan</td>
+                            <td>{{ $serviceTier->braintree_plan }}</td>
+                        </tr>
+                        <tr>
                             <td>Max Employees</td>
                             <td>{{ $serviceTier->meta->max_employees }}</td>
                         </tr>

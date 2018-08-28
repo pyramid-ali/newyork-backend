@@ -10,7 +10,7 @@ class ServiceTier extends Model
     protected $metaObj;
 
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'braintree_plan'
     ];
 
     public function companies()
@@ -36,7 +36,8 @@ class ServiceTier extends Model
     {
         $tier = ServiceTier::create([
             'name' => $data['name'],
-            'description' => $data['description']
+            'description' => $data['description'],
+            'braintree_plan' => $data['braintree_plan']
         ]);
 
         $tier->updateMeta($data);

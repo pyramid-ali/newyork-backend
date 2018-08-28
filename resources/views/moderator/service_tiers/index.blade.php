@@ -14,6 +14,7 @@
                     <tr>
                         <td>Name</td>
                         <td>Description</td>
+                        <td>Braintree Plan</td>
                         <td>Edit</td>
                         <td>Delete</td>
                     </tr>
@@ -23,6 +24,7 @@
                         <tr>
                             <td><a href="{{ route('service_tiers.show', $tier) }}">{{ $tier->name }}</a></td>
                             <td>{{ $tier->description }}</td>
+                            <td>{{ $tier->braintree_plan }}</td>
                             <td><a href="{{ route('service_tiers.edit', $tier) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">
                                 <a href="{{ route('service_tiers.destroy', $tier) }}"

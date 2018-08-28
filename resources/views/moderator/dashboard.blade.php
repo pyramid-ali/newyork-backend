@@ -30,8 +30,10 @@
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'service_tiers.') ? 'is-active' : '' }}">
                                 <li class="{{ Route::currentRouteName() === 'service_tiers.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.index') }}"><i class="fa fa-eye"></i>View</a></li>
                                 <li class="{{ Route::currentRouteName() === 'service_tiers.create' ? 'active' : '' }}"><a href="{{ route('service_tiers.create') }}"><i class="fa fa-plus"></i>Create</a></li>
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.braintree.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.braintree.index') }}"><i class="fa fa-paypal"></i>Brain Tree Plans</a></li>
                             </ul>
                         </li>
+
                     </ul>
                 </section>
             </div>
