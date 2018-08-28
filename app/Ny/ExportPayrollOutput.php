@@ -51,7 +51,7 @@ class ExportPayrollOutput
     {
 
         $row = $this->regHourRow($employee, $processedWorks);
-        if ($this->checkEmptyCell($row, 7)) {
+        if (!$this->checkEmptyCell($row, 7)) {
             $this->rows->push($row);
         }
 
