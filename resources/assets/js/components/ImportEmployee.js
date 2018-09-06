@@ -11,7 +11,8 @@ export default class ImportEmployee extends Component {
             errors: null,
             success: null,
             employees: null,
-            didReceiveResponse: false
+            didReceiveResponse: false,
+            error: null
         }
     }
 
@@ -41,10 +42,14 @@ export default class ImportEmployee extends Component {
             },
             thumbnail: null,
             error: (file, error) => {
-                console.log('error')
+                this.setState({
+                    error: error.message || error
+                });
             },
             processing: (file) => {
-                console.log('proccessing')
+                this.setState({
+                    error: null
+                });
             },
             uploadprogress: (file) => {
                 console.log('upload progress')
@@ -55,7 +60,8 @@ export default class ImportEmployee extends Component {
                     errors: response.errors,
                     success: response.success,
                     employees: response.employees,
-                    didReceiveResponse:  true
+                    didReceiveResponse:  true,
+                    error: null
                 });
                 console.log('success', file, response);
             },
@@ -102,8 +108,12 @@ export default class ImportEmployee extends Component {
                         eventHandlers={eventHandlers}
                         djsConfig={djsConfig} />
                 </form>
+                { }
                 {didReceiveResponse ? this.renderResponse() : ''}
-
+                { this.state.error ?
+                    <div className="callout alert">{this.state.error}</div> :
+                    null
+                }
             </div>
         );
     }

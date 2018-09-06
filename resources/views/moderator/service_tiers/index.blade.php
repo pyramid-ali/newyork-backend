@@ -23,7 +23,7 @@
                     @foreach($tiers as $tier)
                         <tr>
                             <td><a href="{{ route('service_tiers.show', $tier) }}">{{ $tier->name }}</a></td>
-                            <td>{{ $tier->description }}</td>
+                            <td>{{ str_limit($tier->description, 50) }}</td>
                             <td>{{ $tier->braintree_plan }}</td>
                             <td><a href="{{ route('service_tiers.edit', $tier) }}"><i class="fa fa-pencil"></i></a></td>
                             <td class="alert">

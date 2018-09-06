@@ -23,6 +23,7 @@ class EmployeeBatchController extends Controller
         ]);
 
         $rows = Excel::load($request->file('file'))->all();
+        $this->batchImport($rows, $company);
         $skipped = $this->batchImport($rows, $company);
 
         return response()->json([
@@ -171,6 +172,15 @@ class EmployeeBatchController extends Controller
         return response()
             ->download(storage_path('employees/export/' . $fileName . '.csv'),
                 $company->name.'-employees-('.$now->toDateString().').csv');
+    }
+
+    protected function checkForImportLimitation($rows, Company $company)
+    {
+        $employees = $company->employees()->count();
+        $maxEmployees = $company->serviceTier->meta->max_employees;
+        if ($rows->count() + $employees > $maxEmployees) {
+            abort(403, 'You cannot import employees more than your limit, please upgrade your plan or decrease number of rows');
+        }
     }
     
 }

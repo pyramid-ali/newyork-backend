@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PayrollError' => [
             'App\Listeners\PayrollErrorListener'
         ],
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\EmailVerification'
+        ]
     ];
 
     /**

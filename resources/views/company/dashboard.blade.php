@@ -11,7 +11,7 @@
                 </header>
                 <section class="menu-wrapper dashboard-menu">
                     <ul class="vertical menu accordion-menu" data-accordion-menu>
-                        @role ('subscriber')
+                        @role ('company_admin')
                             <li>
                                 <a href="#"><i class="fa fa-user-circle-o"></i>Managers</a>
                                 <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'managers.') ? 'is-active' : '' }}">
@@ -53,12 +53,20 @@
                         <li>
                             <a href="#"><i class="fa fa-gears"></i>Settings</a>
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'settings.') ? 'is-active' : '' }}">
-                                @role ('subscriber')
+                                @role ('company_admin')
                                     <li class="{{ Route::currentRouteName() === 'settings.general.show' ? 'active' : '' }}"><a href="/settings/general"><i class="fa fa-gear"></i>General</a></li>
                                 @endrole
                                 <li class="{{ Route::currentRouteName() === 'settings.change_password.show' ? 'active' : '' }}"><a href="/settings/change_password"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
+                        @role ('company_admin')
+                        <li>
+                            <a href="#"><i class="fa fa-bitcoin"></i>Billing</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'billing.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'billing.show' ? 'active' : '' }}"><a href="/billing"><i class="fa fa-bitcoin"></i>show</a></li>
+                            </ul>
+                        </li>
+                        @endrole
                     </ul>
                 </section>
             </div>

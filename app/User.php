@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -92,5 +93,35 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         return title_case($this->attributes['name']);
+    }
+
+    /**
+     * Determine if the user has verified their email address.
+     *
+     * @return bool
+     */
+    public function hasVerifiedEmail()
+    {
+        return ! is_null($this->email_verified_at);
+    }
+
+    /**
+     * Mark the given user's email as verified.
+     *
+     * @return void
+     */
+    public function markEmailAsVerified()
+    {
+        $this->forceFill(['email_verified_at' => $this->freshTimestamp()])->save();
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
     }
 }

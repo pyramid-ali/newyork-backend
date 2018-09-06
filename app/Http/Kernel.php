@@ -60,5 +60,8 @@ class Kernel extends HttpKernel
         'company' => \App\Http\Middleware\CompanyMiddleware::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+        'subscribed' => \App\Http\Middleware\EnsureUserIsSubscribed::class,
     ];
 }

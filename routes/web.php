@@ -15,12 +15,8 @@
 Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
 
     Route::get('login', 'Auth\LoginController@redirectToLogin')->name('company.login');
-    Route::get('/', function () {
-        return 'a';
-    });
 
-    Route::group(['middleware' => 'auth'], function() {
-
+    Route::group(['middleware' => ['auth', 'verified', 'subscribed']], function() {
 
         Route::get('me', function () {
             return response()->json([
@@ -34,10 +30,14 @@ Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
 
             Route::get('dashboard', 'Company\DashboardController')->name('company.dashboard');
 
-            Route::group(['middleware' => 'role:subscriber'], function() {
+            Route::group(['middleware' => 'role:company_admin'], function() {
                 Route::resource('managers', 'Company\UserController');
                 Route::get('settings/general', 'Company\SettingController@showGeneralForm')->name('settings.general.show');
                 Route::put('settings/general', 'Company\SettingController@general')->name('settings.general.update');
+
+                Route::get('billing', 'Company\BillingController@show')->name('billing.show');
+                Route::post('billing/update_card', 'Company\BillingController@updateCard')->name('billing.update_card');
+                Route::post('billing/update_plan', 'Company\BillingController@updatePlan')->name('billing.update_plan');
             });
 
             Route::post('payroll/test/output', 'Company\PayrollController@generateTestOutput')->name('payroll.process.test');
@@ -68,6 +68,8 @@ Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
                 return view('company.test', compact('company'));
             });
 
+
+
         });
 
     });
@@ -80,11 +82,29 @@ Route::domain(env('APP_DOMAIN'))->group(function () {
         return view('welcome');
     });
 
+    Route::get('home', function () {
+        Auth::guard()->logout();
+    });
+
+    Route::group(['middleware' => 'role:company_admin'], function () {
+        Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+        Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+
+        Route::get('plans', 'Auth\PlanController@show')->name('plans.index');
+        Route::get('{service_tier}/subscribe', 'Auth\SubscribeController@show')->name('subscribe.show');
+        Route::post('subscribe', 'Auth\SubscribeController@subscribe')->name('subscribe');
+    });
+
 
 
     // login
-    Route::get('login', 'Auth\LoginController@showLoginForm');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('login', 'Auth\LoginController@login')->name('login');
+
+    // register
+    Route::post('register', 'Auth\RegisterController@register')->name('register');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register.form');
 
     // logout
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');

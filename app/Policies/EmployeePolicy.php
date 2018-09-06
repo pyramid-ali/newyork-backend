@@ -33,7 +33,6 @@ class EmployeePolicy
         $company = $user->company;
         $employees = $company->employees()->count();
         $maxEmployees = $company->serviceTier->meta->max_employees;
-
         return $maxEmployees >= $employees;
     }
 

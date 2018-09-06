@@ -1,83 +1,48 @@
-@extends('company.layout')
+@extends('moderator.layout')
 
 @section('title', 'login')
 
 @section('content')
 
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <ul class="dropdown menu">
-                <li class="menu-text">Reset Password</li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="grid-x grid-padding-y align-center">
-            <div class="cell medium-8">
-                <div class="forgot-password-container">
-                    <header>
-                        <h6>Reset Password</h6>
-                    </header>
+    <div class="auth-container grid-x align-center align-middle">
+        <div class="auth-wrapper">
 
-                    <div class="form-container">
-                        <form class="form-horizontal" method="POST" action="{{ url('password/reset') }}">
-                            {{ csrf_field() }}
-
-                            <input type="hidden" name="token" value="{{ $token }}">
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="button primary">
-                                        Reset Password
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="auth-logo">
+                <img src="https://kpihs.homacare.net/LOGO.png" alt="logo">
             </div>
+
+            <header class="auth-header">
+                <h3 class="auth-title">Get more things done with PaySavvy platform.</h3>
+                <p class="auth-subtitle">Access to the most powerfull tool</p>
+            </header>
+
+            <form class="auth-form" method="POST" action="{{ url('password/reset') }}">
+
+                <div class="form-errors">
+                    @if ($errors->any())
+                        <div class="form-errors-wrapper">
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        </div>
+                    @endif
+                </div>
+
+                {{ csrf_field() }}
+                {{--<input type="hidden" name="token" value="{{ $token }}">--}}
+
+                <input id="email" type="email" placeholder="Email" name="email" value="{{ $email or old('email') }}" required autofocus>
+                <input id="password" type="password" placeholder="Password" name="password" required>
+                <input id="password" type="password" placeholder="Password Confirmation" name="password_confirmation" required>
+
+                <div class="form-button">
+                    <button>Reset Password</button>
+                </div>
+
+            </form>
+
         </div>
     </div>
+
 @endsection

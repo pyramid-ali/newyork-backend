@@ -177,8 +177,10 @@
                     </div>
 
                 </form>
-                @else
-                    <p class="form-error">You're not allowed to create employee anymore, please upgrade your plan</p>
+                @endcan
+
+                @cannot('create', \App\Employee::class)
+                    <p>You're not allowed to create employee anymore, please upgrade your plan</p>
                 @endcan
 
                 @if ($errors->any())
