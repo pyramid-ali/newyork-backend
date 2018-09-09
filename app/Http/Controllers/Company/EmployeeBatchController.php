@@ -23,7 +23,7 @@ class EmployeeBatchController extends Controller
         ]);
 
         $rows = Excel::load($request->file('file'))->all();
-        $this->batchImport($rows, $company);
+        $this->checkForImportLimitation($rows, $company);
         $skipped = $this->batchImport($rows, $company);
 
         return response()->json([
