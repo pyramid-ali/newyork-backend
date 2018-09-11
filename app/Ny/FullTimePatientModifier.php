@@ -160,11 +160,11 @@ class FullTimePatientModifier
                 $originAddresses = $response['origin_addresses'];
 
                 if (!$destinationAddresses[$i]) {
-                    throw new \Exception('Address Not Found: ' . $destinations[$i]);
+                    throw new \Exception('Destination Not Found: ' . $destinations[$i] . ' Origin was: ' . $origins[$i] . ' google response: ' . json_encode($response));
                 }
 
                 if (!$originAddresses[$i]) {
-                    throw new \Exception('Address Not Found: ' . $origins[$i]);
+                    throw new \Exception('Origin Not Found: ' . $origins[$i] . ' Destination was:' . $destinations[$i] . ' google response: ' . json_encode($response));
                 }
 
                 $distance += $response['rows'][$i]['elements'][$i]['distance']['value'] / 1000;
