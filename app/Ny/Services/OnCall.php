@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class OnCall implements ServiceWorker
@@ -23,6 +24,7 @@ class OnCall implements ServiceWorker
             $rate = 50;
         }
 
-        return ['onc' => $rate];
+        return new Work('onc', $rate);
+//        return ['onc' => $rate];
     }
 }

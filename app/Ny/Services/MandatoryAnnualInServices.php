@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class MandatoryAnnualInServices implements ServiceWorker
@@ -24,6 +25,7 @@ class MandatoryAnnualInServices implements ServiceWorker
 
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
-        return ['reg_hours' => $exactHour / 1.5];
+        return new Work('reg_hours', $exactHour / 1.5);
+//        return ['reg_hours' => $exactHour / 1.5];
     }
 }

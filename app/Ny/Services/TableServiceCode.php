@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\TempRateWork;
 use App\ServiceCode;
 
 class TableServiceCode implements ServiceWorker
@@ -27,11 +28,10 @@ class TableServiceCode implements ServiceWorker
             $unit = 1;
         }
 
-        return [
-            'temp_rate' => [
-                'rate' => $rate,
-                'unit' => $unit
-            ]
-        ];
+        return new TempRateWork([[
+            'rate' => $rate,
+            'unit' => $unit
+        ]]);
+
     }
 }

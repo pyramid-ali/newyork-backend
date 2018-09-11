@@ -4,6 +4,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class WorkTime implements ServiceWorker
@@ -27,6 +28,7 @@ class WorkTime implements ServiceWorker
             $multiplier = 0.75;
         }
 
-        return ['reg_hours' => $exactHour * $multiplier];
+        return new Work('reg_hours', $exactHour * $multiplier);
+//        return ['reg_hours' => $exactHour * $multiplier];
     }
 }

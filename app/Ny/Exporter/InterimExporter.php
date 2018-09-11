@@ -1,44 +1,46 @@
 <?php
 
-namespace App\Ny;
+namespace App\Ny\Exporter;
 
 
 use App\Employee;
 use App\Ny\Services\ServiceWorker;
+use App\Ny\WorkContainer;
 use App\ServiceCode;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ExportInterim
+class InterimExporter implements FromCollection
 {
+    use Exportable;
 
-    private $serviceWorkersNamespace = 'App\Ny\Services\\';
     public $rows;
-    private $exceededTimeEmployee;
+
+    public $filePath = 'app/public/interim';
+    public $writerType = \Maatwebsite\Excel\Excel::CSV;
 
     public function __construct()
     {
         $this->rows = collect();
-        $this->exceededTimeEmployee = collect();
     }
 
-    public function entry(Employee $employee, $processedWorks, $works)
+    public function entry($rows, WorkContainer $workContainer, Employee $employee)
     {
-
-        // calculate employees that have reg Amount
-
-        foreach ($works as $work) {
-            $row = $this->modifyWork($employee, $work);
+        foreach ($rows as $row) {
+            $row = $this->modifyWork($employee, $row);
             $this->rows->push($row);
         }
 
-        $row = $this->additionalRow($employee, $processedWorks, $works);
+        $row = $this->additionalRow($rows, $workContainer, $employee);
         $this->rows->push($row);
     }
 
-    private function additionalRow(Employee $employee, $processedWorks, $works)
+    private function additionalRow($rows, WorkContainer $workContainer, Employee $employee)
     {
-        $work = $works->first();
-        $row = clone collect($work);
+        $works = $workContainer->works();
+        $row = $rows->first();
+
         $row->put('service_code', 'summary');
         $row->put('visit_status', null);
         $row->put('start_datetime', null);
@@ -59,13 +61,13 @@ class ExportInterim
         $row->put('reg_hours', null);
         $row->put('notes', null);
 
-        $regHours = $processedWorks->get('reg_hours');
-        $tempRates = $processedWorks->get('temp_rate', []);
+        $regHours = optional($works->get('reg_hours'))->getValue();
+        $tempRates = optional($works->get('temp_rate'))->rawValue();
         $units = $this->units($tempRates);
         $totalServiceCodeUnits = $units + $regHours;
 
         if ($employee->employee_type === 'ft_patient') {
-            $fullTimeThreshold = $this->fullTimeThreshold($processedWorks, $employee);
+            $fullTimeThreshold = $this->fullTimeThreshold($workContainer, $employee);
         }
         else {
             $fullTimeThreshold = $employee->fulltime_threshold;
@@ -76,32 +78,29 @@ class ExportInterim
             $row->put('productivity', ($totalServiceCodeUnits / $fullTimeThreshold));
         }
 
-        $row->put('total_time_off', $this->timeOff($processedWorks));
+        $row->put('total_time_off', $this->timeOff($works));
 
         if ($employee->type !== 'pdm') {
             $row->put('reg_hours', $regHours);
         }
 
         if ($employee->employee_type === 'ft_office') {
-            if ($regHours + $this->timeOff($processedWorks) > 10 * $employee->tehd) {
-//                $this->exceededTimeEmployee->push($employee);
+            if ($regHours + $this->timeOff($works) > 10 * $employee->tehd) {
                 $row->put('notes', 'exceeding max hours for the period');
             }
         }
-
-
 
         return $row;
 
     }
 
-    private function timeOff($processedWorks)
+    private function timeOff($works)
     {
-        return $processedWorks->get('hol', 0) +
-            $processedWorks->get('per', 0) +
-            $processedWorks->get('pto', 0) +
-            $processedWorks->get('bvt', 0) +
-            $processedWorks->get('sic', 0);
+        return optional($works->get('hol'))->getValue() +
+            optional($works->get('per'))->getValue() +
+            optional($works->get('pto'))->getValue() +
+            optional($works->get('bvt'))->getValue() +
+            optional($works->get('sic'))->getValue();
     }
 
     private function units($tempRates)
@@ -147,35 +146,6 @@ class ExportInterim
         return null;
     }
 
-    public function export()
-    {
-//        if ($this->exceededTimeEmployee->count() > 0) {
-//            $ids = $this->exceededTimeEmployee->map(function($employee) {
-//                return '#' .$employee->employee_id;
-//            })->toArray();
-//            $message = implode(', ', $ids);
-//            throw new \Exception('"FT employee exceeding max hours for the period, employees id ' . $message);
-//        }
-
-        $name = uniqid();
-        $csv = Excel::create($name, function($excel) {
-
-            // Set the title
-            $excel->setTitle('Interim')
-                ->setCreator('calcuride.net')
-                ->setDescription('interim proccessed');
-
-            $excel->sheet('employees', function($sheet) {
-
-                $sheet->fromArray($this->rows->toArray(), null, 'A1');
-
-            });
-
-        })->store('csv', storage_path('app/public/interim'), true);
-
-        return $name;
-    }
-
     private function serviceWorker($serviceCode)
     {
         $escaped = preg_replace('/[!@#$%^&*(),.]/', ' ', $serviceCode);
@@ -188,27 +158,43 @@ class ExportInterim
         return $processedWorks->get($key);
     }
 
-    private function calcRegHoursMinus($processedWorks)
+    /**
+     * @param WorkContainer $workContainer
+     * @return int|null
+     */
+    private function calcRegHoursMinus(WorkContainer $workContainer)
     {
-        $minus = $this->getMinusWorkHour($processedWorks, 'hol') +
-            $this->getMinusWorkHour($processedWorks, 'sic') +
-            $this->getMinusWorkHour($processedWorks, 'per') +
-            $this->getMinusWorkHour($processedWorks, 'pto');
+        $works = $workContainer->works();
+
+        $minus = optional($works->get('hol')->getValue()) +
+            optional($works->get('sic')->getValue()) +
+            optional($works->get('per')->getValue()) +
+            optional($works->get('bvt')->getValue()) +
+            optional($works->get('pto')->getValue());
 
         return $minus;
     }
 
-    private function thresholdMinus($processedWorks, Employee $employee)
+    /**
+     * @param WorkContainer $workContainer
+     * @param Employee $employee
+     * @return float
+     */
+    private function thresholdMinus(WorkContainer $workContainer, Employee $employee)
     {
-        $minus = $this->calcRegHoursMinus($processedWorks);
-        $percent = $minus / $employee->tehd;
-        // TODO: 10 should must be replace with days in period review
-        return $percent * 0.1;
+        return ($this->calcRegHoursMinus($workContainer) / $employee->tehd) * 0.1;
     }
 
-    private function fullTimeThreshold($processedWorks, Employee $employee)
+    private function fullTimeThreshold(WorkContainer $workContainer, Employee $employee)
     {
-        return $employee->fulltime_threshold - $this->thresholdMinus($processedWorks, $employee);
+        return $employee->fulltime_threshold - $this->thresholdMinus($workContainer, $employee);
     }
 
+    /**
+     * @return Collection
+     */
+    public function collection()
+    {
+        $this->rows;
+    }
 }

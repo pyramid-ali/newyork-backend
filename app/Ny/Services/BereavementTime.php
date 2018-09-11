@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class BereavementTime implements ServiceWorker
@@ -19,7 +20,7 @@ class BereavementTime implements ServiceWorker
     {
         $startTime = Carbon::parse($job['start_datetime']);
         $endTime = Carbon::parse($job['end_datetime']);
-        $hours = $endTime->diffInHours($startTime);
-        return ['bvt' => $hours];
+
+        return new Work('bvt', $endTime->diffInHours($startTime));
     }
 }

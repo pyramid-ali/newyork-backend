@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class Overtime implements ServiceWorker
@@ -23,7 +24,7 @@ class Overtime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
 
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
-
-        return ['ot_hours' => $exactHour];
+        return new Work('ot_hours', $exactHour);
+//        return ['ot_hours' => $exactHour];
     }
 }

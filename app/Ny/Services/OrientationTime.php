@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class OrientationTime implements ServiceWorker
@@ -28,7 +29,7 @@ class OrientationTime implements ServiceWorker
         }
 
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
-
-        return ['reg_hours' => $exactHour / $divider];
+        return new Work('reg_hours', $exactHour / $divider);
+//        return ['reg_hours' => $exactHour / $divider];
     }
 }

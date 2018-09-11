@@ -4,6 +4,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class OfficeTime implements ServiceWorker
@@ -22,7 +23,7 @@ class OfficeTime implements ServiceWorker
         }
 
         $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
-
-        return ['reg_hours' => $exactHours / $divider];
+        return new Work('reg_hours', $exactHours / $divider);
+//        return ['reg_hours' => $exactHours / $divider];
     }
 }

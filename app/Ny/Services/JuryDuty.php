@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class JuryDuty implements ServiceWorker
@@ -23,6 +24,7 @@ class JuryDuty implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
         $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
 //        $jur = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['jur' => $exactHours];
+        return new Work('jur', $exactHours);
+//        return ['jur' => $exactHours];
     }
 }

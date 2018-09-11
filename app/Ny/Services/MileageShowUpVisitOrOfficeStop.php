@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 
 class MileageShowUpVisitOrOfficeStop implements ServiceWorker
 {
@@ -18,6 +19,7 @@ class MileageShowUpVisitOrOfficeStop implements ServiceWorker
     {
         $mileage = $job['mileage_entry'];
         $multiplier = $employee->reimbursement_rate;
-        return ['aex' => $mileage * $multiplier];
+        return new Work('aex', $mileage * $multiplier);
+//        return ['aex' => $mileage * $multiplier];
     }
 }

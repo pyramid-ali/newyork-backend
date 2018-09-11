@@ -10,14 +10,14 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 
 class AdminMileage implements ServiceWorker
 {
 
     public function work($job, Employee $employee)
     {
-        $mileage = $job['mileage_entry'];
-        $multiplier = $employee->reimbursement_rate;
-        return ['aex' => $mileage * $multiplier];
+        return new Work('aex',
+            $job['mileage_entry'] * $employee->reimbursement_rate);
     }
 }

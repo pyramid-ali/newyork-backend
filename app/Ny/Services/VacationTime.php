@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class VacationTime implements ServiceWorker
@@ -23,6 +24,8 @@ class VacationTime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
         $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
 //        $pto = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['pto' => $exactHours];
+
+        return new Work('pto', $exactHours);
+//        return ['pto' => $exactHours];
     }
 }

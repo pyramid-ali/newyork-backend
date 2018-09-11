@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class OnCallHourly implements ServiceWorker
@@ -24,6 +25,7 @@ class OnCallHourly implements ServiceWorker
 
         $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
 
-        return ['onc' => ceil($exactHour) * 35];
+        return new Work('onc', ceil($exactHour) * 35);
+//        return ['onc' => ceil($exactHour) * 35];
     }
 }

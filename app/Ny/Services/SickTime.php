@@ -10,6 +10,7 @@ namespace App\Ny\Services;
 
 
 use App\Employee;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class SickTime implements ServiceWorker
@@ -23,6 +24,7 @@ class SickTime implements ServiceWorker
         $hours = $endTime->diffInHours($startTime);
         $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
 //        $sic = (floor($hours / $employee->tehd) + 1) * $employee->tehd / 2;
-        return ['sic' => $exactHours];
+        return new Work('sic', $exactHours);
+//        return ['sic' => $exactHours];
     }
 }
