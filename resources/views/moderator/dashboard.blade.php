@@ -26,6 +26,12 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-dashcube"></i>payrolls</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'payrolls.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'payrolls.index' ? 'active' : '' }}"><a href="{{ route('payrolls.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-dashcube"></i>Service Tiers</a>
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'service_tiers.') ? 'is-active' : '' }}">
                                 <li class="{{ Route::currentRouteName() === 'service_tiers.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.index') }}"><i class="fa fa-eye"></i>View</a></li>

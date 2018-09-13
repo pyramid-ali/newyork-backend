@@ -122,6 +122,7 @@ Route::domain(env('APP_DOMAIN'))->group(function () {
         Route::resource('service_tiers', 'Moderator\ServiceTierController');
         Route::resource('users', 'Moderator\UserController');
         Route::resource('companies', 'Moderator\CompanyController');
+        Route::resource('payrolls', 'Moderator\PayrollController');
 
 
 
