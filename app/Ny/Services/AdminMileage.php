@@ -20,4 +20,9 @@ class AdminMileage implements ServiceWorker
         return new Work('aex',
             $job['mileage_entry'] * $employee->reimbursement_rate);
     }
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return 0;
+    }
 }

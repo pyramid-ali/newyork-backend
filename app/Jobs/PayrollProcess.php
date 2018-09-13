@@ -26,13 +26,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollProcess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $file;
+    private $path;
     private $company;
     private $epicExporter;
     private $payroll;
@@ -58,7 +56,7 @@ class PayrollProcess implements ShouldQueue
      */
     public function __construct(Company $company, Payroll $payroll, User $user, $miscellaneous)
     {
-        $this->file = 'storage/app/public/' . $payroll->path;
+        $this->path = 'storage/app/public/' . $payroll->path;
         $this->payroll = $payroll;
         $this->company = $company;
         $this->user = $user;
@@ -82,7 +80,7 @@ class PayrollProcess implements ShouldQueue
      */
     public function handle()
     {
-        $rows = PayrollReader::read($this->file)
+        $rows = PayrollReader::read($this->path)
             ->groupByColumns('empid')
             ->get();
 
@@ -98,6 +96,9 @@ class PayrollProcess implements ShouldQueue
         return $this->company->employees()->where('employee_id', $id)->first();
     }
 
+    /**
+     * @param $rowGroup
+     */
     private function processEmployees($rowGroup)
     {
         foreach ($rowGroup as $employeeId => $rows) {
@@ -110,20 +111,11 @@ class PayrollProcess implements ShouldQueue
             );
 
             $works = $this->modifyWorks($works, $employee);
-
             $this->epicExporter->entry($works, $employee);
-
             $this->interimExporter->entry($employee, $works, $rows);
-
         }
 
-        $this->epicExporter->store();
-
-        $this->payroll->output_path = 'processed/' . $export . '.csv';
-        $this->payroll->processing = false;
-        $this->payroll->processed = true;
-        $this->payroll->interm_path = 'interim/' . $interim . '.csv';
-        $this->payroll->save();
+        $this->store();
 
         event(new PayrollProcessed($this->company, $this->payroll, $this->user));
     }
@@ -209,13 +201,22 @@ class PayrollProcess implements ShouldQueue
     }
 
     /**
+     * store
+     */
+    private function store()
+    {
+        $this->epicExporter->store();
+        $this->interimExporter->store();
+
+        $this->payroll->saveProcessedPayroll($this->epicExporter->storePath() , $this->interimExporter->storePath());
+    }
+
+    /**
      * @param Exception $exception
      */
     public function failed(Exception $exception)
     {
-        Log::error($exception);
-        $this->payroll->error = $exception->getMessage();
-        $this->payroll->save();
+        $this->payroll->failedToProcessPayroll($exception->getMessage());
         event(new PayrollError($this->user, $this->payroll));
     }
 

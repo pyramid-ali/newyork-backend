@@ -1,35 +1,33 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/20/17
- * Time: 1:56 AM
- */
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
+use App\Ny\Services\Helpers\WorkHour;
 use App\Ny\Work;
-use Carbon\Carbon;
 
 class OrientationTime implements ServiceWorker
 {
+    use WorkHour;
 
     public function work($job, Employee $employee)
     {
-        $startTime = Carbon::parse($job['start_datetime']);
-        $endTime = Carbon::parse($job['end_datetime']);
-        $minutes = $endTime->diffInMinutes($startTime);
-        $hours = $endTime->diffInHours($startTime);
+        return new Work('reg_hours', $this->calculateWork($job, $employee));
+    }
 
-        $divider = 1.5;
-        if ($employee->employee_type === 'pdm') {
-            $divider = 1;
-        }
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return $this->calculateWork($job, $employee);
+    }
 
-        $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
-        return new Work('reg_hours', $exactHour / $divider);
-//        return ['reg_hours' => $exactHour / $divider];
+    /**
+     * @param $job
+     * @param Employee $employee
+     * @return float
+     */
+    private function calculateWork($job, Employee $employee)
+    {
+        $exactWorkTime = $this->exactWorkTime($job);
+        return $employee->employee_type === 'pdm' ? $exactWorkTime : $exactWorkTime / 1.5;
     }
 }

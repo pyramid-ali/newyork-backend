@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/20/17
- * Time: 1:55 AM
- */
 
 namespace App\Ny\Services;
-
 
 use App\Employee;
 use App\Ny\Work;
@@ -20,6 +13,11 @@ class MileageShowUpVisitOrOfficeStop implements ServiceWorker
         $mileage = $job['mileage_entry'];
         $multiplier = $employee->reimbursement_rate;
         return new Work('aex', $mileage * $multiplier);
-//        return ['aex' => $mileage * $multiplier];
+    }
+
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return 0;
     }
 }

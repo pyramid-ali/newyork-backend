@@ -164,7 +164,7 @@ class PayrollController extends Controller
     {
         $this->authorize('download', $payroll);
         $name = $this->nameGenerator($payroll, 'INTERIM');
-        return response()->download('storage/' . $payroll->interm_path, $name);
+        return response()->download('storage/' . $payroll->interim_path, $name);
     }
 
     public function nameGenerator(Payroll $payroll, $prefix)

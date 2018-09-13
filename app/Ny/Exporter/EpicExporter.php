@@ -3,27 +3,14 @@
 namespace App\Ny\Exporter;
 
 use App\Employee;
-use App\Ny\Work;
 use App\Ny\WorkContainer;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Facades\Excel;
 
-class EpicExporter implements FromCollection, WithHeadings
+class EpicExporter extends Base implements FromCollection, WithHeadings
 {
-    use Exportable;
-
-    public $rows;
-
-    public $filePath = 'app/public/processed';
-    public $writerType = \Maatwebsite\Excel\Excel::CSV;
-
-    public function __construct()
-    {
-        $this->rows = collect();
-    }
+    protected $path = 'epics/';
 
     /**
      * @return array

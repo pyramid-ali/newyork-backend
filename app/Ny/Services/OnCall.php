@@ -1,30 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/20/17
- * Time: 1:56 AM
- */
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
+use App\Ny\Services\Helpers\WorkHour;
 use App\Ny\Work;
-use Carbon\Carbon;
+
 
 class OnCall implements ServiceWorker
 {
 
+    use WorkHour;
+
     public function work($job, Employee $employee)
     {
-        $startTime = Carbon::parse($job['start_datetime']);
-        $rate = 100;
-        if ($startTime->dayOfWeek > 0 && $startTime->dayOfWeek < 5) {
-            $rate = 50;
-        }
+        $startTime = $this->startTime($job);
+        $rate = ($startTime->dayOfWeek > 0 && $startTime->dayOfWeek < 5) ? 50 : 100;
 
         return new Work('onc', $rate);
-//        return ['onc' => $rate];
+    }
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return 0;
     }
 }

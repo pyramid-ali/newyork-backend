@@ -2,29 +2,22 @@
 
 namespace App\Ny\Exporter;
 
-
 use App\Employee;
+use App\Ny\ServiceCodeManager;
 use App\Ny\Services\ServiceWorker;
 use App\Ny\WorkContainer;
-use App\ServiceCode;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class InterimExporter implements FromCollection
+class InterimExporter extends Base implements FromCollection
 {
-    use Exportable;
+    public $filePath = 'interims/';
 
-    public $rows;
-
-    public $filePath = 'app/public/interim';
-    public $writerType = \Maatwebsite\Excel\Excel::CSV;
-
-    public function __construct()
-    {
-        $this->rows = collect();
-    }
-
+    /**
+     * @param $rows
+     * @param WorkContainer $workContainer
+     * @param Employee $employee
+     */
     public function entry($rows, WorkContainer $workContainer, Employee $employee)
     {
         foreach ($rows as $row) {
@@ -36,64 +29,122 @@ class InterimExporter implements FromCollection
         $this->rows->push($row);
     }
 
+    /**
+     * @param Employee $employee
+     * @param $row
+     * @return mixed
+     */
+    private function modifyWork(Employee $employee, $row)
+    {
+
+        return $row->merge([
+            'employee_type' => $employee->employee_type,
+            'service_code_units' => $this->serviceCodeUnit($row, $employee),
+            'total_service_code_units' => null,
+            'productivity' => null,
+            'total_time_off' => null,
+            'reg_hours' => null,
+            'notes' => null,
+        ]);
+    }
+
+    /**
+     * @param $row Collection
+     * @param Employee $employee
+     * @return mixed|null
+     */
+    private function serviceCodeUnit($row, Employee $employee)
+    {
+        $serviceWorker = (new ServiceCodeManager($row->get('service_code')))
+            ->getServiceWorker(true);
+
+        if ($serviceWorker instanceof ServiceWorker) {
+            return $serviceWorker->serviceCodeUnits($row, $employee);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $rows
+     * @param WorkContainer $workContainer
+     * @param Employee $employee
+     * @return mixed
+     */
     private function additionalRow($rows, WorkContainer $workContainer, Employee $employee)
     {
         $works = $workContainer->works();
-        $row = $rows->first();
 
-        $row->put('service_code', 'summary');
-        $row->put('visit_status', null);
-        $row->put('start_datetime', null);
-        $row->put('end_datetime', null);
-        $row->put('mrn', null);
-        $row->put('patient', null);
-        $row->put('care_location_street_address_1', null);
-        $row->put('care_location_street_address_2', null);
-        $row->put('care_location_aptsteunit', null);
-        $row->put('care_location_city', null);
-        $row->put('care_location_state', null);
-        $row->put('mileage_entry', null);
-        $row->put('employee_type', $employee->employee_type);
-        $row->put('service_code_units', null);
-        $row->put('total_service_code_units', null);
-        $row->put('productivity', null);
-        $row->put('total_time_off', null);
-        $row->put('reg_hours', null);
-        $row->put('notes', null);
-
-        $regHours = optional($works->get('reg_hours'))->getValue();
-        $tempRates = optional($works->get('temp_rate'))->rawValue();
-        $units = $this->units($tempRates);
-        $totalServiceCodeUnits = $units + $regHours;
-
-        if ($employee->employee_type === 'ft_patient') {
-            $fullTimeThreshold = $this->fullTimeThreshold($workContainer, $employee);
-        }
-        else {
-            $fullTimeThreshold = $employee->fulltime_threshold;
-        }
-
-        if ($employee->employee_type === 'ft_patient') {
-            $row->put('total_service_code_units', $totalServiceCodeUnits);
-            $row->put('productivity', ($totalServiceCodeUnits / $fullTimeThreshold));
-        }
-
-        $row->put('total_time_off', $this->timeOff($works));
-
-        if ($employee->type !== 'pdm') {
-            $row->put('reg_hours', $regHours);
-        }
-
-        if ($employee->employee_type === 'ft_office') {
-            if ($regHours + $this->timeOff($works) > 10 * $employee->tehd) {
-                $row->put('notes', 'exceeding max hours for the period');
-            }
-        }
-
-        return $row;
-
+        return $rows->first()->merge([
+            'service_code' => 'summary',
+            'visit_status' => null,
+            'start_datetime' => null,
+            'end_datetime' => null,
+            'mrn' => null,
+            'patient' => null,
+            'care_location_street_address_1' => null,
+            'care_location_street_address_2' => null,
+            'care_location_aptsteunit' => null,
+            'care_location_city' => null,
+            'care_location_state' => null,
+            'mileage_entry' => null,
+            'employee_type' => $employee->employee_type,
+            'service_code_units' => null,
+            'total_service_code_units' => $this->totalServiceCodeUnits($works, $employee),
+            'productivity' => $this->productivity($works, $employee),
+            'total_time_off' => $this->timeOff($works),
+            'reg_hours' => $this->regHours($works, $employee),
+            'notes' => $this->notes($works, $employee),
+        ]);
     }
 
+    /**
+     * @param $works Collection
+     * @param Employee $employee
+     * @return null|int|float
+     */
+    private function totalServiceCodeUnits($works, Employee $employee)
+    {
+        if ($employee->employee_type === 'ft_patient') {
+            return optional($works->get('reg_hours'))->getValue() +
+                optional($works->get('temp_rate'))->rawValue();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $works
+     * @param Employee $employee
+     * @return float|int|null
+     */
+    private function productivity($works, Employee $employee)
+    {
+        if ($employee->employee_type === 'ft_patient') {
+            return $this->totalServiceCodeUnits($works, $employee) / $this->fullTimeThreshold($works, $employee);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $works
+     * @param Employee $employee
+     * @return null
+     */
+    private function regHours($works, Employee $employee)
+    {
+        if ($employee->type !== 'pdm') {
+            return optional($works->get('reg_hours'))->getValue();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $works
+     * @return mixed
+     */
     private function timeOff($works)
     {
         return optional($works->get('hol'))->getValue() +
@@ -103,91 +154,36 @@ class InterimExporter implements FromCollection
             optional($works->get('sic'))->getValue();
     }
 
-    private function units($tempRates)
-    {
-        $result = 0;
-        foreach ($tempRates as $tempRate) {
-            $result += $tempRate['unit'];
-        }
-
-        return $result;
-    }
-
-    private function modifyWork(Employee $employee, $work)
-    {
-        $row = clone collect($work);
-        $row->put('employee_type', $employee->employee_type);
-        $row->put('service_code_units', $this->serviceCodeUnit($work, $employee));
-        $row->put('total_service_code_units', null);
-        $row->put('productivity', null);
-        $row->put('total_time_off', null);
-        $row->put('reg_hours', null);
-        return $row;
-    }
-
-    private function serviceCodeUnit($work, Employee $employee)
-    {
-        $serviceCode = ServiceCode::where('name', $work['service_code'])->first();
-        if ($serviceCode) {
-            return $serviceCode->unit;
-        }
-
-        $serviceWorker = $this->serviceWorker($work['service_code']);
-        if (class_exists($serviceWorker)) {
-            $instance = new $serviceWorker;
-            if ($instance instanceof ServiceWorker) {
-                $output =  $instance->work($work, $employee);
-                if (isset($output['reg_hours'])) {
-                    return $output['reg_hours'];
-                }
-            }
-        }
-
-        return null;
-    }
-
-    private function serviceWorker($serviceCode)
-    {
-        $escaped = preg_replace('/[!@#$%^&*(),.]/', ' ', $serviceCode);
-        $serviceClassName = studly_case($escaped);
-        return $this->serviceWorkersNamespace . $serviceClassName;
-    }
-
-    private function getMinusWorkHour($processedWorks, $key)
-    {
-        return $processedWorks->get($key);
-    }
-
     /**
-     * @param WorkContainer $workContainer
-     * @return int|null
+     * @param $works
+     * @param Employee $employee
+     * @return string
      */
-    private function calcRegHoursMinus(WorkContainer $workContainer)
+    private function notes($works, Employee $employee)
     {
-        $works = $workContainer->works();
-
-        $minus = optional($works->get('hol')->getValue()) +
-            optional($works->get('sic')->getValue()) +
-            optional($works->get('per')->getValue()) +
-            optional($works->get('bvt')->getValue()) +
-            optional($works->get('pto')->getValue());
-
-        return $minus;
+        if (optional($works->get('reg_hours'))->getValue() + $this->timeOff($works) > 10 * $employee->tehd) {
+            return 'exceeding max hours for the period';
+        }
     }
 
     /**
-     * @param WorkContainer $workContainer
+     * @param $works
      * @param Employee $employee
      * @return float
      */
-    private function thresholdMinus(WorkContainer $workContainer, Employee $employee)
+    private function thresholdMinus($works, Employee $employee)
     {
-        return ($this->calcRegHoursMinus($workContainer) / $employee->tehd) * 0.1;
+        return ($this->timeOff($works) / $employee->tehd) * 0.1;
     }
 
-    private function fullTimeThreshold(WorkContainer $workContainer, Employee $employee)
+    /**
+     * @param $works
+     * @param Employee $employee
+     * @return float|mixed
+     */
+    private function fullTimeThreshold($works, Employee $employee)
     {
-        return $employee->fulltime_threshold - $this->thresholdMinus($workContainer, $employee);
+        return $employee->fulltime_threshold - $this->thresholdMinus($works, $employee);
     }
 
     /**

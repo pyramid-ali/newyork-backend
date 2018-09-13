@@ -14,6 +14,10 @@ class HolidayTime implements ServiceWorker
     public function work($job, Employee $employee)
     {
         return new Work('hol', $employee->tehd);
-//        return ['hol' => $employee->tehd];
+    }
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return 0;
     }
 }
