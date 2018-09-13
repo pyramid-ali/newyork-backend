@@ -31,4 +31,9 @@ class Payroll extends Model
         $this->error = $message;
         return $this->save();
     }
+
+    public function meta()
+    {
+        return $this->hasOne(PayrollMeta::class);
+    }
 }

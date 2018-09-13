@@ -6,6 +6,7 @@ use App\Events\PayrollError;
 use App\Ny\Addons\AdjustDedAmount;
 use App\Ny\Addons\Miscellaneous;
 use App\Ny\Exporter\InterimExporter;
+use App\Ny\Logger\Logger;
 use App\Ny\Modifiers\FullTimeRegularHour;
 use App\Ny\Modifiers\FullTimeThreshold;
 use App\Ny\Modifiers\MetroCard;
@@ -14,7 +15,6 @@ use App\Ny\PayrollReader;
 use App\Ny\ServiceCodeManager;
 use App\Ny\WorkContainer;
 use App\User;
-use Exception;
 use App\Company;
 use App\Employee;
 use App\Events\PayrollProcessed;
@@ -36,6 +36,7 @@ class PayrollProcess implements ShouldQueue
     private $payroll;
     private $user;
     private $interimExporter;
+    private $logger;
 
     private $addons = [
         AdjustDedAmount::class
@@ -62,7 +63,7 @@ class PayrollProcess implements ShouldQueue
         $this->user = $user;
         $this->epicExporter = new EpicExporter();
         $this->interimExporter = new InterimExporter();
-
+        $this->logger = new Logger();
 
         if ($miscellaneous) {
             $this->addons[] = Miscellaneous::class;
@@ -101,6 +102,8 @@ class PayrollProcess implements ShouldQueue
      */
     private function processEmployees($rowGroup)
     {
+        $this->logger->logEmployeeWorks($rowGroup);
+
         foreach ($rowGroup as $employeeId => $rows) {
 
             $employee = $this->retrieveEmployee($employeeId);
@@ -111,13 +114,14 @@ class PayrollProcess implements ShouldQueue
             );
 
             $works = $this->modifyWorks($works, $employee);
+
             $this->epicExporter->entry($works, $employee);
             $this->interimExporter->entry($employee, $works, $rows);
         }
 
-        $this->store();
 
-        event(new PayrollProcessed($this->company, $this->payroll, $this->user));
+
+        $this->didPayrollProcessed();
     }
 
     /**
@@ -211,13 +215,22 @@ class PayrollProcess implements ShouldQueue
         $this->payroll->saveProcessedPayroll($this->epicExporter->storePath() , $this->interimExporter->storePath());
     }
 
+    private function didPayrollProcessed()
+    {
+        $this->store();
+        event(new PayrollProcessed($this->company, $this->payroll, $this->user));
+        $this->logger->saveLog($this->payroll);
+    }
+
     /**
      * @param Exception $exception
      */
-    public function failed(Exception $exception)
+    public function failed(\Exception $exception)
     {
         $this->payroll->failedToProcessPayroll($exception->getMessage());
         event(new PayrollError($this->user, $this->payroll));
     }
+
+
 
 }
