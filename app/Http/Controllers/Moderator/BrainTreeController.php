@@ -17,4 +17,10 @@ class BrainTreeController extends Controller
         });
         return view('moderator.braintree.index', compact('plans'));
     }
+
+    public function clearCache()
+    {
+        Cache::forget('braintree_plans');
+        return redirect()->back()->with('clear_cache', true);
+    }
 }

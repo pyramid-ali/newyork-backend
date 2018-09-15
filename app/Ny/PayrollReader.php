@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alish
- * Date: 9/9/18
- * Time: 11:44 PM
- */
 
 namespace App\Ny;
 
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollReader
 {
@@ -51,7 +44,7 @@ class PayrollReader
      */
     public static function read($path)
     {
-        $rows = Excel::load($path)->get();
+        $rows = CSVReader::load($path)->get();
         return new PayrollReader($rows);
     }
 

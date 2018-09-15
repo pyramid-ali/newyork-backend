@@ -106,7 +106,7 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return route('company.dashboard', $user->company);
+        return redirect()->route('company.dashboard', $user->company);
     }
 
 }

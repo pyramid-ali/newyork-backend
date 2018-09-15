@@ -56,7 +56,7 @@ return [
      *     '172.17.0.0/255.255.0.0'
      */
     'do_not_track_ips' => [
-        '127.0.0.0/24', /// range 127.0.0.1 - 127.0.0.255
+//        '127.0.0.0/24', /// range 127.0.0.1 - 127.0.0.255
     ],
 
     /*
@@ -76,7 +76,7 @@ return [
      *    - Error log
      *    - URL queries (including values)
      */
-    'log_enabled' => false,
+    'log_enabled' => true,
 
     /*
      * Log artisan commands?
@@ -136,7 +136,7 @@ return [
     /*
      * Log events?
      */
-    'log_events' => false,
+    'log_events' => true,
 
     /*
      * Which events do you want to log exactly?
@@ -248,7 +248,7 @@ return [
      * ** IMPORTANT **
      *   Change the user model to your own.
      */
-    'user_model' => 'PragmaRX\Tracker\Vendor\Laravel\Models\User',
+    'user_model' => \App\User::class,
 
     /*
      * You can use your own model for every single table Tracker has.

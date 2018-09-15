@@ -119,6 +119,7 @@ Route::domain(env('APP_DOMAIN'))->group(function () {
 
         Route::get('dashboard', 'Moderator\DashboardController')->name('admin.dashboard');
         Route::get('service_tiers/brain_tree', 'Moderator\BrainTreeController@index')->name('service_tiers.braintree.index');
+        Route::get('service_tiers/brain_tree\clear_cache', 'Moderator\BrainTreeController@clearCache')->name('service_tiers.braintree.clear_cache');
         Route::resource('service_tiers', 'Moderator\ServiceTierController');
         Route::resource('users', 'Moderator\UserController');
         Route::resource('companies', 'Moderator\CompanyController');

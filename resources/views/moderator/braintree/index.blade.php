@@ -8,6 +8,7 @@
                 <h3><i class="fa fa-list"></i> List of Braintree Plans</h3>
                 <p>you can edit these plans at <a href="http://braintreegateway.com">Braintree panel</a></p>
                 <p>after each change to the plan id, please update related service tier to this plan</p>
+                <p><a href="{{ route('service_tiers.braintree.clear_cache') }}">Clear Cache</a></p>
             </header>
 
             <div class="users-table">
@@ -41,6 +42,18 @@
                     </tbody>
                 </table>
             </div>
+
+            @if(session('clear_cache'))
+                <div class="callout success" data-closable="slide-out-right">
+                    <h5>Success.</h5>
+                    <p>Cache Cleared successfully</p>
+                    <button class="close-button" aria-label="Dismiss success" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+
 
         </div>
     </div>
