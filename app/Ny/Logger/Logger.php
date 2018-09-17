@@ -2,8 +2,7 @@
 
 namespace App\Ny\Logger;
 
-
-use Alish\GoogleDistanceMatrix\Facades\GoogleDistance;
+use Alish\GoogleDistanceMatrix\GoogleDistance;
 use App\Payroll;
 
 class Logger
@@ -27,7 +26,7 @@ class Logger
      */
     private function getApiCall()
     {
-        $this->apiCalls = GoogleDistance::apiCall;
+        $this->apiCalls = GoogleDistance::$apiCall;
     }
 
     /**

@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="grid-x">
                     <div class="cell large-4">
-                        @can ('subscriber')
+                        @can ('company_admin')
                             <h5>Managers</h5>
                             <ul>
                                 <li><a href="/managers">View All Managers</a></li>
@@ -45,7 +45,7 @@
                         <h5>Settings</h5>
                         <ul>
                             <li><a href="/settings/change_password">Change Password</a></li>
-                            @can ('subscriber')
+                            @can ('company_admin')
                                 <li><a href="/settings/general">Change Company General Settings</a></li>
                             @endCan
                         </ul>

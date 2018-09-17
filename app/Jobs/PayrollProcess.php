@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Events\PayrollError;
+use App\Ny\Addons\Addon;
 use App\Ny\Addons\AdjustDedAmount;
 use App\Ny\Addons\Miscellaneous;
 use App\Ny\Exporter\InterimExporter;
@@ -10,6 +11,7 @@ use App\Ny\Logger\Logger;
 use App\Ny\Modifiers\FullTimeRegularHour;
 use App\Ny\Modifiers\FullTimeThreshold;
 use App\Ny\Modifiers\MetroCard;
+use App\Ny\Modifiers\Modifier;
 use App\Ny\Modifiers\ResetAex;
 use App\Ny\PayrollReader;
 use App\Ny\ServiceCodeManager;
@@ -57,7 +59,7 @@ class PayrollProcess implements ShouldQueue
      */
     public function __construct(Company $company, Payroll $payroll, User $user, $miscellaneous)
     {
-        $this->path = 'storage/app/public/' . $payroll->path;
+        $this->path = storage_path('app/public/' . $payroll->path);
         $this->payroll = $payroll;
         $this->company = $company;
         $this->user = $user;
@@ -116,7 +118,7 @@ class PayrollProcess implements ShouldQueue
             $works = $this->modifyWorks($works, $employee);
 
             $this->epicExporter->entry($works, $employee);
-            $this->interimExporter->entry($employee, $works, $rows);
+            $this->interimExporter->entry($rows, $works, $employee);
         }
 
 
@@ -168,7 +170,8 @@ class PayrollProcess implements ShouldQueue
         foreach ($this->addons as $addonClass) {
             $addon = new $addonClass;
 
-            if (!$addon->isRequire()) {
+            /** @var Addon $addon */
+            if (!$addon->isRequire($employee)) {
                 continue;
             }
 
@@ -191,7 +194,8 @@ class PayrollProcess implements ShouldQueue
         foreach ($this->modifiers as $modifierClass) {
             $modifier = new $modifierClass;
 
-            if (!$modifier->isRequire()) {
+            /** @var Modifier $modifier */
+            if (!$modifier->isRequire($employee)) {
                 continue;
             }
 
@@ -209,6 +213,7 @@ class PayrollProcess implements ShouldQueue
      */
     private function store()
     {
+
         $this->epicExporter->store();
         $this->interimExporter->store();
 

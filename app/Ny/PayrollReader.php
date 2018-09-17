@@ -24,9 +24,10 @@ class PayrollReader
      */
     public function groupByColumns($column)
     {
-        $this->rows->groupBy(function ($item, $key) use($column) {
+        $this->rows = $this->rows->groupBy(function ($item, $key) use($column) {
             return (string) $item[$column];
         });
+
         return $this;
     }
 

@@ -33,11 +33,11 @@ class FullTimeRegularHour implements Modifier
     {
         $works = $workContainer->works();
 
-        $minus = optional($works->get('hol')->getValue()) +
-            optional($works->get('sic')->getValue()) +
-            optional($works->get('per')->getValue()) +
-            optional($works->get('bvt')->getValue()) +
-            optional($works->get('pto')->getValue());
+        $minus = optional($works->get('hol'))->getValue() +
+            optional($works->get('sic'))->getValue() +
+            optional($works->get('per'))->getValue() +
+            optional($works->get('bvt'))->getValue() +
+            optional($works->get('pto'))->getValue();
 
         return $minus;
     }

@@ -21,7 +21,7 @@ class AdjustDedAmount implements Addon
 
     public function isRequire(Employee $employee)
     {
-        return $employee->employee_type === 'ft_patient' && $employee->metro_card;
+        return $employee->employee_type === 'ft_patient' && !$employee->metro_card;
     }
 
     /**

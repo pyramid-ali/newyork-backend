@@ -56,7 +56,7 @@ class EpicExporter extends Base implements FromCollection, WithHeadings
     {
         $works = $workContainer->works();
 
-        $row = $this->regHourRow($workContainer, $employee);
+        $row = $this->regHourRow($workContainer->works(), $employee);
         if (!$this->checkEmptyCell($row, 7)) {
             $this->rows->push($row);
         }
@@ -225,6 +225,7 @@ class EpicExporter extends Base implements FromCollection, WithHeadings
      */
     public function collection()
     {
+
         return $this->rows;
     }
 

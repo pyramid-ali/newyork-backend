@@ -18,7 +18,7 @@ abstract class Base
     {
         $this->rows = collect();
         $this->storePath = str_finish($this->path, '/') . uniqid() . '.csv';
-        $this->filePath = 'app/public/' . $this->storePath;
+        $this->filePath = 'public/' . $this->storePath;
     }
 
     public function storePath()

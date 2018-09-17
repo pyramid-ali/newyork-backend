@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class InterimExporter extends Base implements FromCollection
 {
-    public $filePath = 'interims/';
+    public $path = 'interims/';
 
     /**
      * @param $rows
@@ -107,7 +107,7 @@ class InterimExporter extends Base implements FromCollection
     {
         if ($employee->employee_type === 'ft_patient') {
             return optional($works->get('reg_hours'))->getValue() +
-                optional($works->get('temp_rate'))->rawValue();
+                optional($works->get('temp_rate'))->getValue();
         }
 
         return null;
@@ -191,6 +191,6 @@ class InterimExporter extends Base implements FromCollection
      */
     public function collection()
     {
-        $this->rows;
+        return $this->rows;
     }
 }

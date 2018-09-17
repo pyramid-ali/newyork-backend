@@ -18,8 +18,8 @@ class Payroll extends Model
 
     public function saveProcessedPayroll($epicPath, $interimPath)
     {
-        $this->payroll->output_path = $epicPath;
-        $this->payroll->interim_path = $interimPath;
+        $this->output_path = $epicPath;
+        $this->interim_path = $interimPath;
         $this->processing = false;
         $this->processed = true;
 

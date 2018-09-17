@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index(Company $company)
     {
-        $users = $company->users()->role('manager')->latest()->paginate();
+        $users = $company->users()->role('company_manager')->latest()->paginate();
         return view('company.users.index', compact('users', 'company'));
     }
 
@@ -62,8 +62,7 @@ class UserController extends Controller
             'password' => bcrypt($password)
         ]);
 
-        $role = Role::manager()->first();
-        $user->roles()->sync($role);
+        $user->assignRole('company_manager');
         $user->companies()->sync($company);
         event(new NewUserCreated($company, $user, $password));
         return redirect('/managers');

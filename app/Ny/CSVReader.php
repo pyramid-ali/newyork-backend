@@ -11,6 +11,8 @@ namespace App\Ny;
 
 use Illuminate\Http\UploadedFile;
 
+ini_set('auto_detect_line_endings',TRUE);
+
 class CSVReader
 {
     private $path;
@@ -35,7 +37,7 @@ class CSVReader
 
     public function get()
     {
-        $spreadsheet = $this->reader()->load($this->path);
+        $spreadsheet = $this->reader()->setDelimiter(',')->load($this->path);
         return $this->createCollection(
             $spreadsheet->getActiveSheet()->toArray()
         );
@@ -46,16 +48,32 @@ class CSVReader
         return new \PhpOffice\PhpSpreadsheet\Reader\Csv();
     }
 
+    private function getRows($sheet)
+    {
+        $rows = [];
+        foreach ($sheet->getRowIterator() AS $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+            $cells = [];
+            foreach ($cellIterator as $cell) {
+                $cells[] = $cell->getValue();
+            }
+            $rows[] = $cells;
+        }
+        return $rows;
+    }
+
     private function createCollection($rows)
     {
-
         $header = array_shift($rows);
 
         $result = collect();
         foreach ($rows as $row) {
             $collectRow = collect();
             foreach ($header as $index => $value) {
-                $collectRow->put(str_slug($value, '_'), $row[$index]);
+                if (trim($value)) {
+                    $collectRow->put(strtolower(str_slug($value, '_')), $row[$index]);
+                }
             }
             $result->push($collectRow);
         }
