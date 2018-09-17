@@ -17,9 +17,41 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => strtolower($faker->name),
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(\App\Company::class, function (Faker $faker) {
+    $company = $faker->company;
+    return [
+        'name' => $company,
+        'account_number' => (string) $faker->randomNumber(3),
+        'slug' => str_slug($company)
+    ];
+});
+
+$factory->define(\App\Address::class, function(Faker $faker) {
+    return [
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'zip_code' => $faker->postcode,
+        'street' => $faker->streetAddress
+    ];
+});
+
+$factory->define(\App\ServiceTier::class, function(Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->sentence
+    ];
+});
+
+//$factory->define(\App\EmailVerification::class, function(Faker $faker) {
+//    return [
+//        'email' => $faker->email,
+//        'token' => str_random(50)
+//    ];
+//});

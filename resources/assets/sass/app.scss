@@ -293,3 +293,293 @@ table.import-desc {
 
 @import '~react-dropzone-component/styles/filepicker.css';
 @import '~dropzone/dist/min/dropzone.min.css';
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.auth-container {
+  padding: 10px;
+  background-color: #0093FF;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+
+  .auth-wrapper {
+    max-width: 340px;
+    text-align: center;
+  }
+
+  .auth-logo {
+    text-align: center;
+    margin-bottom: 70px;
+    img {
+      width: 150px;
+      vertical-align: middle;
+      border-style: none;
+    }
+
+  }
+
+  .auth-header {
+    h3 {
+      font-family: 'Lato', sans-serif;
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      font-weight: 900;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 20px;
+      margin-bottom: 30px;
+    }
+
+  }
+
+  nav {
+    margin-bottom: 20px;
+
+    li {
+      &:hover, &.is-active {
+        a {
+          color: white;
+          background: none;
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+
+  }
+
+
+
+  .other-links {
+    margin-top: 70px;
+    span {
+      font-size: 12px;
+      font-weight: 300;
+      color: #fff;
+      margin-right: 20px;
+    }
+
+    a {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 10px;
+    }
+  }
+
+  .auth-link {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 10px;
+  }
+
+  .form-errors-wrapper {
+    ul {
+      list-style: none;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin: 0 0 10px;
+
+      li {
+        color: #e74c3c;
+        text-align: left;
+      }
+    }
+
+  }
+
+  .success-box {
+    margin: 0 0 10px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 10px;
+    border-radius: 6px;
+    color: rgba(22, 160, 133,1.0);
+
+    p {
+      color: rgba(22, 160, 133, 0.7);
+      margin: 0;
+    }
+  }
+}
+
+.auth-form {
+  text-align: center;
+
+  p {
+    color: #fff;
+  }
+
+  hr {
+    color: white;
+    height: 1px;
+    width: 170px;
+  }
+
+  input, select {
+    padding: 9px 20px;
+    margin: 0 0 14px 0;
+    border-radius: 6px;
+    color: white;
+
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 0;
+
+    transition: all 0.3s ease 0s;
+
+    &:focus, &:hover {
+      border: 0;
+      background-color: #fff;
+      color: #8D8D8D;
+      outline: 0;
+    }
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: white;
+    }
+
+    &::-ms-input-placeholder { /* Microsoft Edge */
+      color: white;
+    }
+
+  }
+
+  select {
+    padding-left: 15px;
+  }
+
+  .form-button {
+    margin-top: 30px;
+    margin-bottom: 25px;
+
+    button {
+      background-color: #fff;
+      color: #29A4FF;
+      box-shadow: 0 5px 6px rgba(0, 0, 0, 0.16);
+      border-radius: 6px;
+      border: 0;
+      padding: 6px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      margin-right: 10px;
+      outline: none;
+      line-height: 21px;
+    }
+
+    a {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      background-color: transparent;
+    }
+  }
+
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.plans-container {
+  background-color: #0093FF;
+  font-family: 'Lato', sans-serif !important;
+  min-height: 100vh;
+
+  header {
+    text-align: center;
+    margin-bottom: 20px !important;
+
+    .logo-container {
+      margin-bottom: 10px;
+      img {
+        width: 200px;
+      }
+    }
+
+    .title-container {
+      color: white !important;
+
+      h3 {
+
+      }
+    }
+  }
+
+  .list-container {
+    color: white !important;
+
+    p {
+      margin: 0;
+    }
+
+    .list-wrapper {
+      list-style: none;
+      margin: 0;
+
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+        box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+      }
+
+      .list-item {
+        margin-bottom: 10px;
+        a {
+          color: white !important;
+          display: block;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 10px;
+          border-radius: 6px;
+        }
+      }
+
+      .price {
+        font-size: 2em;
+        text-align: right;
+
+        i {
+          padding-left: 5px;
+          color: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .price-subtitle {
+        text-align: right;
+        font-size: 0.8em;
+        padding-right: 1.7em;
+      }
+    }
+
+  }
+
+}
+
+.payment-method-options {
+  background: #0093FF !important;
+}
+
+.success-box {
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  background: green;
+  p {
+    margin: 0;
+  }
+}

@@ -3,37 +3,51 @@
 namespace App\Jobs;
 
 use App\Events\PayrollError;
-use App\Ny\ExportInterim;
+use App\Ny\Addons\Addon;
+use App\Ny\Addons\AdjustDedAmount;
+use App\Ny\Addons\Miscellaneous;
+use App\Ny\Exporter\InterimExporter;
+use App\Ny\Logger\Logger;
+use App\Ny\Modifiers\FullTimeRegularHour;
+use App\Ny\Modifiers\FullTimeThreshold;
+use App\Ny\Modifiers\MetroCard;
+use App\Ny\Modifiers\Modifier;
+use App\Ny\Modifiers\ResetAex;
+use App\Ny\PayrollReader;
+use App\Ny\ServiceCodeManager;
+use App\Ny\WorkContainer;
 use App\User;
-use Exception;
 use App\Company;
 use App\Employee;
 use App\Events\PayrollProcessed;
-use App\Ny\ExportPayrollOutput;
-use App\Ny\FullTimePatientModifier;
+use App\Ny\Exporter\EpicExporter;
 use App\Ny\Services\ServiceWorker;
-use App\Ny\Services\TableServiceCode;
 use App\Payroll;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollProcess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $file;
+    private $path;
     private $company;
-    private $miscellaneous;
-    private $serviceWorkersNamespace = 'App\Ny\Services\\';
-    private $exporter;
+    private $epicExporter;
     private $payroll;
     private $user;
     private $interimExporter;
+    private $logger;
+
+    private $addons = [
+        AdjustDedAmount::class
+    ];
+
+    private $modifiers = [
+        FullTimeRegularHour::class,
+        FullTimeThreshold::class
+    ];
 
     /**
      * Create a new job instance.
@@ -45,13 +59,21 @@ class PayrollProcess implements ShouldQueue
      */
     public function __construct(Company $company, Payroll $payroll, User $user, $miscellaneous)
     {
-        $this->file = 'storage/app/public/' . $payroll->path;
+        $this->path = storage_path('app/public/' . $payroll->path);
         $this->payroll = $payroll;
         $this->company = $company;
-        $this->miscellaneous = $miscellaneous;
         $this->user = $user;
-        $this->exporter = new ExportPayrollOutput();
-        $this->interimExporter = new ExportInterim();
+        $this->epicExporter = new EpicExporter();
+        $this->interimExporter = new InterimExporter();
+        $this->logger = new Logger();
+
+        if ($miscellaneous) {
+            $this->addons[] = Miscellaneous::class;
+            $this->modifiers[] = MetroCard::class;
+        }
+        else {
+            $this->modifiers[] = ResetAex::class;
+        }
     }
 
     /**
@@ -61,175 +83,156 @@ class PayrollProcess implements ShouldQueue
      */
     public function handle()
     {
-        $rows = $this->getRows()->groupBy(function ($item, $key) {
-            return (string) $item['empid'];
-        });
+        $rows = PayrollReader::read($this->path)
+            ->groupByColumns('empid')
+            ->get();
+
         $this->processEmployees($rows);
     }
 
-    private function getRows()
+    /**
+     * @param $id
+     * @return Employee
+     */
+    private function retrieveEmployee($id)
     {
-        $rows = Excel::load($this->file)->get();
-        return $this->modifyRows($rows);
+        return $this->company->employees()->where('employee_id', $id)->first();
     }
 
-    private function modifyRows($rows)
+    /**
+     * @param $rowGroup
+     */
+    private function processEmployees($rowGroup)
     {
-        return $rows;
+        $this->logger->logEmployeeWorks($rowGroup);
+
+        foreach ($rowGroup as $employeeId => $rows) {
+
+            $employee = $this->retrieveEmployee($employeeId);
+            $works = $this->processAddons(
+                $this->processWorks($rows, $employee),
+                $rows,
+                $employee
+            );
+
+            $works = $this->modifyWorks($works, $employee);
+
+            $this->epicExporter->entry($works, $employee);
+            $this->interimExporter->entry($rows, $works, $employee);
+        }
+
+
+
+        $this->didPayrollProcessed();
     }
 
-    private function serviceWorker($serviceCode)
+    /**
+     * @param $rows
+     * @param Employee $employee
+     * @return WorkContainer
+     */
+    private function processWorks($rows, Employee $employee)
     {
-        $escaped = preg_replace('/[!@#$%^&*(),.]/', ' ', $serviceCode);
-        $serviceClassName = studly_case($escaped);
-        return $this->serviceWorkersNamespace . $serviceClassName;
+        $container = new WorkContainer;
+        foreach ($rows as $row) {
+            $container->addWork(
+                $this->processWork($row, $employee)
+            );
+        }
+
+        return $container;
     }
 
-    private function processEmployees($rows)
+    /**
+     * @param $row
+     * @param Employee $employee
+     * @return \App\Ny\Work
+     */
+    private function processWork($row, Employee $employee)
     {
-        foreach ($rows as $employeeId => $works) {
+        $serviceWorker = (new ServiceCodeManager($row->get('service_code')))
+            ->getServiceWorker($employee->employee_type !== 'ft_office');
 
-            $employee = Employee::where('employee_id', $employeeId)->first();
-            $processedWorks = $this->processEmployeeWorks($works, $employee);
-            $processedWorks = $this->sumTempRates($processedWorks);
+        if ($serviceWorker instanceof ServiceWorker) {
+            return $serviceWorker->work($row, $employee);
+        }
 
-            // interim exporter should calculate before modifying ft_patient
-            $this->interimExporter->entry($employee, $processedWorks, $works);
+    }
 
-            if ($employee->employee_type === 'ft_patient') {
-                $modifier = new FullTimePatientModifier($processedWorks, $works, $employee);
-                $processedWorks = $modifier->modify();
+    /**
+     * @param WorkContainer $workContainer
+     * @param $rows
+     * @param Employee $employee
+     * @return WorkContainer
+     */
+    private function processAddons(WorkContainer $workContainer, $rows, Employee $employee)
+    {
+        foreach ($this->addons as $addonClass) {
+            $addon = new $addonClass;
+
+            /** @var Addon $addon */
+            if (!$addon->isRequire($employee)) {
+                continue;
             }
 
-            if ($this->miscellaneous) {
-                $processedWork = $this->includeMiscellaneous($employee);
-                $processedWorks = $this->sumUp($processedWorks, $processedWork);
-
-                if ($employee->metro_card) {
-                    $processedWorks->put('aex', $employee->metro_card);
-                }
-            }
-            else {
-                if ($employee->metro_card) {
-                    $processedWorks->put('aex', 0);
-                }
-            }
-
-
-
-            // export epic file should be done after modifying fulltime patient
-            $this->exporter->entry($employee, $processedWorks);
+            $workContainer->addWork(
+                $addon->handle($rows, $employee)
+            );
 
         }
 
-        $export = $this->exporter->export();
-        $interim = $this->interimExporter->export();
-        $this->payroll->output_path = 'processed/' . $export . '.csv';
-        $this->payroll->processing = false;
-        $this->payroll->processed = true;
-        $this->payroll->interm_path = 'interim/' . $interim . '.csv';
-        $this->payroll->save();
+        return $workContainer;
+    }
 
+    /**
+     * @param WorkContainer $workContainer
+     * @param Employee $employee
+     * @return WorkContainer
+     */
+    private function modifyWorks(WorkContainer $workContainer, Employee $employee)
+    {
+        foreach ($this->modifiers as $modifierClass) {
+            $modifier = new $modifierClass;
+
+            /** @var Modifier $modifier */
+            if (!$modifier->isRequire($employee)) {
+                continue;
+            }
+
+            $workContainer->replaceWork(
+                $modifier->modify($workContainer, $employee)
+            );
+
+        }
+
+        return $workContainer;
+    }
+
+    /**
+     * store
+     */
+    private function store()
+    {
+
+        $this->epicExporter->store();
+        $this->interimExporter->store();
+
+        $this->payroll->saveProcessedPayroll($this->epicExporter->storePath() , $this->interimExporter->storePath());
+    }
+
+    private function didPayrollProcessed()
+    {
+        $this->store();
         event(new PayrollProcessed($this->company, $this->payroll, $this->user));
+        $this->logger->saveLog($this->payroll);
     }
 
-    private function processEmployeeWorks($works, Employee $employee)
+    /**
+     * @param Exception $exception
+     */
+    public function failed(\Exception $exception)
     {
-        $processedWorks = collect();
-        foreach ($works as $work) {
-            $processedWork = $this->processWork($work, $employee);
-            if ($processedWork) {
-                $processedWorks = $this->sumUp($processedWorks, $processedWork);
-            }
-
-        }
-        return $processedWorks;
-    }
-
-    private function processWork($work, $employee)
-    {
-        $serviceCode = $work['service_code'];
-        $serviceWorker = $this->serviceWorker($serviceCode);
-        if (!class_exists($serviceWorker)) {
-            if ($employee->employee_type === 'ft_office') {
-                return null;
-            }
-            $serviceWorker = TableServiceCode::class;
-        }
-
-        $instance = new $serviceWorker;
-        if ($instance instanceof ServiceWorker) {
-            return $instance->work($work, $employee);
-        }
-
-    }
-
-    public function sumUp($processedWorks, $newProcessedWork)
-    {
-        $cloned = clone $processedWorks;
-
-        foreach ($newProcessedWork as $key => $value) {
-            if ($prop = $cloned->get($key)) {
-
-                if(is_array($prop)) {
-                    array_push($prop, $value);
-                    $cloned->put($key, $prop);
-                }
-                else {
-                    $cloned->put($key, $prop + $value);
-                }
-            }
-            else {
-                if(is_array($value)) {
-                    $cloned->put($key, [$value]);
-                }
-                else {
-                    $cloned->put($key, $value);
-                }
-            }
-        }
-
-        return $cloned;
-    }
-
-    public function sumTempRates($processedWorks)
-    {
-        if (!$processedWorks->has('temp_rate')) {
-            return $processedWorks;
-        }
-
-        $result = array();
-        $tempRates = $processedWorks->get('temp_rate');
-        foreach ($tempRates as $tempRate) {
-            $rate = $tempRate['rate'];
-            if(isset($result[$rate])) {
-                $result[$rate] += $tempRate['unit'];
-            }
-            else {
-                $result[$rate] = $tempRate['unit'];
-            }
-        }
-
-        $temps = collect();
-        foreach ($result as $rate => $unit) {
-            $temps->push(['rate' => $rate, 'unit' => $unit]);
-        }
-
-        $processedWorks->put('temp_rate', $temps->toArray());
-        return $processedWorks;
-
-    }
-
-    public function includeMiscellaneous(Employee $employee)
-    {
-        return ['cel' => $employee->cel];
-    }
-
-    public function failed(Exception $exception)
-    {
-        Log::error($exception);
-        $this->payroll->error = $exception->getMessage();
-        $this->payroll->save();
+        $this->payroll->failedToProcessPayroll($exception->getMessage());
         event(new PayrollError($this->user, $this->payroll));
     }
 

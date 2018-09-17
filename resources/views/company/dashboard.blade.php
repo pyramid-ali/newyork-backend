@@ -11,7 +11,7 @@
                 </header>
                 <section class="menu-wrapper dashboard-menu">
                     <ul class="vertical menu accordion-menu" data-accordion-menu>
-                        @if (Auth::user()->isAdmin())
+                        @role ('company_admin')
                             <li>
                                 <a href="#"><i class="fa fa-user-circle-o"></i>Managers</a>
                                 <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'managers.') ? 'is-active' : '' }}">
@@ -19,7 +19,7 @@
                                     <li class="{{ Route::currentRouteName() === 'managers.create' ? 'active' : '' }}"><a href="/managers/create"><i class="fa fa-plus"></i>Create</a></li>
                                 </ul>
                             </li>
-                        @endif
+                        @endrole
                         <li>
                             <a href="#"><i class="fa fa-users"></i>Employees</a>
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'employees.') ? 'is-active' : '' }}">
@@ -53,12 +53,20 @@
                         <li>
                             <a href="#"><i class="fa fa-gears"></i>Settings</a>
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'settings.') ? 'is-active' : '' }}">
-                                @if (Auth::user()->isAdmin())
+                                @role ('company_admin')
                                     <li class="{{ Route::currentRouteName() === 'settings.general.show' ? 'active' : '' }}"><a href="/settings/general"><i class="fa fa-gear"></i>General</a></li>
-                                @endIf
+                                @endrole
                                 <li class="{{ Route::currentRouteName() === 'settings.change_password.show' ? 'active' : '' }}"><a href="/settings/change_password"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
+                        @role ('company_admin')
+                        <li>
+                            <a href="#"><i class="fa fa-bitcoin"></i>Billing</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'billing.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'billing.show' ? 'active' : '' }}"><a href="/billing"><i class="fa fa-bitcoin"></i>show</a></li>
+                            </ul>
+                        </li>
+                        @endrole
                     </ul>
                 </section>
             </div>
@@ -77,7 +85,7 @@
                                            href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
-                                        <form id="logout-form" action="{{ route('company.logout', ['company' => Route::input('company')->name]) }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="diplay: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>

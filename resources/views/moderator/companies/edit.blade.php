@@ -11,7 +11,7 @@
         <div class="grid-x">
             <div class="cell">
 
-                <form action="{{ route('companies.update', ['id' => $company->id]) }}" method="post">
+                <form action="{{ route('companies.update', $company) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="grid-x grid-padding-x align-center">
@@ -80,11 +80,33 @@
                                 </div>
                             </label>
 
+                            <label for="name"> Service Tier
+                                <div class="input-group">
+                                    <select name="service_tier" id="service_tier">
+                                        @foreach($serviceTiers as $serviceTier)
+                                            <option value="{{ $serviceTier->id }}" {{ $company->serviceTier->id === $serviceTier->id ? 'selected' : '' }}>{{ $serviceTier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </label>
+
                             <button class="button success float-right input-margin-fix"><i class="fa fa-plus"></i> Edit Company</button>
                         </div>
                     </div>
 
                 </form>
+
+
+
+                @if(session('company'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('company') }} Updated Successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if(count($errors) > 0)
                     <div class="error-form">

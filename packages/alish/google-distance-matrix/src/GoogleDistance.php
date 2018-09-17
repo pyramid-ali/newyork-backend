@@ -8,6 +8,8 @@ use Alish\GoogleDistanceMatrix\Request\Request;
 class GoogleDistance
 {
 
+    public static $apiCall = 0;
+
     private $origins;
     private $destinations;
 
@@ -38,6 +40,7 @@ class GoogleDistance
     public function distance($origin, $destination)
     {
         $response = Request::send($origin, $destination);
+        self::$apiCall += 1;
         return $response;
     }
     

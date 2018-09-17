@@ -16,12 +16,20 @@ class CompanyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $company = \Route::input('company');
-        $user = \Auth::user();
-        if ($user->hasCompany($company)) {
-            return $next($request);
+
+        if ($user = auth()->user()) {
+
+            if ($user->hasCompany($request->company)) {
+                if ($user->company->is_active) {
+                    return $next($request);
+                }
+                return redirect()->route('companies.inactive', $user->company);
+            }
+
+            abort(404);
+
         }
 
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }

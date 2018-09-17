@@ -2,31 +2,37 @@
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
-use Carbon\Carbon;
+use App\Ny\Services\Helpers\WorkHour;
+use App\Ny\Work;
 
 class WorkTime implements ServiceWorker
 {
+    use WorkHour;
 
     public function work($job, Employee $employee)
     {
+        return new Work('reg_hours', $this->calculateWork($job, $employee));
+    }
 
-        $startTime = Carbon::parse($job['start_datetime']);
-        $endTime = Carbon::parse($job['end_datetime']);
-        $minutes = $endTime->diffInMinutes($startTime);
-        $hours = $endTime->diffInHours($startTime);
-        $exactHour = $hours + ($minutes - ($hours * 60)) / 60;
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return $this->calculateWork($job, $employee);
+    }
+
+    /**
+     * @param $job
+     * @param Employee $employee
+     * @return float|int|mixed
+     */
+    private function calculateWork($job, Employee $employee)
+    {
+        $exactHour = $this->exactWorkTime($job);
 
         if ($employee->employee_type === 'ft_office' && $exactHour > $employee->tehd) {
             $exactHour = $employee->tehd;
         }
 
-        $multiplier = 1;
-        if ($employee->employee_type === 'ft_patient') {
-            $multiplier = 0.75;
-        }
-
-        return ['reg_hours' => $exactHour * $multiplier];
+        return $employee->employee_type === 'ft_patient' ? $exactHour * 0.75 : $exactHour;
     }
 }

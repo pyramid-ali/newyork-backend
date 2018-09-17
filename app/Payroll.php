@@ -15,4 +15,25 @@ class Payroll extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function saveProcessedPayroll($epicPath, $interimPath)
+    {
+        $this->output_path = $epicPath;
+        $this->interim_path = $interimPath;
+        $this->processing = false;
+        $this->processed = true;
+
+        return $this->save();
+    }
+
+    public function failedToProcessPayroll($message)
+    {
+        $this->error = $message;
+        return $this->save();
+    }
+
+    public function meta()
+    {
+        return $this->hasOne(PayrollMeta::class);
+    }
 }

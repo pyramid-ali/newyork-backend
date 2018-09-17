@@ -40,27 +40,39 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * show login form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
-        return view('moderator.login');
+        return view('auth.login');
     }
 
-    protected function credentials(Request $request)
+    /**
+     * where to redirect user after login
+     *
+     * @return string
+     */
+    protected function redirectTo()
     {
-        return $request->only($this->username(), 'password', 'is_active');
-    }
+        $user = auth()->user();
 
-    protected function attemptLogin(Request $request)
-    {
-
-        $user = User::moderators()->where('email', $request->email)->first();
-
-        if (!$user) {
-            return false;
+        if ($user->hasRole('admin')) {
+            return route('admin.dashboard');
         }
 
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
-        );
+        return route('company.dashboard', auth()->user()->company);
+    }
+
+    /**
+     * redirect company login pages to main login page
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectToLogin()
+    {
+        return redirect()->route('login');
     }
 }

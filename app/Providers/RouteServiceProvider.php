@@ -30,15 +30,15 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('manager', \App\User::class);
         Route::model('company', \App\Company::class);
         Route::model('company', \App\Company::class);
-        Route::bind('company', function ($value) {
-            if (is_numeric($value)) {
-                return \App\Company::find($value)->first() ?? abort(404);
-            }
-            else {
-                return \App\Company::where('name', $value)->first() ?? abort(404);
-            }
-
-        });
+//        Route::bind('company', function ($value) {
+//            if (is_numeric($value)) {
+//                return \App\Company::find($value)->first() ?? abort(404);
+//            }
+//            else {
+//                return \App\Company::where('name', $value)->first() ?? abort(404);
+//            }
+//
+//        });
     }
 
     /**

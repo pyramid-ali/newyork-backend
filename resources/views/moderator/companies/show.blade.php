@@ -19,6 +19,7 @@
                         <td>Full Time Threshold</td>
                         <td>Update Review Period</td>
                         <td>Account Number</td>
+                        <td>Service Tier</td>
                         <td>Edit</td>
                     </tr>
                     </thead>
@@ -29,6 +30,7 @@
                             <td>{{ $company->fulltime_threshold }}</td>
                             <td>{{ $company->review_period }}</td>
                             <td>{{ $company->account_number }}</td>
+                            <td><a href="{{ route('service_tiers.show', $company->serviceTier) }}">{{ $company->serviceTier->name }}</a></td>
                             <td><a href="{{ route('companies.edit', ['id' => $company->id]) }}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                     </tbody>

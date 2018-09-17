@@ -3,12 +3,7 @@
 @section('dashboard-content')
     <header>
         <h3><i class="fa fa-plus"></i> Create New Company</h3>
-        <h5>Notes</h5>
-        <ul>
-            <li>in this section you can define new users in any role</li>
-            <li>For creating admin user for specific company please first create company then create admin for it</li>
-            <li>also you can create manager for companies here, but this ability has for company admins also</li>
-        </ul>
+
 
     </header>
 
@@ -42,7 +37,7 @@
                             <label for="ac-number"> Account Number
                                 <div class="input-group">
                                     <span class="input-group-label"><i class="fa fa-sort-numeric-asc"></i></span>
-                                    <input class="input-group-field" id="ac-number" type="text" name="account_number" placeholder="Account Number"  value="{{ old('account_number') }}">
+                                    <input class="input-group-field" id="ac-number" type="text" name="account_number" placeholder="Leave it blank to auto generate"  value="{{ old('account_number') }}">
                                 </div>
                             </label>
                             <label for="review_period">Update Review Period
@@ -84,11 +79,31 @@
                                 </div>
                             </label>
 
+                            <label for="name"> Service Tier
+                                <div class="input-group">
+                                    <select name="service_tier" id="service_tier">
+                                        @foreach($serviceTiers as $serviceTier)
+                                            <option value="{{ $serviceTier->id }}"  {{ old('service_tier') === $serviceTier->id ? 'selected' : '' }}>{{ $serviceTier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </label>
+
                             <button class="button success float-right input-margin-fix"><i class="fa fa-plus"></i> Create New Company</button>
                         </div>
                     </div>
 
                 </form>
+
+                @if(session('company'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('company') }} created successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if(count($errors) > 0)
                     <div class="error-form">

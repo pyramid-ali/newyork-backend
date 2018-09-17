@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Moderator;
 
 use App\Company;
-use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::latest()->where('id', '!=', auth()->user()->id)->paginate();
         return view('moderator.users.index', compact('users'));
     }
 
@@ -42,14 +42,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
-            'company' => 'nullable|exists:companies,id',
-            'role' => 'required|exists:roles,id'
-        ]);
+        $this->validateUser($request);
 
         $user = User::create([
             'name' => $request->name,
@@ -57,12 +50,13 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        $user->roles()->sync($request->role);
-        if ($request->company) {
+        $user->assignRole($request->role);
+
+        if ($request->role !== 'admin') {
             $user->companies()->sync($request->company);
         }
 
-        return redirect('/moderator/users');
+        return redirect()->back()->with('user', $user->email);
 
     }
 
@@ -104,28 +98,25 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'nullable|string|min:6',
-            'company' => 'nullable|exists:companies,id',
-            'role' => 'required|exists:roles,id'
-        ]);
+        $this->validateUserUpdate($request, $user);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->update($request->only('name', 'email'));
+
         if ($request->password) {
             $user->password = bcrypt($request->password);
+            $user->save();
         }
 
-        $user->roles()->sync($request->role);
-        if ($request->company) {
+        if ($request->has('role')) {
+            $user->syncRoles($request->role);
+        }
+
+
+        if ($request->role !== 'admin' && $request->has('company')) {
             $user->companies()->sync($request->company);
         }
 
-        $user->save();
-
-        return redirect()->back();
+        return redirect()->back()->with('user', $user->email);
     }
 
     /**
@@ -138,6 +129,28 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->forceDelete();
-        return redirect()->back();
+        return redirect()->route('users.index')->with('user', $user->email);
+    }
+
+    public function validateUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+            'company' => 'nullable|exists:companies,id|required_unless:role,admin',
+            'role' => 'required|exists:roles,name'
+        ]);
+    }
+
+    public function validateUserUpdate(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'nullable|string|min:6',
+            'company' => 'nullable|exists:companies,id',
+            'role' => 'nullable|exists:roles,name'
+        ]);
     }
 }

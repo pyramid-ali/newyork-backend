@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Company;
 use App\Company;
 use App\Employee;
 use App\Jobs\PayrollProcess;
+use App\Ny\CSVReader;
 use App\Payroll;
 use App\ServiceCode;
 use Illuminate\Http\Request;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PayrollController extends Controller
 {
@@ -36,7 +36,7 @@ class PayrollController extends Controller
         ]);
 
         $file = $request->file('file');
-        $rows = Excel::load($file)->get();
+        $rows = CSVReader::load($file)->get();
 
         $missingEmployees = $this->missingEmployees($rows);
         $missingServiceCodes = $this->missingServiceCodes($rows);
@@ -148,7 +148,7 @@ class PayrollController extends Controller
     public function downloadPayroll(Company $company, Payroll $payroll)
     {
         $this->authorize('download', $payroll);
-        $path = 'storage/' . $payroll->path;
+        $path = storage_path('app/public/' . $payroll->path);
         $name = $this->nameGenerator($payroll, 'PAYROLL');
         return response()->download($path, $name);
     }
@@ -157,14 +157,16 @@ class PayrollController extends Controller
     {
         $this->authorize('download', $payroll);
         $name = $this->nameGenerator($payroll, 'EPI');
-        return response()->download('storage/' . $payroll->output_path, $name);
+        $path = storage_path('app/public/' . $payroll->output_path);
+        return response()->download($path, $name);
     }
 
     public function downloadInterm(Company $company, Payroll $payroll)
     {
         $this->authorize('download', $payroll);
         $name = $this->nameGenerator($payroll, 'INTERIM');
-        return response()->download('storage/' . $payroll->interm_path, $name);
+        $path = storage_path('app/public/' . $payroll->interim_path);
+        return response()->download($path, $name);
     }
 
     public function nameGenerator(Payroll $payroll, $prefix)

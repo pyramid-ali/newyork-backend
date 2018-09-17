@@ -17,7 +17,7 @@ class CreatePayrollsTable extends Migration
             $table->increments('id');
             $table->string('path');
             $table->string('output_path')->nullable();
-            $table->string('interm_path')->nullable();
+            $table->string('interim_path')->nullable();
             $table->boolean('processed')->default(false);
             $table->boolean('processing')->default(false);
             $table->text('error')->nullable();

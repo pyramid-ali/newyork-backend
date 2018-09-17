@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Company;
 
 use App\Company;
+use App\Exports\EmployeeExport;
+use App\Ny\CSVReader;
 use App\Office;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeBatchController extends Controller
@@ -22,7 +23,8 @@ class EmployeeBatchController extends Controller
             'file' => 'required|file|mimetypes:text/csv,text/plain'
         ]);
 
-        $rows = Excel::load($request->file('file'))->all();
+        $rows = CSVReader::load($request->file('file'))->get();
+        $this->checkForImportLimitation($rows, $company);
         $skipped = $this->batchImport($rows, $company);
 
         return response()->json([
@@ -35,46 +37,16 @@ class EmployeeBatchController extends Controller
     public function export(Request $request, Company $company)
     {
 
-
         $name = uniqid();
-        $csv = Excel::create($name, function($excel) use($company) {
+        $path = 'public/employees/export/' . $name . '.csv';
 
-            // Set the title
-            $excel->setTitle('Employees')
-                ->setCreator('calcuride.net')
-                ->setCompany($company->name)
-                ->setDescription('description');
-
-            $excel->sheet('employees', function($sheet) use($company) {
-
-                $employees = $company->employees->map(function ($employee) {
-                    return [
-                        'first name' => $employee->first_name,
-                        'last name' => $employee->last_name,
-                        'file number' => $employee->file_number,
-                        'temp department' => $employee->temp_department,
-                        'employee id' => $employee->employee_id,
-                        'employee type' => $employee->employee_type,
-                        'total hour expected per day' => $employee->tehd,
-                        'reimbursement rate' => $employee->reimbursement_rate,
-                        'fulltime threshold' => $employee->fulltime_threshold,
-                        'status' => $employee->status,
-                        'batch_id' => $employee->office->batch_id,
-                        'city' => $employee->address->city,
-                        'state' => $employee->address->state,
-                        'zip code' => $employee->address->zip_code,
-                        'street' => $employee->address->street,
-                    ];
-                });
-
-                $sheet->fromArray($employees);
-
-            });
-
-        })->store('csv', storage_path('employees/export'));
+        (new EmployeeExport($company))->store($path);
 
         return response()->json([
-            'csv' => $csv
+            'csv' => [
+                'title' => 'Employees',
+                'filename' => $name
+            ]
         ]);
     }
 
@@ -98,15 +70,15 @@ class EmployeeBatchController extends Controller
 
                 \DB::beginTransaction();
 
-                $office = Office::where('batch_id', $row['batch_id'])->firstOrFail();
+                $office = $company->offices()->where('batch_id', $row['batch_id'])->firstOrFail();
 
                 $employeeFields = [
                     'first_name' => $row['first_name'],
                     'last_name' => $row['last_name'],
                     'employee_id' => $row['employee_id'],
                     'temp_department' => $row['temp_dept'] ?? $row['temp_department'],
-                    'employee_type' => $this->employeeType($row['employment_status']),
-                    'tehd' => $this->totalExpectedHour($row['employment_status']),
+                    'employee_type' => $this->employeeType($row['employment_status'] ?? $row['status']),
+                    'tehd' => $this->totalExpectedHour($row['employment_status'] ?? $row['status']),
                 ];
 
                 if (isset($row['productivity_threshold'])) {
@@ -169,8 +141,17 @@ class EmployeeBatchController extends Controller
     {
         $now = Carbon::now();
         return response()
-            ->download(storage_path('employees/export/' . $fileName . '.csv'),
+            ->download(storage_path('app/public/employees/export/' . $fileName . '.csv'),
                 $company->name.'-employees-('.$now->toDateString().').csv');
+    }
+
+    protected function checkForImportLimitation($rows, Company $company)
+    {
+        $employees = $company->employees()->count();
+        $maxEmployees = $company->serviceTier->meta->max_employees;
+        if ($rows->count() + $employees > $maxEmployees) {
+            abort(403, 'You cannot import employees more than your limit, please upgrade your plan or decrease number of rows');
+        }
     }
     
 }

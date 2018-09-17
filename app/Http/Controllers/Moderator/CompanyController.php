@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Moderator;
 
 use App\Address;
 use App\Company;
+use App\ServiceTier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::paginate();
+        $companies = Company::latest()->paginate();
         return view('moderator.companies.index', compact('companies'));
     }
 
@@ -27,7 +28,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('moderator.companies.create');
+        $serviceTiers = ServiceTier::latest()->get();
+        return view('moderator.companies.create', compact('serviceTiers'));
     }
 
     /**
@@ -38,30 +40,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateCompany($request);
+        $this->validateAddress($request);
 
-        $request->validate([
-            'name' => 'required|string',
-            'code' => 'string|nullable',
-            'fulltime_threshold' => 'numeric|nullable',
-            'account_number' => 'string|required',
-            'review_period' => 'string|in:weekly,bi-weekly,monthly,bi-monthly',
-            'city' => 'string|required',
-            'state' => 'string|required',
-            'zip_code' => 'numeric|required',
-            'street' => 'string|required'
-        ]);
+        $company = Company::build($request)
+            ->addAddress($request);
 
-        $address = new Address($request->only(['city', 'state', 'zip_code', 'street']));
-
-        $companyProperties = $request->only(['name', 'code', 'fulltime_threshold', 'review_period', 'account_number']);
-        $companyProperties = array_filter($companyProperties);
-
-        $company = Company::create($companyProperties);
-
-
-        $company->address()->save($address);
-
-        return redirect('/moderator/companies');
+        return redirect()->back(201)->with('company', $company->name);
     }
 
     /**
@@ -85,7 +70,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('moderator.companies.edit', compact('company'));
+        $serviceTiers = ServiceTier::latest()->get();
+        return view('moderator.companies.edit', compact('company', 'serviceTiers'));
     }
 
     /**
@@ -98,26 +84,14 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'code' => 'string|nullable',
-            'fulltime_threshold' => 'numeric|nullable',
-            'account_number' => 'string|required',
-            'review_period' => 'string|in:weekly,bi-weekly,monthly,bi-monthly',
-            'city' => 'string|required',
-            'state' => 'string|required',
-            'zip_code' => 'numeric|required',
-            'street' => 'string|required'
-        ]);
 
-        $company->address()->update($request->only(['city', 'state', 'zip_code', 'street']));
+        $this->validateCompanyForUpdate($request, $company);
+        $this->validateAddress($request);
 
-        $companyProperties = $request->only(['name', 'code', 'fulltime_threshold', 'review_period', 'account_number']);
-        $companyProperties = array_filter($companyProperties);
+        $company->edit($request);
+        $company->updateAddress($request);
 
-        $company->update($companyProperties);
-
-        return redirect()->back();
+        return redirect()->route('companies.edit', $company)->with('company', $company->name);
     }
 
     /**
@@ -130,6 +104,40 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->forceDelete();
-        return redirect()->back();
+        return redirect()->route('companies.index')->with('company', $company->name);
+    }
+
+    protected function validateCompany(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|unique:companies,name',
+            'code' => 'string|nullable',
+            'fulltime_threshold' => 'numeric|nullable',
+            'account_number' => 'string|nullable|unique:companies,account_number',
+            'review_period' => 'string|nullable|in:weekly,bi-weekly,monthly,bi-monthly',
+            'service_tier' => 'required|exists:service_tiers,id'
+        ]);
+    }
+
+    protected function validateCompanyForUpdate(Request $request, Company $company)
+    {
+        $request->validate([
+            'name' => 'required|string|unique:companies,name,' . $company->id,
+            'code' => 'string|nullable',
+            'fulltime_threshold' => 'numeric|nullable',
+            'account_number' => 'string|required|unique:companies,account_number,' . $company->id,
+            'review_period' => 'string|nullable|in:weekly,bi-weekly,monthly,bi-monthly',
+            'service_tier' => 'required|exists:service_tiers,id'
+        ]);
+    }
+
+    public function validateAddress(Request $request)
+    {
+        $request->validate([
+            'city' => 'string|required',
+            'state' => 'string|required',
+            'zip_code' => 'string|required',
+            'street' => 'string|required'
+        ]);
     }
 }

@@ -25,8 +25,8 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            @if($company = $user->companies->first())
-                                <td><a href="{{ route('companies.show', ['id' => $company->id]) }}">{{ $company->name }}</a></td>
+                            @if($company = $user->company)
+                                <td><a href="{{ route('companies.show', $company) }}">{{ $company->name }}</a></td>
                             @else
                                 <td>-</td>
                             @endif
@@ -45,6 +45,16 @@
                     @endforeach
                     </tbody>
                 </table>
+
+                @if(session('user'))
+                    <div class="callout alert" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('user') }} Removed successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
             </div>
             {{ $users->links() }}
         </div>

@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/21/17
- * Time: 2:50 PM
- */
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
+use App\Ny\TempRateWork;
 use App\ServiceCode;
 
 class TableServiceCode implements ServiceWorker
@@ -17,21 +11,40 @@ class TableServiceCode implements ServiceWorker
 
     public function work($job, Employee $employee)
     {
+        $serviceCode = $this->serviceCode($job);
 
-        $code = explode(' ', $job['service_code'])[0];
-        $serviceCode = ServiceCode::where('name', 'like', $code.'%')->first();
+        return new TempRateWork([[
+            'rate' => $employee->rate($serviceCode),
+            'unit' => $this->unit($serviceCode, $employee)
+        ]]);
 
-        $rate = $employee->rate($serviceCode);
-        $unit = $serviceCode->unit;
-        if ($employee->employee_type === 'pdm') {
-            $unit = 1;
-        }
-
-        return [
-            'temp_rate' => [
-                'rate' => $rate,
-                'unit' => $unit
-            ]
-        ];
     }
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+//        return $this->unit($this->serviceCode($job), $employee);
+        return $this->serviceCode($job)->unit;
+    }
+
+    /**
+     * @param $job
+     * @return ServiceCode
+     */
+    private function serviceCode($job)
+    {
+        $code = explode(' ', $job['service_code'])[0];
+        return ServiceCode::where('name', 'like', $code.'%')->first();
+    }
+
+    /**
+     * @param ServiceCode $serviceCode
+     * @param Employee $employee
+     * @return int|mixed
+     */
+    private function unit(ServiceCode $serviceCode, Employee $employee)
+    {
+        return $employee->employee_type === 'pdm' ? 1 : $serviceCode->unit;
+    }
+
+
 }

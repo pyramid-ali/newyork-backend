@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,63 +30,103 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
+    /**
+     * get user companies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function companies()
     {
         return $this->belongsToMany(Company::class);
     }
 
-    public function scopeModerators($query)
+    /**
+     * get user company: $this->company
+     *
+     * @return Company
+     */
+    public function getCompanyAttribute()
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'moderator');
-        });
+        return $this->companies->first();
     }
 
-    public function scopeAdmins($query)
+    /**
+     * check a user belongs to a company or not
+     *
+     * @param $company
+     * @return bool
+     */
+    public function hasCompany(Company $company)
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'admin');
-        });
+        return $this->company->id === $company->id;
     }
 
-    public function scopeManagers($query)
+    public function hasCompanySlug($slug)
     {
-        return $query->whereHas('roles', function ($query) {
-            return $query->where('name', 'manager');
-        });
+        return $this->companies()->where('slug', $slug)->count() > 0;
     }
 
-    public function isModerator()
+    /**
+     * join a user to a company
+     *
+     * @param Company $company
+     * @return array
+     */
+    public function joinToCompany(Company $company)
     {
-        return $this->hasRole('moderator');
+        return $this->companies()->sync([$company->id]);
     }
 
-    public function isAdmin()
+    /**
+     * convert to lower case user's name
+     * @param $name
+     */
+    public function setNameAttribute($name)
     {
-        return $this->hasRole('admin');
+        $this->attributes['name'] = strtolower($name);
     }
 
-    public function isManager()
+
+    /**
+     * get title case user's name
+     */
+    public function getNameAttribute()
     {
-        return $this->hasRole('manager');
+        return title_case($this->attributes['name']);
     }
 
-    public function hasRole($roleName)
+    /**
+     * Determine if the user has verified their email address.
+     *
+     * @return bool
+     */
+    public function hasVerifiedEmail()
     {
-        return $this->roles->filter(function ($role) use ($roleName) {
-                return $role->name === $roleName;
-            })->count() > 0;
+        return ! is_null($this->email_verified_at);
     }
 
-    public function hasCompany($presentCompany)
+    /**
+     * Mark the given user's email as verified.
+     *
+     * @return void
+     */
+    public function markEmailAsVerified()
     {
-        return $this->companies->filter(function ($company) use ($presentCompany) {
-            return $company->id === $presentCompany->id;
-        })->count() > 0;
+        $this->forceFill(['email_verified_at' => $this->freshTimestamp()])->save();
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return true;
     }
 }

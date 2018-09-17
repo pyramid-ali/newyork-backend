@@ -2,27 +2,33 @@
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
-use Carbon\Carbon;
+use App\Ny\Services\Helpers\WorkHour;
+use App\Ny\Work;
 
 class OfficeTime implements ServiceWorker
 {
+    use WorkHour;
 
     public function work($job, Employee $employee)
     {
-        $startTime = Carbon::parse($job['start_datetime']);
-        $endTime = Carbon::parse($job['end_datetime']);
-        $minutes = $endTime->diffInMinutes($startTime);
-        $hours = $endTime->diffInHours($startTime);
+        return new Work('reg_hours', $this->calculateWork($job, $employee));
+    }
 
-        $divider = 1.3;
-        if ($employee->employee_type === 'pdm') {
-            $divider = 1;
-        }
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return $this->calculateWork($job, $employee);
+    }
 
-        $exactHours = $hours + ($minutes - ($hours * 60)) / 60;
+    /**
+     * @param $job array
+     * @param Employee $employee
+     * @return float|int
+     */
+    private function calculateWork($job, Employee $employee)
+    {
+        $exactWorkTime = $this->exactWorkTime($job);
+        return $employee->employee_type === 'pdm' ? $exactWorkTime / 1 : $exactWorkTime / 1.3;
 
-        return ['reg_hours' => $exactHours / $divider];
     }
 }

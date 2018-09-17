@@ -1,25 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pyramid
- * Date: 12/20/17
- * Time: 1:56 AM
- */
 
 namespace App\Ny\Services;
 
-
 use App\Employee;
+use App\Ny\Services\Helpers\WorkHour;
+use App\Ny\Work;
 use Carbon\Carbon;
 
 class BereavementTime implements ServiceWorker
 {
+    use WorkHour;
 
     public function work($job, Employee $employee)
     {
-        $startTime = Carbon::parse($job['start_datetime']);
-        $endTime = Carbon::parse($job['end_datetime']);
-        $hours = $endTime->diffInHours($startTime);
-        return ['bvt' => $hours];
+        return new Work('bvt', $this->workHours($job));
+    }
+
+    public function serviceCodeUnits($job, Employee $employee)
+    {
+        return 0;
     }
 }

@@ -10,7 +10,7 @@
         <div class="grid-x">
             <div class="cell">
 
-                <form action="{{ route('users.update', ['id' => $user->id]) }}" method="post">
+                <form action="{{ route('users.update', $user) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="grid-x grid-padding-x align-center">
@@ -46,7 +46,7 @@
                             <label id="role">Select User Role
                                 <select name="role" id="role">
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" {{ $userRole->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                        <option value="{{ $role->name }}" {{ $userRole->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             </label>
@@ -56,6 +56,16 @@
                     </div>
 
                 </form>
+
+                @if(session('user'))
+                    <div class="callout success" data-closable="slide-out-right">
+                        <h5>Success.</h5>
+                        <p>{{ session('user') }} Updated successfully</p>
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 @if ($errors->any())
                     <div class="alert alert-danger">

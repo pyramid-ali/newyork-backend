@@ -16,10 +16,12 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('code')->default('C6H');
-            $table->string('account_number');
+            $table->string('account_number')->unique();
             $table->unsignedSmallInteger('fulltime_threshold')->default(58);
             $table->enum('review_period', ['weekly', 'bi-weekly', 'monthly', 'bi-monthly'])->default('bi-weekly');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

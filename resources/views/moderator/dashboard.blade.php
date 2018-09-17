@@ -3,29 +3,43 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
     <div class="off-canvas-wrapper dashboard-wrapper" id="dashboard">
         <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
             <div class="off-canvas position-left reveal-for-large" id="sidebar" data-off-canvas="" data-position="left" aria-hidden="true" data-offcanvas="h4293v-offcanvas">
                 <header class="sidebar-header">
                     <h3>Homacare</h3>
                 </header>
-                <section class="menu-wrapper">
+                <section class="menu-wrapper dashboard-menu">
                     <ul class="vertical menu accordion-menu" data-accordion-menu>
                         <li>
                             <a href="#"><i class="fa fa-users"></i>Users</a>
-                            <ul class="menu vertical nested">
-                                <li><a href="/moderator/users"><i class="fa fa-eye"></i>View</a></li>
-                                <li><a href="/moderator/users/create"><i class="fa fa-plus"></i>Create</a></li>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'users.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                                <li class="{{ Route::currentRouteName() === 'users.create' ? 'active' : '' }}"><a href="{{ route('users.create') }}"><i class="fa fa-plus"></i>Create</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-dashcube"></i>companies</a>
-                            <ul class="menu vertical nested">
-                                <li><a href="/moderator/companies"><i class="fa fa-eye"></i>View</a></li>
-                                <li><a href="/moderator/companies/create"><i class="fa fa-plus"></i>Create</a></li>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'companies.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'companies.index' ? 'active' : '' }}"><a href="{{ route('companies.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                                <li class="{{ Route::currentRouteName() === 'companies.create' ? 'active' : '' }}"><a href="{{ route('companies.create') }}"><i class="fa fa-plus"></i>Create</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dashcube"></i>payrolls</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'payrolls.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'payrolls.index' ? 'active' : '' }}"><a href="{{ route('payrolls.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dashcube"></i>Service Tiers</a>
+                            <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'service_tiers.') ? 'is-active' : '' }}">
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.index') }}"><i class="fa fa-eye"></i>View</a></li>
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.create' ? 'active' : '' }}"><a href="{{ route('service_tiers.create') }}"><i class="fa fa-plus"></i>Create</a></li>
+                                <li class="{{ Route::currentRouteName() === 'service_tiers.braintree.index' ? 'active' : '' }}"><a href="{{ route('service_tiers.braintree.index') }}"><i class="fa fa-paypal"></i>Brain Tree Plans</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </section>
             </div>

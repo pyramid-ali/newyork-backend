@@ -11,17 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::domain('{company}.'.env('DOMAIN'))->group(function () {
+Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
 
-    Route::get('login', 'Company\LoginController@showLoginForm')->name('company.login');
-    Route::post('login', 'Company\LoginController@login')->name('company.login');
-    Route::post('logout', 'Company\LoginController@logout')->name('company.logout');
+    Route::get('login', 'Auth\LoginController@redirectToLogin')->name('company.login');
 
-    Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => ['auth', 'verified', 'subscribed']], function() {
 
         Route::get('me', function () {
             return response()->json([
@@ -29,16 +24,20 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
             ]);
         });
 
+        Route::get('inactive', 'Company\InactiveCompanyController')->name('companies.inactive');
+
         Route::group(['middleware' => 'company'], function() {
 
-            Route::get('home', function () {
-                return view('company.home');
-            });
+            Route::get('dashboard', 'Company\DashboardController')->name('company.dashboard');
 
-            Route::group(['middleware' => 'admin'], function() {
+            Route::group(['middleware' => 'role:company_admin'], function() {
                 Route::resource('managers', 'Company\UserController');
                 Route::get('settings/general', 'Company\SettingController@showGeneralForm')->name('settings.general.show');
                 Route::put('settings/general', 'Company\SettingController@general')->name('settings.general.update');
+
+                Route::get('billing', 'Company\BillingController@show')->name('billing.show');
+                Route::post('billing/update_card', 'Company\BillingController@updateCard')->name('billing.update_card');
+                Route::post('billing/update_plan', 'Company\BillingController@updatePlan')->name('billing.update_plan');
             });
 
             Route::post('payroll/test/output', 'Company\PayrollController@generateTestOutput')->name('payroll.process.test');
@@ -75,28 +74,60 @@ Route::domain('{company}.'.env('DOMAIN'))->group(function () {
 
     });
 
-
-
 });
 
-Route::domain(env('DOMAIN'))->group(function () {
+Route::domain(env('APP_DOMAIN'))->group(function () {
 
-    Route::get('home', function() {
-        return redirect('/moderator/users');
+    Route::get('/', function () {
+        return view('welcome');
     });
 
-    Route::get('login', 'Moderator\LoginController@showLoginForm');
-    Route::post('login', 'Moderator\LoginController@login')->name('login');
-    Route::post('logout', 'Moderator\LoginController@logout')->name('logout');
+    Route::get('home', function () {
+        Auth::guard()->logout();
+    });
+
+    Route::group(['middleware' => 'role:company_admin'], function () {
+        Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+        Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+
+        Route::get('plans', 'Auth\PlanController@show')->name('plans.index');
+        Route::get('{service_tier}/subscribe', 'Auth\SubscribeController@show')->name('subscribe.show');
+        Route::post('subscribe', 'Auth\SubscribeController@subscribe')->name('subscribe');
+    });
+
+
+
+    // login
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.form');
+    Route::post('login', 'Auth\LoginController@login')->name('login');
+
+    // register
+    Route::post('register', 'Auth\RegisterController@register')->name('register');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register.form');
+
+    // logout
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // reset password
     Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-    Route::group(['middleware' => ['moderator', 'auth']], function() {
+    Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function() {
 
-        Route::resource('moderator/users', 'Moderator\UserController');
-        Route::resource('moderator/companies', 'Moderator\CompanyController');
+        Route::get('dashboard', 'Moderator\DashboardController')->name('admin.dashboard');
+        Route::get('service_tiers/brain_tree', 'Moderator\BrainTreeController@index')->name('service_tiers.braintree.index');
+        Route::get('service_tiers/brain_tree\clear_cache', 'Moderator\BrainTreeController@clearCache')->name('service_tiers.braintree.clear_cache');
+        Route::resource('service_tiers', 'Moderator\ServiceTierController');
+        Route::resource('users', 'Moderator\UserController');
+        Route::resource('companies', 'Moderator\CompanyController');
+        Route::resource('payrolls', 'Moderator\PayrollController');
+
+
+
+        Route::post('companies/{company}/settings/toggle_activation', 'Moderator\CompanySettingsController@toggleActivation')->name('companies.settings.toggle_activation');
 
     });
 

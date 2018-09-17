@@ -40,7 +40,7 @@
                                 @elseif(!$payroll->error)
                                     <td><i class="fa fa-times-circle"></i> No File</td>
                                 @endif
-                                @if($payroll->interm_path)
+                                @if($payroll->interim_path)
                                     <td><a href="{{ route('download.payroll.interm', ['company' => $company->name, 'payroll' => $payroll->id]) }}"><i class="fa fa-download"></i> Download</a></td>
                                 @elseif(!$payroll->error)
                                     <td><i class="fa fa-times-circle"></i> No File</td>
