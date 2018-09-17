@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/moderator.css": "/css/moderator.css",
+    "/css/app.css.map": "/css/app.css.map",
+    "/css/moderator.css.map": "/css/moderator.css.map",
     "/js/moderator.js": "/js/moderator.js"
 }
