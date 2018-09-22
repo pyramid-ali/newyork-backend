@@ -129,4 +129,16 @@ class User extends Authenticatable
     {
         return true;
     }
+
+    public function pageViews()
+    {
+        return $this->hasMany(PageView::class);
+    }
+
+    public function visited($route)
+    {
+        return $this->pageViews()->create([
+            'route' => $route
+        ]);
+    }
 }

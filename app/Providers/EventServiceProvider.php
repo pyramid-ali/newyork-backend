@@ -24,7 +24,13 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Illuminate\Auth\Events\Registered' => [
             'App\Listeners\EmailVerification'
-        ]
+        ],
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\UserLoggedIn'
+        ],
+        'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\UserLoggedOut'
+        ],
     ];
 
     /**
