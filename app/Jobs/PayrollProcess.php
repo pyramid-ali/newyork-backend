@@ -40,9 +40,7 @@ class PayrollProcess implements ShouldQueue
     private $interimExporter;
     private $logger;
 
-    private $addons = [
-        AdjustDedAmount::class
-    ];
+    private $addons = [];
 
     private $modifiers = [
         FullTimeRegularHour::class,
@@ -63,17 +61,9 @@ class PayrollProcess implements ShouldQueue
         $this->payroll = $payroll;
         $this->company = $company;
         $this->user = $user;
-        $this->epicExporter = new EpicExporter();
-        $this->interimExporter = new InterimExporter();
-        $this->logger = new Logger();
 
-        if ($miscellaneous) {
-            $this->addons[] = Miscellaneous::class;
-            $this->modifiers[] = MetroCard::class;
-        }
-        else {
-            $this->modifiers[] = ResetAex::class;
-        }
+        $this->init();
+        $this->addonsAndModifiers($miscellaneous);
     }
 
     /**
@@ -88,6 +78,21 @@ class PayrollProcess implements ShouldQueue
             ->get();
 
         $this->processEmployees($rows);
+    }
+
+    private function addonsAndModifiers($miscellaneous)
+    {
+        if ($miscellaneous) {
+            $this->addons[] = Miscellaneous::class;
+            $this->modifiers[] = MetroCard::class;
+        }
+        else {
+            $this->modifiers[] = ResetAex::class;
+        }
+
+        if ($this->company->serviceTier->meta->mileage_calculation) {
+            $this->addons[] = AdjustDedAmount::class;
+        }
     }
 
     /**
@@ -228,7 +233,7 @@ class PayrollProcess implements ShouldQueue
     }
 
     /**
-     * @param Exception $exception
+     * @param \Exception $exception
      */
     public function failed(\Exception $exception)
     {
@@ -236,6 +241,15 @@ class PayrollProcess implements ShouldQueue
         event(new PayrollError($this->user, $this->payroll));
     }
 
+    /**
+     * init
+     */
+    public function init()
+    {
+        $this->epicExporter = new EpicExporter();
+        $this->interimExporter = new InterimExporter();
+        $this->logger = new Logger();
+    }
 
 
 }
