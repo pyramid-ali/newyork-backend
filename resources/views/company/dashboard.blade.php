@@ -64,6 +64,7 @@
                             <a href="#"><i class="fa fa-bitcoin"></i>Billing</a>
                             <ul class="menu vertical nested {{ str_contains(Route::currentRouteName(), 'billing.') ? 'is-active' : '' }}">
                                 <li class="{{ Route::currentRouteName() === 'billing.show' ? 'active' : '' }}"><a href="/billing"><i class="fa fa-bitcoin"></i>show</a></li>
+                                <li class="{{ Route::currentRouteName() === 'billing.invoices' ? 'active' : '' }}"><a href="/invoices"><i class="fa fa-bitcoin"></i>Invoices</a></li>
                             </ul>
                         </li>
                         @endrole

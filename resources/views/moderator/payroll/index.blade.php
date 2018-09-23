@@ -14,6 +14,7 @@
                     <tr>
                         <td>#id</td>
                         <td>Uploaded At</td>
+                        <td>Company</td>
                         <td>Status</td>
                         <td>Rows</td>
                         <td>Employees</td>
@@ -25,6 +26,7 @@
                         <tr>
                             <td>{{ $payroll->id }}</td>
                             <td>{{ $payroll->created_at }}</td>
+                            <td><a href="{{ route('companies.show', $payroll->company) }}">{{ $payroll->company->name }}</a></td>
                             @if($payroll->error)
                                 <td>Error</td>
                             @elseif($payroll->processed)

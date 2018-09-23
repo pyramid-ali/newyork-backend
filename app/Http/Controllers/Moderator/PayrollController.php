@@ -15,7 +15,7 @@ class PayrollController extends Controller
      */
     public function index()
     {
-        $payrolls = Payroll::latest()->paginate();
+        $payrolls = Payroll::latest()->with('company')->paginate();
         return view('moderator.payroll.index', compact('payrolls'));
     }
 

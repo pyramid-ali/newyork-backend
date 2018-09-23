@@ -33,7 +33,7 @@
                                         <p>{{ $service->description }}</p>
                                     </div>
                                     <div class="columns large-3">
-                                        <p class="price">{{ $plan->price }}$ <i class="fa fa-angle-right"></i></p>
+                                        <p class="price">${{ $plan->price }} <i class="fa fa-angle-right"></i></p>
                                         <p class="price-subtitle">for {{ $plan->billingFrequency }} Month</p>
                                     </div>
                                 </div>

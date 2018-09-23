@@ -36,8 +36,11 @@ Route::domain('{company}.'.env('APP_DOMAIN'))->group(function () {
                 Route::put('settings/general', 'Company\SettingController@general')->name('settings.general.update');
 
                 Route::get('billing', 'Company\BillingController@show')->name('billing.show');
+                Route::get('invoices', 'Company\BillingController@invoices')->name('billing.invoices');
                 Route::post('billing/update_card', 'Company\BillingController@updateCard')->name('billing.update_card');
                 Route::post('billing/update_plan', 'Company\BillingController@updatePlan')->name('billing.update_plan');
+
+                Route::get('invoice/{invoice}', 'Company\BillingController@downloadInvoice')->name('billing.invoices.download');
             });
 
             Route::post('payroll/test/output', 'Company\PayrollController@generateTestOutput')->name('payroll.process.test');

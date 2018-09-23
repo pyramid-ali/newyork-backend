@@ -51,4 +51,18 @@ class BillingController extends Controller
 
         return redirect()->back()->with('update_plan', $serviceTier->name);
     }
+
+    public function invoices()
+    {
+        $invoices = auth()->user()->invoices();
+        return view('company.billing.invoices', compact('invoices'));
+    }
+
+    public function downloadInvoice(Request $request, $invoiceId)
+    {
+        return $request->user()->downloadInvoice($invoiceId, [
+            'vendor'  => 'Your Company',
+            'product' => 'Your Product',
+        ]);
+    }
 }

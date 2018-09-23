@@ -17,6 +17,7 @@
                         <td>Full Time Threshold</td>
                         <td>Update Review Period</td>
                         <td>Account Number</td>
+                        <td>Service Tier</td>
                         <td>Activation</td>
                         <td>Edit</td>
                         <td>Delete</td>
@@ -30,6 +31,7 @@
                             <td>{{ $company->fulltime_threshold }}</td>
                             <td>{{ $company->review_period }}</td>
                             <td>{{ $company->account_number }}</td>
+                            <td>{{ $company->serviceTier->name }}</td>
                             <td>
                                 <a href="{{ route('companies.settings.toggle_activation', $company) }}"
                                    onclick="event.preventDefault();
